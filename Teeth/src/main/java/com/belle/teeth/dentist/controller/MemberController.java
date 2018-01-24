@@ -19,4 +19,16 @@ public class MemberController {
 		log.warn("환자 리스트 페이지");
 		return "dentist/list";
 	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String MemberDetails(HttpServletRequest request, HttpServletResponse response) {
+		log.warn("환자 정보 페이지");
+		return "dentist/detail";
+	}
+	
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String AddMember(HttpServletRequest request, HttpServletResponse response) {
+		log.warn("환자 등록 페이지");
+		return "dentist/addMember";
+	}
 }

@@ -1,0 +1,12 @@
+## 회원정보 페이지 헤더
+<div style="margin-bottom:10px;">
+	<i class="fa fa-user-circle-o"></i> 장진수 님
+</div>
+
+<ol class="breadcrumb">
+	<li class="breadcrumb-item active">개인 정보</li>
+	<li class="breadcrumb-item"><a href="">사진 업로드</a></li>
+	<li class="breadcrumb-item"><a href="">일정 관리</a></li>
+	<li class="breadcrumb-item"><a href="">장치 정보</a></li>
+	<li class="breadcrumb-item"><a href="">Q&A</a></li>
+</ol>

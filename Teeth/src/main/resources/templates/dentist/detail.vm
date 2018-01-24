@@ -1,0 +1,180 @@
+#parse("common/admin/setup/declare.vm")
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<title>퓨처스마일</title>
+	## 공통 Header
+	#parse("common/admin/setup/head.vm")
+	## DateTimePicker Css
+	<link href="/admin/css/daterangepicker.min.css?$version" rel="stylesheet">
+	##<link href="/admin/css/bootstrap-datepicker.min.css?$version" rel="stylesheet">
+	##<link href="/admin/css/bootstrap-datepicker.standalone.min.css?$version" rel="stylesheet">
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+## Navigation
+#parse("dentist/common/nav.vm")
+
+<div class="content-wrapper">
+	<div class="container-fluid">
+		
+		## 회원정보 페이지 Header
+		#parse("dentist/common/memberHeader.vm")
+		
+		<div class="card card-register mx-auto mt-5">
+			<div class="card-body">
+				<form>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>환자 이름</p>
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" id="name" type="text" aria-describedby="nameHelp" placeholder="성명을 입력 하세요.">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>환자 성별</p>
+							</div>
+							<div class="col-md-6">
+								<label class="radio-inline"><input type="radio" name="sex" checked>남성</label>&nbsp;&nbsp;
+								<label class="radio-inline"><input type="radio" name="sex">여성</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>생년월일</p>
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" id="birthday" type="text">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>국가코드</p>
+							</div>
+							<div class="col-md-6">
+								<select class="form-control" id="conturyCode">
+									<option>국가를 선택하세요.</option>
+									<option>대한민국</option>
+									<option>중국</option>
+									<option>일본</option>
+									<option>미국</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>교정시작일</p>
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" id="startDay" type="text">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>진행상태</p>
+							</div>
+							<div class="col-md-6">
+								<select class="form-control" id="status">
+									<option>상태를 선택하세요.</option>
+									<option>진단</option>
+									<option>교정중</option>
+									<option>교정완료</option>
+									<option>릴랩스</option>
+									<option>재교정</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>아이디</p>
+							</div>
+							<div class="col-md-4">
+								<input class="form-control" id="userId" type="text" placeholder="아이디를 입력하세요.">
+							</div>
+							<div class="col-md-2">
+								<button type="button" class="btn btn-success">중복확인</button>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>비밀번호</p>
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" id="password" type="password" placeholder="Password">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>비밀번호 확인</p>
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" id="password2" type="password" placeholder="Password">
+							</div>
+						</div>
+					</div>
+					<br><br><br>
+					<a class="btn btn-primary btn-block" href="#">수정</a>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	
+	## Footer
+	#parse("dentist/common/footer.vm")
+	## Logout Modal
+	#parse("dentist/common/modal.vm")
+</div>
+
+## 필수 스크립트
+#parse("common/admin/setup/script.vm")
+
+## DateTimePicker Js
+<script src="/admin/js/moment.min.js?$version"></script>
+##<script src="/admin/js/bootstrap-datepicker.min.js?$version"></script>
+<script src="/admin/js/daterangepicker.min.js?$version"></script>
+
+## 달력 스크립트
+<script>
+	$(function () {
+		$("#birthday").daterangepicker({
+			singleDatePicker: true,
+			showDropdowns: true,
+			locale: {
+				format: 'YYYY-MM-DD'
+			}
+		});
+	});
+		$(function () {
+		$("#startDay").daterangepicker({
+			singleDatePicker: true,
+			showDropdowns: true,
+			locale: {
+				format: 'YYYY-MM-DD'
+			}
+		});
+	});
+</script>
+
+</body>
+</html>
