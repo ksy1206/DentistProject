@@ -1,0 +1,10 @@
+## 스크립트
+<script src="/admin/js/jquery.min.js?$version"></script>
+<script src="/admin/js/bootstrap.bundle.min.js?$version"></script>
+<script src="/admin/js/jquery.easing.min.js?$version"></script>
+<script src="/admin/js/Chart.min.js?$version"></script>
+<script src="/admin/js/jquery.dataTables.js?$version"></script>
+<script src="/admin/js/dataTables.bootstrap4.js?$version"></script>
+<script src="/admin/js/admin.min.js?$version"></script>
+<script src="/admin/js/admin-datatables.min.js?$version"></script>
+##<script src="/admin/js/admin-charts.min.js?$version"></script>
