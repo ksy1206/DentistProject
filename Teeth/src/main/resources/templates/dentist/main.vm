@@ -1,896 +1,702 @@
 #parse("common/admin/setup/declare.vm")
-<!DOCTYPE HTML>
-<html lang="ko">
+
+<!DOCTYPE html>
+<html>
 <head>
 	<title>퓨처스마일</title>
 	#parse("common/admin/setup/head.vm")
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-## Navigation
-#parse("dentist/common/nav.vm")
+	## Header / Nav 정보
+	#parse("dentist/common/header.vm")
 
-<div class="content-wrapper">
-	<div class="container-fluid">
-		<!-- Breadcrumbs-->
+	## Left side Menu
+	#parse("dentist/common/left_menu.vm")
+
+	## Content Wrapper. Contains page content  
+	<div class="content-wrapper">
+		## Content Header (Page header)  
+		<section class="content-header">
+		<h1>
+		Dashboard <small>Control panel</small>
+		</h1>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-			<li class="breadcrumb-item active">My Dashboard</li>
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Dashboard</li>
 		</ol>
-		<!-- Icon Cards-->
+		</section>
+		## Main content  
+		<section class="content">
+		## Small boxes (Stat box)  
 		<div class="row">
-			<div class="col-xl-3 col-sm-6 mb-3">
-				<div class="card text-white bg-primary o-hidden h-100">
-					<div class="card-body">
-						<div class="card-body-icon">
-							<i class="fa fa-fw fa-comments"></i>
-						</div>
-						<div class="mr-5">26 New Messages!</div>
+			<div class="col-lg-3 col-xs-6">
+				## small box  
+				<div class="small-box bg-aqua">
+					<div class="inner">
+						<h3>150</h3>
+						<p>
+							New Orders
+						</p>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="#">
-						<span class="float-left">View Details</span> <span
-						class="float-right"> <i class="fa fa-angle-right"></i>
-					</span>
-					</a>
+					<div class="icon">
+						<i class="ion ion-bag"></i>
+					</div>
+					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-xl-3 col-sm-6 mb-3">
-				<div class="card text-white bg-warning o-hidden h-100">
-					<div class="card-body">
-						<div class="card-body-icon">
-							<i class="fa fa-fw fa-list"></i>
-						</div>
-						<div class="mr-5">11 New Tasks!</div>
+			## ./col  
+			<div class="col-lg-3 col-xs-6">
+				## small box  
+				<div class="small-box bg-green">
+					<div class="inner">
+						<h3>53<sup style="font-size: 20px">%</sup></h3>
+						<p>
+							Bounce Rate
+						</p>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="#">
-						<span class="float-left">View Details</span> <span
-						class="float-right"> <i class="fa fa-angle-right"></i>
-					</span>
-					</a>
+					<div class="icon">
+						<i class="ion ion-stats-bars"></i>
+					</div>
+					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-xl-3 col-sm-6 mb-3">
-				<div class="card text-white bg-success o-hidden h-100">
-					<div class="card-body">
-						<div class="card-body-icon">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-						<div class="mr-5">123 New Orders!</div>
+			## ./col  
+			<div class="col-lg-3 col-xs-6">
+				## small box  
+				<div class="small-box bg-yellow">
+					<div class="inner">
+						<h3>44</h3>
+						<p>
+							User Registrations
+						</p>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="#">
-						<span class="float-left">View Details</span> <span
-						class="float-right"> <i class="fa fa-angle-right"></i>
-					</span>
-					</a>
+					<div class="icon">
+						<i class="ion ion-person-add"></i>
+					</div>
+					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-xl-3 col-sm-6 mb-3">
-				<div class="card text-white bg-danger o-hidden h-100">
-					<div class="card-body">
-						<div class="card-body-icon">
-							<i class="fa fa-fw fa-support"></i>
-						</div>
-						<div class="mr-5">13 New Tickets!</div>
+			## ./col  
+			<div class="col-lg-3 col-xs-6">
+				## small box  
+				<div class="small-box bg-red">
+					<div class="inner">
+						<h3>65</h3>
+						<p>
+							Unique Visitors
+						</p>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="#">
-						<span class="float-left">View Details</span> <span
-						class="float-right"> <i class="fa fa-angle-right"></i>
-					</span>
-					</a>
+					<div class="icon">
+						<i class="ion ion-pie-graph"></i>
+					</div>
+					<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
+			## ./col  
 		</div>
-		<!-- Area Chart Example-->
-		<div class="card mb-3">
-			<div class="card-header">
-				<i class="fa fa-area-chart"></i> Area Chart Example
-			</div>
-			<div class="card-body">
-				<canvas id="myAreaChart" width="100%" height="30"></canvas>
-			</div>
-			<div class="card-footer small text-muted">Updated yesterday at
-				11:59 PM</div>
-		</div>
+		## /.row  
+		## Main row  
 		<div class="row">
-			<div class="col-lg-8">
-				<!-- Example Bar Chart Card-->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fa fa-bar-chart"></i> Bar Chart Example
+			## Left col  
+			<section class="col-lg-7 connectedSortable">
+			## Custom tabs (Charts with tabs) 
+			<div class="nav-tabs-custom">
+				## Tabs within a box  
+				<ul class="nav nav-tabs pull-right">
+					<li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+					<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
+					<li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+				</ul>
+				<div class="tab-content no-padding">
+					## Morris chart - Sales  
+					<div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
 					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-sm-8 my-auto">
-								<canvas id="myBarChart" width="100" height="50"></canvas>
-							</div>
-							<div class="col-sm-4 text-center my-auto">
-								<div class="h4 mb-0 text-primary">$34,693</div>
-								<div class="small text-muted">YTD Revenue</div>
-								<hr>
-								<div class="h4 mb-0 text-warning">$18,474</div>
-								<div class="small text-muted">YTD Expenses</div>
-								<hr>
-								<div class="h4 mb-0 text-success">$16,219</div>
-								<div class="small text-muted">YTD Margin</div>
-							</div>
-						</div>
+					<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
 					</div>
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
-				</div>
-				<!-- Card Columns Example Social Feed-->
-				<div class="mb-0 mt-4">
-					<i class="fa fa-newspaper-o"></i> News Feed
-				</div>
-				<hr class="mt-2">
-				<div class="card-columns">
-					<!-- Example Social Card-->
-					<div class="card mb-3">
-						<a href="#"> <img class="card-img-top img-fluid w-100"
-							src="https://unsplash.it/700/450?image=610" alt="">
-						</a>
-						<div class="card-body">
-							<h6 class="card-title mb-1">
-								<a href="#">David Miller</a>
-							</h6>
-							<p class="card-text small">
-								These waves are looking pretty good today! <a href="#">#surfsup</a>
-							</p>
-						</div>
-						<hr class="my-0">
-						<div class="card-body py-2 small">
-							<a class="mr-3 d-inline-block" href="#"> <i
-								class="fa fa-fw fa-thumbs-up"></i>Like
-							</a> <a class="mr-3 d-inline-block" href="#"> <i
-								class="fa fa-fw fa-comment"></i>Comment
-							</a> <a class="d-inline-block" href="#"> <i
-								class="fa fa-fw fa-share"></i>Share
-							</a>
-						</div>
-						<hr class="my-0">
-						<div class="card-body small bg-faded">
-							<div class="media">
-								<img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
-								<div class="media-body">
-									<h6 class="mt-0 mb-1">
-										<a href="#">John Smith</a>
-									</h6>
-									Very nice! I wish I was there! That looks amazing!
-									<ul class="list-inline mb-0">
-										<li class="list-inline-item"><a href="#">Like</a></li>
-										<li class="list-inline-item">·</li>
-										<li class="list-inline-item"><a href="#">Reply</a></li>
-									</ul>
-									<div class="media mt-3">
-										<a class="d-flex pr-3" href="#"> <img
-											src="http://placehold.it/45x45" alt="">
-										</a>
-										<div class="media-body">
-											<h6 class="mt-0 mb-1">
-												<a href="#">David Miller</a>
-											</h6>
-											Next time for sure!
-											<ul class="list-inline mb-0">
-												<li class="list-inline-item"><a href="#">Like</a></li>
-												<li class="list-inline-item">·</li>
-												<li class="list-inline-item"><a href="#">Reply</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer small text-muted">Posted 32 mins
-							ago</div>
-					</div>
-					<!-- Example Social Card-->
-					<div class="card mb-3">
-						<a href="#"> <img class="card-img-top img-fluid w-100"
-							src="https://unsplash.it/700/450?image=180" alt="">
-						</a>
-						<div class="card-body">
-							<h6 class="card-title mb-1">
-								<a href="#">John Smith</a>
-							</h6>
-							<p class="card-text small">
-								Another day at the office... <a href="#">#workinghardorhardlyworking</a>
-							</p>
-						</div>
-						<hr class="my-0">
-						<div class="card-body py-2 small">
-							<a class="mr-3 d-inline-block" href="#"> <i
-								class="fa fa-fw fa-thumbs-up"></i>Like
-							</a> <a class="mr-3 d-inline-block" href="#"> <i
-								class="fa fa-fw fa-comment"></i>Comment
-							</a> <a class="d-inline-block" href="#"> <i
-								class="fa fa-fw fa-share"></i>Share
-							</a>
-						</div>
-						<hr class="my-0">
-						<div class="card-body small bg-faded">
-							<div class="media">
-								<img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
-								<div class="media-body">
-									<h6 class="mt-0 mb-1">
-										<a href="#">Jessy Lucas</a>
-									</h6>
-									Where did you get that camera?! I want one!
-									<ul class="list-inline mb-0">
-										<li class="list-inline-item"><a href="#">Like</a></li>
-										<li class="list-inline-item">·</li>
-										<li class="list-inline-item"><a href="#">Reply</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer small text-muted">Posted 46 mins
-							ago</div>
-					</div>
-					<!-- Example Social Card-->
-					<div class="card mb-3">
-						<a href="#"> <img class="card-img-top img-fluid w-100"
-							src="https://unsplash.it/700/450?image=281" alt="">
-						</a>
-						<div class="card-body">
-							<h6 class="card-title mb-1">
-								<a href="#">Jeffery Wellings</a>
-							</h6>
-							<p class="card-text small">
-								Nice shot from the skate park! <a href="#">#kickflip</a> <a
-									href="#">#holdmybeer</a> <a href="#">#igotthis</a>
-							</p>
-						</div>
-						<hr class="my-0">
-						<div class="card-body py-2 small">
-							<a class="mr-3 d-inline-block" href="#"> <i
-								class="fa fa-fw fa-thumbs-up"></i>Like
-							</a> <a class="mr-3 d-inline-block" href="#"> <i
-								class="fa fa-fw fa-comment"></i>Comment
-							</a> <a class="d-inline-block" href="#"> <i
-								class="fa fa-fw fa-share"></i>Share
-							</a>
-						</div>
-						<div class="card-footer small text-muted">Posted 1 hr ago</div>
-					</div>
-					<!-- Example Social Card-->
-					<div class="card mb-3">
-						<a href="#"> <img class="card-img-top img-fluid w-100"
-							src="https://unsplash.it/700/450?image=185" alt="">
-						</a>
-						<div class="card-body">
-							<h6 class="card-title mb-1">
-								<a href="#">David Miller</a>
-							</h6>
-							<p class="card-text small">
-								It's hot, and I might be lost... <a href="#">#desert</a> <a
-									href="#">#water</a> <a href="#">#anyonehavesomewater</a> <a
-									href="#">#noreally</a> <a href="#">#thirsty</a> <a href="#">#dehydration</a>
-							</p>
-						</div>
-						<hr class="my-0">
-						<div class="card-body py-2 small">
-							<a class="mr-3 d-inline-block" href="#"> <i
-								class="fa fa-fw fa-thumbs-up"></i>Like
-							</a> <a class="mr-3 d-inline-block" href="#"> <i
-								class="fa fa-fw fa-comment"></i>Comment
-							</a> <a class="d-inline-block" href="#"> <i
-								class="fa fa-fw fa-share"></i>Share
-							</a>
-						</div>
-						<hr class="my-0">
-						<div class="card-body small bg-faded">
-							<div class="media">
-								<img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
-								<div class="media-body">
-									<h6 class="mt-0 mb-1">
-										<a href="#">John Smith</a>
-									</h6>
-									The oasis is a mile that way, or is that just a mirage?
-									<ul class="list-inline mb-0">
-										<li class="list-inline-item"><a href="#">Like</a></li>
-										<li class="list-inline-item">·</li>
-										<li class="list-inline-item"><a href="#">Reply</a></li>
-									</ul>
-									<div class="media mt-3">
-										<a class="d-flex pr-3" href="#"> <img
-											src="http://placehold.it/45x45" alt="">
-										</a>
-										<div class="media-body">
-											<h6 class="mt-0 mb-1">
-												<a href="#">David Miller</a>
-											</h6>
-											<img class="img-fluid w-100 mb-1"
-												src="https://unsplash.it/700/450?image=789" alt="">I'm
-											saved, I found a cactus. How do I open this thing?
-											<ul class="list-inline mb-0">
-												<li class="list-inline-item"><a href="#">Like</a></li>
-												<li class="list-inline-item">·</li>
-												<li class="list-inline-item"><a href="#">Reply</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer small text-muted">Posted yesterday</div>
-					</div>
-				</div>
-				<!-- /Card Columns-->
-			</div>
-			<div class="col-lg-4">
-				<!-- Example Pie Chart Card-->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fa fa-pie-chart"></i> Pie Chart Example
-					</div>
-					<div class="card-body">
-						<canvas id="myPieChart" width="100%" height="100"></canvas>
-					</div>
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
-				</div>
-				<!-- Example Notifications Card-->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fa fa-bell-o"></i> Feed Example
-					</div>
-					<div class="list-group list-group-flush small">
-						<a class="list-group-item list-group-item-action" href="#">
-							<div class="media">
-								<img class="d-flex mr-3 rounded-circle"
-									src="http://placehold.it/45x45" alt="">
-								<div class="media-body">
-									<strong>David Miller</strong>posted a new article to <strong>David
-										Miller Website</strong>.
-									<div class="text-muted smaller">Today at 5:43 PM - 5m
-										ago</div>
-								</div>
-							</div>
-						</a> <a class="list-group-item list-group-item-action" href="#">
-							<div class="media">
-								<img class="d-flex mr-3 rounded-circle"
-									src="http://placehold.it/45x45" alt="">
-								<div class="media-body">
-									<strong>Samantha King</strong>sent you a new message!
-									<div class="text-muted smaller">Today at 4:37 PM - 1hr
-										ago</div>
-								</div>
-							</div>
-						</a> <a class="list-group-item list-group-item-action" href="#">
-							<div class="media">
-								<img class="d-flex mr-3 rounded-circle"
-									src="http://placehold.it/45x45" alt="">
-								<div class="media-body">
-									<strong>Jeffery Wellings</strong>added a new photo to the
-									album <strong>Beach</strong>.
-									<div class="text-muted smaller">Today at 4:31 PM - 1hr
-										ago</div>
-								</div>
-							</div>
-						</a> <a class="list-group-item list-group-item-action" href="#">
-							<div class="media">
-								<img class="d-flex mr-3 rounded-circle"
-									src="http://placehold.it/45x45" alt="">
-								<div class="media-body">
-									<i class="fa fa-code-fork"></i> <strong>Monica Dennis</strong>forked
-									the <strong>startbootstrap-sb-admin</strong>repository on <strong>GitHub</strong>.
-									<div class="text-muted smaller">Today at 3:54 PM - 2hrs
-										ago</div>
-								</div>
-							</div>
-						</a> <a class="list-group-item list-group-item-action" href="#">View
-							all activity...</a>
-					</div>
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
 				</div>
 			</div>
+			## /.nav-tabs-custom  
+			## Chat box  
+			<div class="box box-success">
+				<div class="box-header">
+					<i class="fa fa-comments-o"></i>
+					<h3 class="box-title">Chat</h3>
+					<div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+						<div class="btn-group" data-toggle="btn-toggle">
+							<button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
+							</button>
+							<button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+						</div>
+					</div>
+				</div>
+				<div class="box-body chat" id="chat-box">
+					## chat item  
+					<div class="item">
+						<img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
+						<p class="message">
+							<a href="#" class="name">
+							<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+							Mike Doe </a>
+							I would like to meet you to discuss the latest news about the arrival of the new theme. They say it is going to be one the best themes on the market
+						</p>
+						<div class="attachment">
+							<h4>Attachments:</h4>
+							<p class="filename">
+								 Theme-thumbnail-image.jpg
+							</p>
+							<div class="pull-right">
+								<button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
+							</div>
+						</div>
+						## /.attachment  
+					</div>
+					## /.item  
+					## chat item  
+					<div class="item">
+						<img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">
+						<p class="message">
+							<a href="#" class="name">
+							<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
+							Alexander Pierce </a>
+							I would like to meet you to discuss the latest news about the arrival of the new theme. They say it is going to be one the best themes on the market
+						</p>
+					</div>
+					## /.item  
+					## chat item  
+					<div class="item">
+						<img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
+						<p class="message">
+							<a href="#" class="name">
+							<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
+							Susan Doe </a>
+							I would like to meet you to discuss the latest news about the arrival of the new theme. They say it is going to be one the best themes on the market
+						</p>
+					</div>
+					## /.item  
+				</div>
+				## /.chat  
+				<div class="box-footer">
+					<div class="input-group">
+						<input class="form-control" placeholder="Type message...">
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			## /.box (chat box)  
+			## TO DO List  
+			<div class="box box-primary">
+				<div class="box-header">
+					<i class="ion ion-clipboard"></i>
+					<h3 class="box-title">To Do List</h3>
+					<div class="box-tools pull-right">
+						<ul class="pagination pagination-sm inline">
+							<li><a href="#">&laquo;</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</div>
+				</div>
+				## /.box-header  
+				<div class="box-body">
+					## See dist/js/pages/dashboard.js to activate the todoList plugin  
+					<ul class="todo-list">
+						<li>
+						## drag handle  
+						<span class="handle">
+						<i class="fa fa-ellipsis-v"></i>
+						<i class="fa fa-ellipsis-v"></i>
+						</span>
+						## checkbox  
+						<input type="checkbox" value="">
+						## todo text  
+						<span class="text">Design a nice theme</span>
+						## Emphasis label  
+						<small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+						## General tools such as edit or delete 
+						<div class="tools">
+							<i class="fa fa-edit"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
+						</li>
+						<li>
+						<span class="handle">
+						<i class="fa fa-ellipsis-v"></i>
+						<i class="fa fa-ellipsis-v"></i>
+						</span>
+						<input type="checkbox" value="">
+						<span class="text">Make the theme responsive</span>
+						<small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+						<div class="tools">
+							<i class="fa fa-edit"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
+						</li>
+						<li>
+						<span class="handle">
+						<i class="fa fa-ellipsis-v"></i>
+						<i class="fa fa-ellipsis-v"></i>
+						</span>
+						<input type="checkbox" value="">
+						<span class="text">Let theme shine like a star</span>
+						<small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+						<div class="tools">
+							<i class="fa fa-edit"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
+						</li>
+						<li>
+						<span class="handle">
+						<i class="fa fa-ellipsis-v"></i>
+						<i class="fa fa-ellipsis-v"></i>
+						</span>
+						<input type="checkbox" value="">
+						<span class="text">Let theme shine like a star</span>
+						<small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
+						<div class="tools">
+							<i class="fa fa-edit"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
+						</li>
+						<li>
+						<span class="handle">
+						<i class="fa fa-ellipsis-v"></i>
+						<i class="fa fa-ellipsis-v"></i>
+						</span>
+						<input type="checkbox" value="">
+						<span class="text">Check your messages and notifications</span>
+						<small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+						<div class="tools">
+							<i class="fa fa-edit"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
+						</li>
+						<li>
+						<span class="handle">
+						<i class="fa fa-ellipsis-v"></i>
+						<i class="fa fa-ellipsis-v"></i>
+						</span>
+						<input type="checkbox" value="">
+						<span class="text">Let theme shine like a star</span>
+						<small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
+						<div class="tools">
+							<i class="fa fa-edit"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
+						</li>
+					</ul>
+				</div>
+				## /.box-body  
+				<div class="box-footer clearfix no-border">
+					<button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+				</div>
+			</div>
+			## /.box  
+			## quick email widget  
+			<div class="box box-info">
+				<div class="box-header">
+					<i class="fa fa-envelope"></i>
+					<h3 class="box-title">Quick Email</h3>
+					## tools box  
+					<div class="pull-right box-tools">
+						<button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
+						<i class="fa fa-times"></i></button>
+					</div>
+					## /. tools  
+				</div>
+				<div class="box-body">
+					<form action="#" method="post">
+						<div class="form-group">
+							<input type="email" class="form-control" name="emailto" placeholder="Email to:">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" name="subject" placeholder="Subject">
+						</div>
+						<div>
+							<textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="box-footer clearfix">
+					<button type="button" class="pull-right btn btn-default" id="sendEmail">Send <i class="fa fa-arrow-circle-right"></i></button>
+				</div>
+			</div>
+			</section>
+			## /.Left col  
+			## right col (We are only adding the ID to make the widgets sortable) 
+			<section class="col-lg-5 connectedSortable">
+			## Map box  
+			<div class="box box-solid bg-light-blue-gradient">
+				<div class="box-header">
+					## tools box  
+					<div class="pull-right box-tools">
+						<button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range">
+						<i class="fa fa-calendar"></i></button>
+						<button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+						<i class="fa fa-minus"></i></button>
+					</div>
+					## /. tools  
+					<i class="fa fa-map-marker"></i>
+					<h3 class="box-title">
+					Visitors </h3>
+				</div>
+				<div class="box-body">
+					<div id="world-map" style="height: 250px; width: 100%;">
+					</div>
+				</div>
+				## /.box-body 
+				<div class="box-footer no-border">
+					<div class="row">
+						<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+							<div id="sparkline-1">
+							</div>
+							<div class="knob-label">
+								Visitors
+							</div>
+						</div>
+						## ./col  
+						<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+							<div id="sparkline-2">
+							</div>
+							<div class="knob-label">
+								Online
+							</div>
+						</div>
+						## ./col  
+						<div class="col-xs-4 text-center">
+							<div id="sparkline-3">
+							</div>
+							<div class="knob-label">
+								Exists
+							</div>
+						</div>
+						## ./col  
+					</div>
+					## /.row  
+				</div>
+			</div>
+			## /.box  
+			## solid sales graph  
+			<div class="box box-solid bg-teal-gradient">
+				<div class="box-header">
+					<i class="fa fa-th"></i>
+					<h3 class="box-title">Sales Graph</h3>
+					<div class="box-tools pull-right">
+						<button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+						</button>
+						<button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+						</button>
+					</div>
+				</div>
+				<div class="box-body border-radius-none">
+					<div class="chart" id="line-chart" style="height: 250px;">
+					</div>
+				</div>
+				## /.box-body  
+				<div class="box-footer no-border">
+					<div class="row">
+						<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+							<input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgcolor="#39CCCC">
+							<div class="knob-label">
+								Mail-Orders
+							</div>
+						</div>
+						## ./col  
+						<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+							<input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgcolor="#39CCCC">
+							<div class="knob-label">
+								Online
+							</div>
+						</div>
+						## ./col  
+						<div class="col-xs-4 text-center">
+							<input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgcolor="#39CCCC">
+							<div class="knob-label">
+								In-Store
+							</div>
+						</div>
+						## ./col  
+					</div>
+					## /.row  
+				</div>
+				## /.box-footer  
+			</div>
+			## /.box  
+			## Calendar  
+			<div class="box box-solid bg-green-gradient">
+				<div class="box-header">
+					<i class="fa fa-calendar"></i>
+					<h3 class="box-title">Calendar</h3>
+					## tools box  
+					<div class="pull-right box-tools">
+						## button with a dropdown  
+						<div class="btn-group">
+							<button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-bars"></i></button>
+							<ul class="dropdown-menu pull-right" role="menu">
+								<li><a href="#">Add new event</a></li>
+								<li><a href="#">Clear events</a></li>
+								<li class="divider"></li>
+								<li><a href="#">View calendar</a></li>
+							</ul>
+						</div>
+						<button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+						</button>
+						<button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+						</button>
+					</div>
+					## /. tools  
+				</div>
+				## /.box-header  
+				<div class="box-body no-padding">
+					##The calendar  
+					<div id="calendar" style="width: 100%">
+					</div>
+				</div>
+				## /.box-body  
+				<div class="box-footer text-black">
+					<div class="row">
+						<div class="col-sm-6">
+							## Progress bars  
+							<div class="clearfix">
+								<span class="pull-left">Task #1</span>
+								<small class="pull-right">90%</small>
+							</div>
+							<div class="progress xs">
+								<div class="progress-bar progress-bar-green" style="width: 90%;">
+								</div>
+							</div>
+							<div class="clearfix">
+								<span class="pull-left">Task #2</span>
+								<small class="pull-right">70%</small>
+							</div>
+							<div class="progress xs">
+								<div class="progress-bar progress-bar-green" style="width: 70%;">
+								</div>
+							</div>
+						</div>
+						## /.col  
+						<div class="col-sm-6">
+							<div class="clearfix">
+								<span class="pull-left">Task #3</span>
+								<small class="pull-right">60%</small>
+							</div>
+							<div class="progress xs">
+								<div class="progress-bar progress-bar-green" style="width: 60%;">
+								</div>
+							</div>
+							<div class="clearfix">
+								<span class="pull-left">Task #4</span>
+								<small class="pull-right">40%</small>
+							</div>
+							<div class="progress xs">
+								<div class="progress-bar progress-bar-green" style="width: 40%;">
+								</div>
+							</div>
+						</div>
+						## /.col  
+					</div>
+					## /.row  
+				</div>
+			</div>
+			## /.box  
+			</section>
+			## right col  
 		</div>
-		<!-- Example DataTables Card-->
-		<div class="card mb-3">
-			<div class="card-header">
-				<i class="fa fa-table"></i> Data Table Example
-			</div>
-			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Position</th>
-								<th>Office</th>
-								<th>Age</th>
-								<th>Start date</th>
-								<th>Salary</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<th>Name</th>
-								<th>Position</th>
-								<th>Office</th>
-								<th>Age</th>
-								<th>Start date</th>
-								<th>Salary</th>
-							</tr>
-						</tfoot>
-						<tbody>
-							<tr>
-								<td>Tiger Nixon</td>
-								<td>System Architect</td>
-								<td>Edinburgh</td>
-								<td>61</td>
-								<td>2011/04/25</td>
-								<td>$320,800</td>
-							</tr>
-							<tr>
-								<td>Garrett Winters</td>
-								<td>Accountant</td>
-								<td>Tokyo</td>
-								<td>63</td>
-								<td>2011/07/25</td>
-								<td>$170,750</td>
-							</tr>
-							<tr>
-								<td>Ashton Cox</td>
-								<td>Junior Technical Author</td>
-								<td>San Francisco</td>
-								<td>66</td>
-								<td>2009/01/12</td>
-								<td>$86,000</td>
-							</tr>
-							<tr>
-								<td>Cedric Kelly</td>
-								<td>Senior Javascript Developer</td>
-								<td>Edinburgh</td>
-								<td>22</td>
-								<td>2012/03/29</td>
-								<td>$433,060</td>
-							</tr>
-							<tr>
-								<td>Airi Satou</td>
-								<td>Accountant</td>
-								<td>Tokyo</td>
-								<td>33</td>
-								<td>2008/11/28</td>
-								<td>$162,700</td>
-							</tr>
-							<tr>
-								<td>Brielle Williamson</td>
-								<td>Integration Specialist</td>
-								<td>New York</td>
-								<td>61</td>
-								<td>2012/12/02</td>
-								<td>$372,000</td>
-							</tr>
-							<tr>
-								<td>Herrod Chandler</td>
-								<td>Sales Assistant</td>
-								<td>San Francisco</td>
-								<td>59</td>
-								<td>2012/08/06</td>
-								<td>$137,500</td>
-							</tr>
-							<tr>
-								<td>Rhona Davidson</td>
-								<td>Integration Specialist</td>
-								<td>Tokyo</td>
-								<td>55</td>
-								<td>2010/10/14</td>
-								<td>$327,900</td>
-							</tr>
-							<tr>
-								<td>Colleen Hurst</td>
-								<td>Javascript Developer</td>
-								<td>San Francisco</td>
-								<td>39</td>
-								<td>2009/09/15</td>
-								<td>$205,500</td>
-							</tr>
-							<tr>
-								<td>Sonya Frost</td>
-								<td>Software Engineer</td>
-								<td>Edinburgh</td>
-								<td>23</td>
-								<td>2008/12/13</td>
-								<td>$103,600</td>
-							</tr>
-							<tr>
-								<td>Jena Gaines</td>
-								<td>Office Manager</td>
-								<td>London</td>
-								<td>30</td>
-								<td>2008/12/19</td>
-								<td>$90,560</td>
-							</tr>
-							<tr>
-								<td>Quinn Flynn</td>
-								<td>Support Lead</td>
-								<td>Edinburgh</td>
-								<td>22</td>
-								<td>2013/03/03</td>
-								<td>$342,000</td>
-							</tr>
-							<tr>
-								<td>Charde Marshall</td>
-								<td>Regional Director</td>
-								<td>San Francisco</td>
-								<td>36</td>
-								<td>2008/10/16</td>
-								<td>$470,600</td>
-							</tr>
-							<tr>
-								<td>Haley Kennedy</td>
-								<td>Senior Marketing Designer</td>
-								<td>London</td>
-								<td>43</td>
-								<td>2012/12/18</td>
-								<td>$313,500</td>
-							</tr>
-							<tr>
-								<td>Tatyana Fitzpatrick</td>
-								<td>Regional Director</td>
-								<td>London</td>
-								<td>19</td>
-								<td>2010/03/17</td>
-								<td>$385,750</td>
-							</tr>
-							<tr>
-								<td>Michael Silva</td>
-								<td>Marketing Designer</td>
-								<td>London</td>
-								<td>66</td>
-								<td>2012/11/27</td>
-								<td>$198,500</td>
-							</tr>
-							<tr>
-								<td>Paul Byrd</td>
-								<td>Chief Financial Officer (CFO)</td>
-								<td>New York</td>
-								<td>64</td>
-								<td>2010/06/09</td>
-								<td>$725,000</td>
-							</tr>
-							<tr>
-								<td>Gloria Little</td>
-								<td>Systems Administrator</td>
-								<td>New York</td>
-								<td>59</td>
-								<td>2009/04/10</td>
-								<td>$237,500</td>
-							</tr>
-							<tr>
-								<td>Bradley Greer</td>
-								<td>Software Engineer</td>
-								<td>London</td>
-								<td>41</td>
-								<td>2012/10/13</td>
-								<td>$132,000</td>
-							</tr>
-							<tr>
-								<td>Dai Rios</td>
-								<td>Personnel Lead</td>
-								<td>Edinburgh</td>
-								<td>35</td>
-								<td>2012/09/26</td>
-								<td>$217,500</td>
-							</tr>
-							<tr>
-								<td>Jenette Caldwell</td>
-								<td>Development Lead</td>
-								<td>New York</td>
-								<td>30</td>
-								<td>2011/09/03</td>
-								<td>$345,000</td>
-							</tr>
-							<tr>
-								<td>Yuri Berry</td>
-								<td>Chief Marketing Officer (CMO)</td>
-								<td>New York</td>
-								<td>40</td>
-								<td>2009/06/25</td>
-								<td>$675,000</td>
-							</tr>
-							<tr>
-								<td>Caesar Vance</td>
-								<td>Pre-Sales Support</td>
-								<td>New York</td>
-								<td>21</td>
-								<td>2011/12/12</td>
-								<td>$106,450</td>
-							</tr>
-							<tr>
-								<td>Doris Wilder</td>
-								<td>Sales Assistant</td>
-								<td>Sidney</td>
-								<td>23</td>
-								<td>2010/09/20</td>
-								<td>$85,600</td>
-							</tr>
-							<tr>
-								<td>Angelica Ramos</td>
-								<td>Chief Executive Officer (CEO)</td>
-								<td>London</td>
-								<td>47</td>
-								<td>2009/10/09</td>
-								<td>$1,200,000</td>
-							</tr>
-							<tr>
-								<td>Gavin Joyce</td>
-								<td>Developer</td>
-								<td>Edinburgh</td>
-								<td>42</td>
-								<td>2010/12/22</td>
-								<td>$92,575</td>
-							</tr>
-							<tr>
-								<td>Jennifer Chang</td>
-								<td>Regional Director</td>
-								<td>Singapore</td>
-								<td>28</td>
-								<td>2010/11/14</td>
-								<td>$357,650</td>
-							</tr>
-							<tr>
-								<td>Brenden Wagner</td>
-								<td>Software Engineer</td>
-								<td>San Francisco</td>
-								<td>28</td>
-								<td>2011/06/07</td>
-								<td>$206,850</td>
-							</tr>
-							<tr>
-								<td>Fiona Green</td>
-								<td>Chief Operating Officer (COO)</td>
-								<td>San Francisco</td>
-								<td>48</td>
-								<td>2010/03/11</td>
-								<td>$850,000</td>
-							</tr>
-							<tr>
-								<td>Shou Itou</td>
-								<td>Regional Marketing</td>
-								<td>Tokyo</td>
-								<td>20</td>
-								<td>2011/08/14</td>
-								<td>$163,000</td>
-							</tr>
-							<tr>
-								<td>Michelle House</td>
-								<td>Integration Specialist</td>
-								<td>Sidney</td>
-								<td>37</td>
-								<td>2011/06/02</td>
-								<td>$95,400</td>
-							</tr>
-							<tr>
-								<td>Suki Burks</td>
-								<td>Developer</td>
-								<td>London</td>
-								<td>53</td>
-								<td>2009/10/22</td>
-								<td>$114,500</td>
-							</tr>
-							<tr>
-								<td>Prescott Bartlett</td>
-								<td>Technical Author</td>
-								<td>London</td>
-								<td>27</td>
-								<td>2011/05/07</td>
-								<td>$145,000</td>
-							</tr>
-							<tr>
-								<td>Gavin Cortez</td>
-								<td>Team Leader</td>
-								<td>San Francisco</td>
-								<td>22</td>
-								<td>2008/10/26</td>
-								<td>$235,500</td>
-							</tr>
-							<tr>
-								<td>Martena Mccray</td>
-								<td>Post-Sales support</td>
-								<td>Edinburgh</td>
-								<td>46</td>
-								<td>2011/03/09</td>
-								<td>$324,050</td>
-							</tr>
-							<tr>
-								<td>Unity Butler</td>
-								<td>Marketing Designer</td>
-								<td>San Francisco</td>
-								<td>47</td>
-								<td>2009/12/09</td>
-								<td>$85,675</td>
-							</tr>
-							<tr>
-								<td>Howard Hatfield</td>
-								<td>Office Manager</td>
-								<td>San Francisco</td>
-								<td>51</td>
-								<td>2008/12/16</td>
-								<td>$164,500</td>
-							</tr>
-							<tr>
-								<td>Hope Fuentes</td>
-								<td>Secretary</td>
-								<td>San Francisco</td>
-								<td>41</td>
-								<td>2010/02/12</td>
-								<td>$109,850</td>
-							</tr>
-							<tr>
-								<td>Vivian Harrell</td>
-								<td>Financial Controller</td>
-								<td>San Francisco</td>
-								<td>62</td>
-								<td>2009/02/14</td>
-								<td>$452,500</td>
-							</tr>
-							<tr>
-								<td>Timothy Mooney</td>
-								<td>Office Manager</td>
-								<td>London</td>
-								<td>37</td>
-								<td>2008/12/11</td>
-								<td>$136,200</td>
-							</tr>
-							<tr>
-								<td>Jackson Bradshaw</td>
-								<td>Director</td>
-								<td>New York</td>
-								<td>65</td>
-								<td>2008/09/26</td>
-								<td>$645,750</td>
-							</tr>
-							<tr>
-								<td>Olivia Liang</td>
-								<td>Support Engineer</td>
-								<td>Singapore</td>
-								<td>64</td>
-								<td>2011/02/03</td>
-								<td>$234,500</td>
-							</tr>
-							<tr>
-								<td>Bruno Nash</td>
-								<td>Software Engineer</td>
-								<td>London</td>
-								<td>38</td>
-								<td>2011/05/03</td>
-								<td>$163,500</td>
-							</tr>
-							<tr>
-								<td>Sakura Yamamoto</td>
-								<td>Support Engineer</td>
-								<td>Tokyo</td>
-								<td>37</td>
-								<td>2009/08/19</td>
-								<td>$139,575</td>
-							</tr>
-							<tr>
-								<td>Thor Walton</td>
-								<td>Developer</td>
-								<td>New York</td>
-								<td>61</td>
-								<td>2013/08/11</td>
-								<td>$98,540</td>
-							</tr>
-							<tr>
-								<td>Finn Camacho</td>
-								<td>Support Engineer</td>
-								<td>San Francisco</td>
-								<td>47</td>
-								<td>2009/07/07</td>
-								<td>$87,500</td>
-							</tr>
-							<tr>
-								<td>Serge Baldwin</td>
-								<td>Data Coordinator</td>
-								<td>Singapore</td>
-								<td>64</td>
-								<td>2012/04/09</td>
-								<td>$138,575</td>
-							</tr>
-							<tr>
-								<td>Zenaida Frank</td>
-								<td>Software Engineer</td>
-								<td>New York</td>
-								<td>63</td>
-								<td>2010/01/04</td>
-								<td>$125,250</td>
-							</tr>
-							<tr>
-								<td>Zorita Serrano</td>
-								<td>Software Engineer</td>
-								<td>San Francisco</td>
-								<td>56</td>
-								<td>2012/06/01</td>
-								<td>$115,000</td>
-							</tr>
-							<tr>
-								<td>Jennifer Acosta</td>
-								<td>Junior Javascript Developer</td>
-								<td>Edinburgh</td>
-								<td>43</td>
-								<td>2013/02/01</td>
-								<td>$75,650</td>
-							</tr>
-							<tr>
-								<td>Cara Stevens</td>
-								<td>Sales Assistant</td>
-								<td>New York</td>
-								<td>46</td>
-								<td>2011/12/06</td>
-								<td>$145,600</td>
-							</tr>
-							<tr>
-								<td>Hermione Butler</td>
-								<td>Regional Director</td>
-								<td>London</td>
-								<td>47</td>
-								<td>2011/03/21</td>
-								<td>$356,250</td>
-							</tr>
-							<tr>
-								<td>Lael Greer</td>
-								<td>Systems Administrator</td>
-								<td>London</td>
-								<td>21</td>
-								<td>2009/02/27</td>
-								<td>$103,500</td>
-							</tr>
-							<tr>
-								<td>Jonas Alexander</td>
-								<td>Developer</td>
-								<td>San Francisco</td>
-								<td>30</td>
-								<td>2010/07/14</td>
-								<td>$86,500</td>
-							</tr>
-							<tr>
-								<td>Shad Decker</td>
-								<td>Regional Director</td>
-								<td>Edinburgh</td>
-								<td>51</td>
-								<td>2008/11/13</td>
-								<td>$183,000</td>
-							</tr>
-							<tr>
-								<td>Michael Bruce</td>
-								<td>Javascript Developer</td>
-								<td>Singapore</td>
-								<td>29</td>
-								<td>2011/06/27</td>
-								<td>$183,000</td>
-							</tr>
-							<tr>
-								<td>Donna Snider</td>
-								<td>Customer Support</td>
-								<td>New York</td>
-								<td>27</td>
-								<td>2011/01/25</td>
-								<td>$112,000</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="card-footer small text-muted">Updated yesterday at
-				11:59 PM</div>
-		</div>
+		## /.row (main row)  
+		</section>
+		## /.content  
 	</div>
-	<!-- /.container-fluid-->
-	<!-- /.content-wrapper-->
-	
-	## Footer
-	#parse("dentist/common/footer.vm")
-	## Logout Modal
-	#parse("dentist/common/modal.vm")
+	## /.content-wrapper  
+	<footer class="main-footer">
+	<div class="pull-right hidden-xs">
+		<b>Version</b> 2.4.0
+	</div>
+	<strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights reserved. </footer>
+	## Control Sidebar  
+	<aside class="control-sidebar control-sidebar-dark">
+	## Create the tabs  
+	<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+		<li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+		<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+	</ul>
+	## Tab panes  
+	<div class="tab-content">
+		## Home tab content  
+		<div class="tab-pane" id="control-sidebar-home-tab">
+			<h3 class="control-sidebar-heading">Recent Activity</h3>
+			<ul class="control-sidebar-menu">
+				<li>
+				<a href="javascript:void(0)">
+				<i class="menu-icon fa fa-birthday-cake bg-red"></i>
+				<div class="menu-info">
+					<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+					<p>
+						Will be 23 on April 24th
+					</p>
+				</div>
+				</a>
+				</li>
+				<li>
+				<a href="javascript:void(0)">
+				<i class="menu-icon fa fa-user bg-yellow"></i>
+				<div class="menu-info">
+					<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+					<p>
+						New phone +1(800)555-1234
+					</p>
+				</div>
+				</a>
+				</li>
+				<li>
+				<a href="javascript:void(0)">
+				<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+				<div class="menu-info">
+					<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+					<p>
+						nora@example.com
+					</p>
+				</div>
+				</a>
+				</li>
+				<li>
+				<a href="javascript:void(0)">
+				<i class="menu-icon fa fa-file-code-o bg-green"></i>
+				<div class="menu-info">
+					<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+					<p>
+						Execution time 5 seconds
+					</p>
+				</div>
+				</a>
+				</li>
+			</ul>
+			## /.control-sidebar-menu  
+			<h3 class="control-sidebar-heading">Tasks Progress</h3>
+			<ul class="control-sidebar-menu">
+				<li>
+				<a href="javascript:void(0)">
+				<h4 class="control-sidebar-subheading">
+				Custom Template Design <span class="label label-danger pull-right">70%</span>
+				</h4>
+				<div class="progress progress-xxs">
+					<div class="progress-bar progress-bar-danger" style="width: 70%">
+					</div>
+				</div>
+				</a>
+				</li>
+				<li>
+				<a href="javascript:void(0)">
+				<h4 class="control-sidebar-subheading">
+				Update Resume <span class="label label-success pull-right">95%</span>
+				</h4>
+				<div class="progress progress-xxs">
+					<div class="progress-bar progress-bar-success" style="width: 95%">
+					</div>
+				</div>
+				</a>
+				</li>
+				<li>
+				<a href="javascript:void(0)">
+				<h4 class="control-sidebar-subheading">
+				Laravel Integration <span class="label label-warning pull-right">50%</span>
+				</h4>
+				<div class="progress progress-xxs">
+					<div class="progress-bar progress-bar-warning" style="width: 50%">
+					</div>
+				</div>
+				</a>
+				</li>
+				<li>
+				<a href="javascript:void(0)">
+				<h4 class="control-sidebar-subheading">
+				Back End Framework <span class="label label-primary pull-right">68%</span>
+				</h4>
+				<div class="progress progress-xxs">
+					<div class="progress-bar progress-bar-primary" style="width: 68%">
+					</div>
+				</div>
+				</a>
+				</li>
+			</ul>
+			## /.control-sidebar-menu  
+		</div>
+		## /.tab-pane  
+		## Stats tab content  
+		<div class="tab-pane" id="control-sidebar-stats-tab">
+			Stats Tab Content
+		</div>
+		## /.tab-pane  
+		## Settings tab content  
+		<div class="tab-pane" id="control-sidebar-settings-tab">
+			<form method="post">
+				<h3 class="control-sidebar-heading">General Settings</h3>
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+					Report panel usage <input type="checkbox" class="pull-right" checked>
+					</label>
+					<p>
+						 Some information about this general settings option
+					</p>
+				</div>
+				## /.form-group  
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+					Allow mail redirect <input type="checkbox" class="pull-right" checked>
+					</label>
+					<p>
+						 Other sets of options are available
+					</p>
+				</div>
+				## /.form-group  
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+					Expose author name in posts <input type="checkbox" class="pull-right" checked>
+					</label>
+					<p>
+						 Allow the user to show his name in blog posts
+					</p>
+				</div>
+				## /.form-group  
+				<h3 class="control-sidebar-heading">Chat Settings</h3>
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+					Show me as online <input type="checkbox" class="pull-right" checked>
+					</label>
+				</div>
+				## /.form-group  
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+					Turn off notifications <input type="checkbox" class="pull-right">
+					</label>
+				</div>
+				## /.form-group  
+				<div class="form-group">
+					<label class="control-sidebar-subheading">
+					Delete chat history <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+					</label>
+				</div>
+				## /.form-group  
+			</form>
+		</div>
+		## /.tab-pane  
+	</div>
+	</aside>
+	## /.control-sidebar  
+	## Add the sidebar's background. This div must be placed
+		immediately after the control sidebar  
+	<div class="control-sidebar-bg">
+	</div>
 </div>
 
-## 필수 스크립트
+## Script
 #parse("common/admin/setup/script.vm")
+
 </body>
 </html>

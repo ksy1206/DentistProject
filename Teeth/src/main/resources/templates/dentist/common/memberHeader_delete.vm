@@ -1,0 +1,40 @@
+## 회원정보 페이지 헤더
+<div style="margin-bottom:10px;">
+	<i class="fa fa-user-circle-o"></i> 장진수 님
+</div>
+
+<ol class="breadcrumb">
+	#if($type == "info")
+		<li class="breadcrumb-item active">개인 정보</li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=imgUpload">사진 업로드</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=schedule">일정 관리</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=deviceInfo">장치 정보</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=qa">Q&A</a></li>
+	#elseif($type == "imgUpload")
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=info">개인 정보</a></li>
+		<li class="breadcrumb-item active">사진 업로드</li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=schedule">일정 관리</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=deviceInfo">장치 정보</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=qa">Q&A</a></li>
+	#elseif($type == "schedule")
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=info">개인 정보</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=imgUpload">사진 업로드</a></li>
+		<li class="breadcrumb-item active">일정 관리</li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=deviceInfo">장치 정보</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=qa">Q&A</a></li>
+	#elseif($type == "deviceInfo")
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=info">개인 정보</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=imgUpload">사진 업로드</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=schedule">일정 관리</a></li>
+		<li class="breadcrumb-item active">장치 정보</li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=qa">Q&A</a></li>
+	#elseif($type == "qa")
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=info">개인 정보</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=imgUpload">사진 업로드</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=schedule">일정 관리</a></li>
+		<li class="breadcrumb-item"><a href="/dentist/member/detail?type=deviceInfo">장치 정보</a></li>
+		<li class="breadcrumb-item active">Q&A</li>	
+	#end
+
+	
+</ol>

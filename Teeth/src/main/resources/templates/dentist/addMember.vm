@@ -7,8 +7,6 @@
 	#parse("common/admin/setup/head.vm")
 	## DateTimePicker Css
 	<link href="/admin/css/daterangepicker.min.css?$version" rel="stylesheet">
-	##<link href="/admin/css/bootstrap-datepicker.min.css?$version" rel="stylesheet">
-	##<link href="/admin/css/bootstrap-datepicker.standalone.min.css?$version" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -76,6 +74,16 @@
 							</div>
 							<div class="col-md-6">
 								<input class="form-control" id="startDay" type="text">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6" style="text-align: center;">
+								<p>기공소</p>
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" type="text">
 							</div>
 						</div>
 					</div>
