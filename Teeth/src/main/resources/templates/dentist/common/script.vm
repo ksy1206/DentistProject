@@ -13,11 +13,11 @@
 <script src="/js/Chart.js"></script>
 ## end chart
 
-## Calender
-<script src="/js/underscore-min.js" type="text/javascript"></script>
-<script src= "/js/moment-2.2.1.js" type="text/javascript"></script>
-<script src="/js/clndr.js" type="text/javascript"></script>
-<script src="/js/site.js" type="text/javascript"></script>
+## Calender 달력이 필요한 곳에만 넣는다.
+##<script src="/js/underscore-min.js" type="text/javascript"></script>
+##<script src= "/js/moment-2.2.1.js" type="text/javascript"></script>
+##<script src="/js/clndr.js" type="text/javascript"></script>
+##<script src="/js/site.js" type="text/javascript"></script>
 
 ## Metis Menu
 <script src="/js/metisMenu.min.js"></script>

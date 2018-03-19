@@ -15,8 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String CommonLogin(HttpServletRequest request, HttpServletResponse response) {
-		log.warn("치과 메인 페이지");
+	public String DentistMainPage(HttpServletRequest request, HttpServletResponse response) {
 		return "dentist/main";
+	}
+	
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public String NoticeListPage(HttpServletRequest request, HttpServletResponse response) {
+		return "dentist/notice/list";
 	}
 }
