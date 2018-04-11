@@ -15,12 +15,17 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String DentistMainPage(HttpServletRequest request, HttpServletResponse response) {
+	public String DentistMain(HttpServletRequest request, HttpServletResponse response) {
 		return "dentist/main";
 	}
 	
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
-	public String NoticeListPage(HttpServletRequest request, HttpServletResponse response) {
+	public String NoticeList(HttpServletRequest request, HttpServletResponse response) {
 		return "dentist/notice/list";
+	}
+	
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String NoticeAdd(HttpServletRequest request, HttpServletResponse response) {
+		return "dentist/notice/add";
 	}
 }

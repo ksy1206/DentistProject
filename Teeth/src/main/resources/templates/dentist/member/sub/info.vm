@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	## Header 설정 파일
+	#parse("dentist/common/header.vm")
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		
+		## Left-Navigation
+		#parse("dentist/common/left-nav.vm")
+		
+		## Top-Info
+		#parse("dentist/common/top-info.vm")
+		
+		## main content start
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="typography widget-shadow">
+					<div class="alert alert-info" role="alert">
+						<strong>홍길동</strong>님의 회원 관리
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+
+		## Footer 설정 파일
+		#parse("dentist/common/footer.vm")
+	</div>
+	
+	## Left-Navagation Script
+	#parse("dentist/common/left-nav-script.vm")
+</body>
+</html>

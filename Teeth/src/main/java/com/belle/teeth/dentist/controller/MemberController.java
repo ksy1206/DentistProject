@@ -17,18 +17,24 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String CommonLogin(HttpServletRequest request, HttpServletResponse response) {
+	public String MemberList(HttpServletRequest request, HttpServletResponse response) {
 		log.warn("환자 리스트 페이지");
-		return "dentist/list";
+		return "dentist/member/list";
 	}
 	
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String MemberAdd(HttpServletRequest request, HttpServletResponse response) {
+		log.warn("환자 리스트 페이지");
+		return "dentist/member/add";
+	}
+	
+	@RequestMapping(value = "/sub/info", method = RequestMethod.GET)
 	public String MemberDetails(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value="type", required=false, defaultValue="info") String type, Model model) {
 		log.warn("환자 정보 페이지 type에 따라 분류");
 		
 		model.addAttribute("type", type);
-		return "dentist/detail";
+		return "dentist/member/sub/info";
 	}
 	
 	@RequestMapping(value = "/detail/qa/details", method = RequestMethod.GET)
@@ -37,11 +43,5 @@ public class MemberController {
 		
 		model.addAttribute("type", "qaDetails");
 		return "dentist/detail";
-	}
-	
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String AddMember(HttpServletRequest request, HttpServletResponse response) {
-		log.warn("환자 등록 페이지");
-		return "dentist/addMember";
 	}
 }

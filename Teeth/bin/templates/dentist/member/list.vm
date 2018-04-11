@@ -17,7 +17,7 @@
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">공지 목록</h3>
+					<h3 class="title1">회원 목록</h3>
 					<div class="panel-body widget-shadow">
 						<table class="table">
 							<thead>
@@ -31,7 +31,7 @@
 							<tbody>
 								<tr>
 									<th scope="row">1</th>
-									<td>Mark</td>
+									<td><a href="/dentist/member/sub/info">Mark</a></td>
 									<td>Otto</td>
 									<td>@mdo</td>
 								</tr>
