@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	## Header 설정 파일
+	#parse("dentist/common/header.vm")
+</head> 
+<body>
+	<div class="main-content">
+
+		## main content start
+		<div id="page-wrapper" style="padding: 4em 8em 2.5em;">
+			<p style="text-align: center;font-size: 50px;"><b>4U Smile<b></p>
+			<br>
+			<br>
+			<div style="text-align: center;">
+				<img src="/img/user.png">&nbsp;&nbsp;&nbsp;
+				<img src="/img/teath.png">&nbsp;&nbsp;&nbsp;
+				<img src="/img/up.png">&nbsp;&nbsp;&nbsp;
+				<img src="/img/down.png">&nbsp;&nbsp;&nbsp;
+				<img src="/img/calendar.png">&nbsp;&nbsp;&nbsp;
+				<img src="/img/question.png">
+			</div>
+			<br>
+			<div class="main-page login-page ">
+				<div class="widget-shadow">
+					
+					<div class="login-body">
+						<form>
+							<input type="text" class="user" id="userId" name="userId" placeholder="아이디">
+							<input type="password" id="password" name="password" class="lock" placeholder="비밀번호">
+							<input type="button" onclick="app.login();" value="로그인" style="border: none;outline: none;cursor: pointer;color: #fff;background: #6164C1;width: 100%;padding: .5em 1em;font-size: 1em;margin: 0.5em 0 0;">
+							<div class="forgot-grid">
+								<label class="checkbox"><input type="checkbox" id="saveId" checked=""><i></i>아이디 저장</label>
+								<div class="clearfix"> </div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				<div class="login-page-bottom">
+					<br><br><br>
+					<div class="social-btn">
+						<a href="#">
+							<i class="fa fa-sign-in"></i>
+							<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+						</a>
+					</div>
+					<div class="social-btn"><a href="#"><i class="fa fa-unlock-alt"></i><i>아이디/비밀번호 찾기</i></a></div>
+				</div>
+			</div>
+		</div>
+
+		## Footer 설정 파일
+		#parse("dentist/common/footer.vm")
+	</div>
+	
+	## Left-Navagation Script
+	#parse("dentist/common/left-nav-script.vm")
+	
+<script>
+	function App() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+		_this.env.userId = $('#userId');
+		_this.env.password = $('#password');
+		_this.env.saveId = $('#saveId');
+		
+		## login validation
+		_this.loginValidation = function() {
+		
+			## Id Check
+			if(_this.env.userId.val().trim() == '') {
+				alert('아이디를 입력하세요.');
+				return false;
+			}
+			
+			## Pwd Cehck
+			if(_this.env.password.val().trim() == '') {
+				alert('비밀번호를 입력하세요.');
+				return false;
+			}
+			
+			## 통과할 경우
+			return true;
+		};
+		
+		## login
+		_this.login = function() {
+			var valitdation = false;
+			valitdation = _this.loginValidation();
+			
+			if(valitdation) {
+				var url = '/ajax/common/login/confirm';
+				
+				var params = {
+					userId : _this.env.userId.val(),
+					password : _this.env.password.val()
+				};
+				
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: params,
+					success: function(result) {
+						var r = JSON.parse(result);
+						console.log(r);
+						if(r.check) {
+							if(r.type == 'A') {## 회원
+								
+							} else if(r.type == 'B') { ## 의사
+								location.href= '/dentist/main';
+							} else if(r.type == 'C') { ## 기공소
+								
+							}
+						} else {
+							alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+						}
+						##location.href= BASE_URL + '/hongbo/registComplete';
+					},
+					error: function(request, status, error) {
+						console.log(request);
+					}
+				});
+			};
+		};
+
+		_this.eventBind = function() {
+		
+		};
+
+		## Init
+		_this.init = function() {
+			_this.eventBind();
+		}();
+	}
+
+	var app = new App();
+</script>
+	
+	
+</body>
+</html>

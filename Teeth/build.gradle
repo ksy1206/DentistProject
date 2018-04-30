@@ -43,6 +43,9 @@ dependencies {
 
 	// Log
 	compile('com.googlecode.log4jdbc:log4jdbc:1.2')
+	
+	// Java Json 사용
+	compile group: 'org.json', name: 'json', version: '20180130'
 
 }
 

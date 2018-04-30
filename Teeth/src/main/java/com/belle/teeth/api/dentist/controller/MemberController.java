@@ -1,4 +1,4 @@
-package com.belle.teeth.dentist.controller;
+package com.belle.teeth.api.dentist.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

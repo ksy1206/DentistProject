@@ -4,10 +4,6 @@ server:
   session:
     cookie:
       max-age: 14400
-      path: /
-      domain: .test.com
-      secure: true
-      http-only: true
     timeout: 28800
   tomcat:
     max-threads: 300
