@@ -10,5 +10,9 @@ public class SessionDto {
 	private String	memberName;
 	private Integer	memberAge;
 	private String	memberId;
+	private Integer assignNo;
+
+	// 치과 의사일경우
+	private Dentist dentist = new Dentist();
 
 }

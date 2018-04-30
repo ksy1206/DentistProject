@@ -11,5 +11,6 @@ public class MemberDto {
 	private Integer	memberAge;
 	private String	memberId;
 	private String	memberPwd;
+	private Integer assignNo;
 
 }

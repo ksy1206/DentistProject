@@ -19,7 +19,8 @@ public class InterceptorConfiguration {
 			public void addInterceptors(InterceptorRegistry registry) {
 				
 				registry.addInterceptor(new DentistInterceptor())
-					.addPathPatterns("/dentist/**");
+					.addPathPatterns("/dentist/**")
+					.excludePathPatterns("/dentist/ajax/**");
 			}
 		};
 	}

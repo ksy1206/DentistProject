@@ -18,17 +18,16 @@
 			<div class="main-page compose widget-shadow">
 				<div class="panel-default">
 					<div class="panel-heading">
-						Compose New Message 
+						공지사항을 입력 하세요.
 					</div>
 					<div class="panel-body">
 						<div class="alert alert-info">
-							Please fill details to send a new message
+							공지사항은 모든 회원에게 공게 됩니다. 신중하게 작성하세요.
 						</div>
 						<form class="com-mail">
-							<input type="text" class="form-control1 control3" placeholder="To :">
-							<input type="text" class="form-control1 control3" placeholder="Subject :">
-							<textarea rows="6" class="form-control1 control2" placeholder="Message :" ></textarea>
-							<input type="submit" value="Send Message"> 
+							<input type="text" id="title" class="form-control1 control3" placeholder="제목 :">
+							<textarea rows="6" id="content" class="form-control1 control2" placeholder="공지 내용 :" ></textarea>
+							<button type="button" onclick="app.noticeAdd();" class="btn btn-default">등록하기</button>
 						</form>
 					</div>
 				</div>
@@ -40,5 +39,77 @@
 	
 	## Left-Navagation Script
 	#parse("dentist/common/left-nav-script.vm")
+		
+<script>
+	function App() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+		_this.env.title = $('#title');
+		_this.env.content = $('#content');
+		
+		## login validation
+		_this.noticeValidation = function() {
+		
+			## Id Check
+			if(_this.env.title.val().trim() == '') {
+				alert('제목을 입력하세요.');
+				return false;
+			}
+			
+			## Pwd Cehck
+			if(_this.env.content.val().trim() == '') {
+				alert('공지 내용을 입력하세요.');
+				return false;
+			}
+			
+			## 통과할 경우
+			return true;
+		};
+		
+		## login
+		_this.noticeAdd = function() {
+			var valitdation = false;
+			valitdation = _this.noticeValidation();
+			
+			if(valitdation) {
+				var url = '/dentist/ajax/notice/add';
+				
+				var params = {
+					title : _this.env.title.val(),
+					content : _this.env.content.val(),
+					dentistNo : $!SessionData.dentist.dentistNo,
+					writerId : "$!SessionData.memberId"
+				};
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: params,
+					success: function(result) {
+						console.log(result);
+					},
+					error: function(request, status, error) {
+						console.log(request);
+					}
+				});
+
+			};
+		};
+
+		_this.eventBind = function() {
+		
+		};
+
+		## Init
+		_this.init = function() {
+			_this.eventBind();
+		}();
+	}
+
+	var app = new App();
+</script>
+
 </body>
 </html>
