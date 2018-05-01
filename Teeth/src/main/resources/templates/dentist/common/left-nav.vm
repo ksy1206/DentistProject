@@ -10,7 +10,7 @@
 					<a href="#"><i class="fa fa-bell-o nav_icon"></i></i>공지사항 <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level collapse">
 						<li>
-							<a href="/dentist/notice/list">· 공지 목록</a>
+							<a href="/dentist/notice/list?dentistNo=$!SessionData.dentist.dentistNo">· 공지 목록</a>
 						</li>
 						<li>
 							<a href="/dentist/notice/add">· 공지 등록</a>

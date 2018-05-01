@@ -25,9 +25,15 @@
 							공지사항은 모든 회원에게 공게 됩니다. 신중하게 작성하세요.
 						</div>
 						<form class="com-mail">
-							<input type="text" id="title" class="form-control1 control3" placeholder="제목 :">
-							<textarea rows="6" id="content" class="form-control1 control2" placeholder="공지 내용 :" ></textarea>
-							<button type="button" onclick="app.noticeAdd();" class="btn btn-default">등록하기</button>
+							<input type="text" id="title" class="form-control1 control3" placeholder="제목 :" value="$!Notice.title">
+							<textarea rows="6" id="content" class="form-control1 control2" placeholder="공지 내용 :" >$!Notice.content</textarea>
+							<button type="button" onclick="app.noticeAdd();" class="btn btn-default">
+								#if($type == "modify")
+								수정하기
+								#else
+								등록하기
+								#end
+							</button>
 						</form>
 					</div>
 				</div>
@@ -36,10 +42,10 @@
 		## Footer 설정 파일
 		#parse("dentist/common/footer.vm")
 	</div>
-	
+
 	## Left-Navagation Script
 	#parse("dentist/common/left-nav-script.vm")
-		
+
 <script>
 	function App() {
 		var _this = this;
@@ -48,53 +54,64 @@
 		_this.env = {};
 		_this.env.title = $('#title');
 		_this.env.content = $('#content');
-		
+
 		## login validation
 		_this.noticeValidation = function() {
-		
+
 			## Id Check
 			if(_this.env.title.val().trim() == '') {
 				alert('제목을 입력하세요.');
 				return false;
 			}
-			
+
 			## Pwd Cehck
 			if(_this.env.content.val().trim() == '') {
 				alert('공지 내용을 입력하세요.');
 				return false;
 			}
-			
 			## 통과할 경우
 			return true;
 		};
-		
+
 		## login
 		_this.noticeAdd = function() {
 			var valitdation = false;
 			valitdation = _this.noticeValidation();
-			
+
 			if(valitdation) {
 				var url = '/dentist/ajax/notice/add';
 				
+				#if($type == "modify")
 				var params = {
+					type : "modify",
 					title : _this.env.title.val(),
 					content : _this.env.content.val(),
+					noticeNo : $!Notice.noticeNo,
 					dentistNo : $!SessionData.dentist.dentistNo,
 					writerId : "$!SessionData.memberId"
 				};
+				#else
+				var params = {
+					type : "add",
+					title : _this.env.title.val(),
+					content : _this.env.content.val(),
+					noticeNo : 0,
+					dentistNo : $!SessionData.dentist.dentistNo,
+					writerId : "$!SessionData.memberId"
+				};
+				#end
 
 				$.ajax({
 					url: url,
 					type: 'POST',
 					data: params,
 					success: function(result) {
-						console.log(result);
+						location.href="/dentist/notice/list?dentistNo=$!SessionData.dentist.dentistNo";
 					},
 					error: function(request, status, error) {
 						console.log(request);
 					}
 				});
-
 			};
 		};
 

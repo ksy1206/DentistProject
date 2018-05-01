@@ -34,7 +34,7 @@ public class CommonController {
 		log.warn("기업 | 의사 로그인");
 		return "common/login";
 	}
-	
+
 	/**
 	 * 로그 아웃 및 세션 삭제
 	 * @param request
@@ -51,7 +51,7 @@ public class CommonController {
 		
 		return "common/login";
 	}
-	
+
 	/**
 	 * 회원 로그인 확인 및 세션처리
 	 * @param request
