@@ -6,7 +6,7 @@
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">
-		
+
 		## Left-Navigation
 		#parse("dentist/common/left-nav.vm")
 		
@@ -17,12 +17,23 @@
 		<div id="page-wrapper">
 			<div class="main-page signup-page">
 				<h3 class="title1">환자 등록</h3>
-				<p class="creating">Having hands on experience in creating innovative designs,I do offer design solutions which harness.</p>
+				##<p class="creating">Having hands on experience in creating innovative designs,I do offer design solutions which harness.</p>
 				<div class="sign-up-row widget-shadow">
-					<h5>회원 정보 :</h5>
+					<h5>개인정보</h5>
 					<div class="sign-u">
 						<div class="sign-up1">
-							<h4>First Name* :</h4>
+							<h4>이름 * :</h4>
+						</div>
+						<div class="sign-up2">
+							<form>
+								<input type="text" id="userName" required>
+							</form>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>나이 :</h4>
 						</div>
 						<div class="sign-up2">
 							<form>
@@ -33,7 +44,7 @@
 					</div>
 					<div class="sign-u">
 						<div class="sign-up1">
-							<h4>Last Name* :</h4>
+							<h4>이메일 * :</h4>
 						</div>
 						<div class="sign-up2">
 							<form>
@@ -44,18 +55,7 @@
 					</div>
 					<div class="sign-u">
 						<div class="sign-up1">
-							<h4>Email Address* :</h4>
-						</div>
-						<div class="sign-up2">
-							<form>
-								<input type="text" required>
-							</form>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="sign-u">
-						<div class="sign-up1">
-							<h4>Gender* :</h4>
+							<h4>성별 * :</h4>
 						</div>
 						<div class="sign-up2">
 							<label> <input type="radio" name="Gender" required>
@@ -66,21 +66,21 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<h6>Login Information :</h6>
+					<h6>로그인 정보</h6>
 					<div class="sign-u">
 						<div class="sign-up1">
-							<h4>Password* :</h4>
+							<h4>아이디 * :</h4>
 						</div>
 						<div class="sign-up2">
 							<form>
-								<input type="password" required>
+								<input type="text" required>
 							</form>
 						</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="sign-u">
 						<div class="sign-up1">
-							<h4>Confirm Password* :</h4>
+							<h4>비밀번호 * :</h4>
 						</div>
 						<div class="sign-up2">
 							<form>
