@@ -1,5 +1,8 @@
 package com.belle.teeth.api.common.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.belle.teeth.api.common.component.UtilFile;
 import com.belle.teeth.api.common.service.CommonService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +28,23 @@ public class CommonController {
 	
 	@Autowired
 	private CommonService cService;
+	
+	@RequestMapping(value = "/common/imgUpload", method = RequestMethod.GET)
+	public String test(HttpServletRequest request, HttpServletResponse response) {
+		return "imgUpload";
+	}
+	
+	@RequestMapping(value = "/ajax/common/fileUpload", method = RequestMethod.POST)
+	@ResponseBody
+	public String fileUpload(MultipartHttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile files) {
+
+		// 파일 업로드
+		String result = UtilFile.fileUpload(request, files);
+		
+		// 파일 업로드 후, DB 저장
+		
+		return result;
+	}
 
 	/**
 	 * 기공소 | 의사 로그인 페이지
