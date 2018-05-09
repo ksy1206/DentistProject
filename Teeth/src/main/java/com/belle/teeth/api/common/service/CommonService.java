@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.belle.teeth.api.common.dto.Dentist;
+import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.mapper.CommonMapper;
@@ -54,13 +55,27 @@ public class CommonService {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("sessionData", sessionData);
 			session.setAttribute("memberNo", member.getMemberNo());
-
-			log.error("@@@@@@@"+sessionData.toString());
 			
 			result.put("check", true);
 			result.put("type", member.getMemberType());
 		}
 		
 		return result;
+	}
+	
+	/**
+	 *  파일 저장
+	 * @param fileDto
+	 */
+	public void addFileInfo(FileDto fileDto, Integer dentistNo) {
+		Long fileSn = commonMapper.insertFileInfo(fileDto);
+		if(fileSn == 1) {
+			
+			// F01 -> 치과 테이블에 FileKey 등록
+			if(fileDto.getFileType().equals("F01")) {
+				commonMapper.updateDentistFileKey(fileDto.getFileKey(), dentistNo);
+			}
+			
+		}
 	}
 }

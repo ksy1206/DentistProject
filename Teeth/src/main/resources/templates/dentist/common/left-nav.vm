@@ -34,10 +34,10 @@
 					<a href="#"><i class="fa fa-cogs nav_icon"></i>설정 <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level collapse">
 						<li>
-							<a href="#">· 장치 사용법</a>
+							<a href="/dentist/device/instructions">· 장치 사용법</a>
 						</li>
 						<li>
-							<a href="#">· 장치 사용법 등록</a>
+							<a href="/dentist/device/instructions/add">· 장치 사용법 등록</a>
 						</li>
 					</ul>
 					## nav-second-level

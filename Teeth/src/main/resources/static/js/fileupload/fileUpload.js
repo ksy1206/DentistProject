@@ -14,8 +14,15 @@ function FileUpload() {
 
 	// 파일업로드 초기화
 	_this.initFileUpload = function($input, type) {
-		var url = '/ajax/common/fileUpload';
-		// 이미지 타입
+
+		if(type == undefined || type == '' || type == null) {
+			alert("파일 업로드 중 에러가 발생하였습니다. 관리자에게 문의 하세요.");
+			return false;
+		}
+		
+		// type 종류 -> F01:장치 사용법 이미지
+		var url = '/ajax/common/fileUpload?fileType='+type;
+
 		var imageUploadOptions = {
 			url: url,
 			dataType: 'json',
@@ -29,7 +36,7 @@ function FileUpload() {
 			},
 			add: function(e, data) {
 
-				var acceptFileTypes = 'jpg, jpeg';
+				var acceptFileTypes = 'JPG,JPEG,PNG';
 					acceptFileTypes = acceptFileTypes.split(',');
 				var ext = data.originalFiles[0].name.replace( /%/,"%25").substr(data.originalFiles[0].name.replace( /%/,"%25").lastIndexOf(".")+1).toUpperCase();
 				var matchCnt = 0;
@@ -43,7 +50,6 @@ function FileUpload() {
 				});
 
 				isValidType = (matchCnt > 0) ? true : false;
-
 				// 타입 체크
 				if (!isValidType) {
 					$.each(data.files, function (index, file) {
@@ -88,7 +94,7 @@ function FileUpload() {
 			},
 			done: function (e, data) {
 				// 업로드 완료 후
-				console.log(data);
+				console.log(data._response.result);
 			}
 		};
 
@@ -103,12 +109,12 @@ function FileUpload() {
 	// 이미지 미리보기 HTML
 	_this.preViewImg = function(url, fileName) {
 		var html = '';
-		html += '<ul data-role="fileupload-image-preview">';
-		html += '	<li><span><img src="' + url + '" /></span></li>';
+		html += '<div data-role="fileupload-image-preview">';
+		html += '	<span><img src="' + url + '" /></span>';
 		html += '	<li>' + fileName;
-		html += '		<button type="button" data-role="fileupload-remove-btn"></button>';
+		html += '		<button type="button" data-role="fileupload-remove-btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
 		html += '	</li>';
-		html += '</ul>';
+		html += '</div>';
 		return html;
 	};
 

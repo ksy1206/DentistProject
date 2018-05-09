@@ -1,8 +1,5 @@
 package com.belle.teeth.api.common.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,7 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.belle.teeth.api.common.component.UtilFile;
+import com.belle.teeth.api.common.dto.FileDto;
+import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.service.CommonService;
+import com.belle.teeth.api.dentist.util.SessionUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,18 +32,6 @@ public class CommonController {
 	@RequestMapping(value = "/common/imgUpload", method = RequestMethod.GET)
 	public String test(HttpServletRequest request, HttpServletResponse response) {
 		return "imgUpload";
-	}
-	
-	@RequestMapping(value = "/ajax/common/fileUpload", method = RequestMethod.POST)
-	@ResponseBody
-	public String fileUpload(MultipartHttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile files) {
-
-		// 파일 업로드
-		String result = UtilFile.fileUpload(request, files);
-		
-		// 파일 업로드 후, DB 저장
-		
-		return result;
 	}
 
 	/**
@@ -96,4 +84,39 @@ public class CommonController {
 		return paramJson.toString();
 	}
 
+	
+	/**
+	 * 파일 업로드
+	 * @param request
+	 * @param response
+	 * @param files
+	 * @return
+	 */
+	@RequestMapping(value = "/ajax/common/fileUpload", method = RequestMethod.POST)
+	@ResponseBody
+	public String fileUpload(MultipartHttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "fileType", required = false, defaultValue = "F01") String fileType,
+			@RequestParam("files") MultipartFile files) {
+
+		// 파일 업로드
+		FileDto fileInfo = UtilFile.fileUpload(request, files);
+		fileInfo.setFileType(fileType);
+
+		log.error("@@@Result:"+fileInfo);
+		
+		Integer dentistNo = 0;
+		
+		
+		if(fileType.equals("F01")) {
+			SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
+			dentistNo = sessionInfo.getDentist().getDentistNo();
+		}
+		
+		cService.addFileInfo(fileInfo, dentistNo);
+
+		// 파일 업로드 후, DB 저장
+		JSONObject result = new JSONObject(fileInfo);
+		return result.toString();
+	}
+	
 }

@@ -112,4 +112,22 @@ public class MainController {
 		nService.addNotice(data);
 		return "true";
 	}
+	
+	
+	
+	// 장치 사용법 등록
+	@RequestMapping(value = "/device/instructions", method = RequestMethod.GET)
+	public String DeviceInstructions(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		return "dentist/device/instructions";
+	}
+	
+	// 장치 사용법 등록 페이지
+	@RequestMapping(value = "/device/instructions/add", method = RequestMethod.GET)
+	public String DeviceInstructionsAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		return "dentist/device/instructionsAdd";
+	}
+	
+	
 }

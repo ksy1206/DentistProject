@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	## Header 설정 파일
+	#parse("dentist/common/header.vm")
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		
+		## Left-Navigation
+		#parse("dentist/common/left-nav.vm")
+		
+		## Top-Info
+		#parse("dentist/common/top-info.vm")
+		
+		## main content start
+		<div id="page-wrapper">
+			<div class="main-page">
+				<h3 class="title1"><i class="fa fa-plus" aria-hidden="true"></i> 장치 사용법 이미지 등록</h3>
+				<div class="row calender widget-shadow">
+					<button type="button" onclick="fileUpload.fileUploadButton('F01');">이미지추가 <span class="fa fa-plus"></span></button>
+				</div>
+				<br>
+				## 미리보기
+				<div id="img_prev_div"></div>
+
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+
+		<form action="" method="post" enctype="multipart/form-data">
+			<input data-role="fileupload" data-idx="img" type="file" name="files" style="position:absolute; left:-9999px; top:-9999px; visibility:hidden;">
+		</form>
+
+		## Footer 설정 파일
+		#parse("dentist/common/footer.vm")
+	</div>
+	
+	## Left-Navagation Script
+	#parse("dentist/common/left-nav-script.vm")
+	
+	## FileUpload Script
+	<script src="/js/fileupload/vendor/jquery.ui.widget.js" type="text/javascript"></script>
+	<script src="/js/fileupload/jquery.fileupload.js" type="text/javascript"></script>
+	<script src="/js/fileupload/fileUpload.js" type="text/javascript"></script>
+</body>
+</html>
