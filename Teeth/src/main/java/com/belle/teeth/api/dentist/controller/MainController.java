@@ -2,6 +2,7 @@ package com.belle.teeth.api.dentist.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.belle.teeth.api.common.dto.Dentist;
+import com.belle.teeth.api.common.dto.SessionDto;
+import com.belle.teeth.api.common.service.CommonService;
 import com.belle.teeth.api.dentist.dto.NoticeDto;
 import com.belle.teeth.api.dentist.service.NoticeService;
 
@@ -23,6 +27,8 @@ public class MainController {
 	
 	@Autowired
 	private NoticeService nService;
+	@Autowired
+	private CommonService cService;
 
 	/**
 	 * 치과 메인 페이지
@@ -112,20 +118,21 @@ public class MainController {
 		nService.addNotice(data);
 		return "true";
 	}
-	
-	
-	
-	// 장치 사용법 등록
+
+	// 장치 사용법
 	@RequestMapping(value = "/device/instructions", method = RequestMethod.GET)
 	public String DeviceInstructions(HttpServletRequest request, HttpServletResponse response, Model model) {
-
+		HttpSession session = request.getSession(true);
+		SessionDto sessionInfo = (SessionDto) session.getAttribute("sessionData");
+		Integer dentistNo = sessionInfo.getDentist().getDentistNo();
+		Dentist dentistInfo = cService.getDentistInfo(dentistNo);
+		model.addAttribute("fileInfo", cService.getFileFileKey(dentistInfo.getDentistFileKey()));
 		return "dentist/device/instructions";
 	}
-	
+
 	// 장치 사용법 등록 페이지
 	@RequestMapping(value = "/device/instructions/add", method = RequestMethod.GET)
 	public String DeviceInstructionsAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
-
 		return "dentist/device/instructionsAdd";
 	}
 	

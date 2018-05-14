@@ -81,7 +81,7 @@ function FileUpload() {
 					var item = _this.preViewImg(URL.createObjectURL(data.files[0]), file.name);
 					eleItem = $(item);
 					// <div id="img_prev_div"></div> 미리보기가 표시될 곳에 미리 선언한다.
-					$('#img_prev_div').append(eleItem);
+					$('#img_prev_div').html(eleItem);
 
 					});
 
@@ -94,7 +94,7 @@ function FileUpload() {
 			},
 			done: function (e, data) {
 				// 업로드 완료 후
-				console.log(data._response.result);
+				alert("이미지 업로드 완료");
 			}
 		};
 

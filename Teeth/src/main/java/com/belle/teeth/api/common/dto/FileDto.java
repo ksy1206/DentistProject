@@ -10,6 +10,7 @@ public class FileDto {
 	private String	fileKey;
 	private String	fileType;
 	private String	filePath;
+	private String	fileUrl;
 	private String	fileExt;
 	private String	fileName;
 	private Date	insertDate;

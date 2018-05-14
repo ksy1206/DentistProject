@@ -6,4 +6,5 @@ import lombok.Data;
 public class Dentist {
 	private Integer	dentistNo = 0;
 	private String	dentistName = "";
+	private String	dentistFileKey = "";
 }

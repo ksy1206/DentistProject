@@ -12,6 +12,9 @@ spring:
   http:
     encoding:
       charset: UTF-8
+    multipart:
+      max-file-size: 3MB
+      max-request-size: 3MB
   velocity:
     suffix: .vm
     properties:

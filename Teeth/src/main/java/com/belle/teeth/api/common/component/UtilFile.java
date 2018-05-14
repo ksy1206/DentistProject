@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -22,8 +24,9 @@ public class UtilFile {
 	// DB에는 업로드된 전체 경로명으로만 지정되기 때문에(업로드한 파일 자체는 경로에 저장됨)
 	// fileUpload() 메소드에서 전체 경로를 리턴받아 DB에 경로 그대로 저장
 	public static FileDto fileUpload(MultipartHttpServletRequest request, MultipartFile uploadFile) {
-		String path = "";
+		String doc_root = "";
 		String fileName = "";
+		String realPath = "/upload";
 
 		OutputStream out = null;
 		PrintWriter printWriter = null;
@@ -33,12 +36,11 @@ public class UtilFile {
 		try {
 			fileName = uploadFile.getOriginalFilename();
 			byte[] bytes = uploadFile.getBytes();
-			path = getSaveLocation(request);
 
-//			System.out.println("UtilFile fileUpload fileName : " + fileName);
-//			System.out.println("UtilFile fileUpload uploadPath : " + path);
-
-			File file = new File(path);
+			HttpSession session = request.getSession();
+			doc_root = session.getServletContext().getRealPath(realPath);
+			
+			File file = new File(doc_root);
 			
 			if(!file.exists()) {
 				file.mkdirs();
@@ -50,18 +52,11 @@ public class UtilFile {
 				if (file.exists()) {
 					// 파일명 앞에 업로드 시간 초단위로 붙여 파일명 중복을 방지
 					fileName = fileKey.toString() + "_" + fileName;
-
-					file = new File(path + File.separator + fileName);
+					file = new File(doc_root + File.separator + fileName);
 				}
 			}
 
-//			System.out.println("UtilFile fileUpload final fileName : " + fileName);
-//			System.out.println("UtilFile fileUpload file : " + file);
-
 			out = new FileOutputStream(file);
-
-//			System.out.println("UtilFile fileUpload out : " + out);
-
 			out.write(bytes);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,19 +76,11 @@ public class UtilFile {
 		FileDto result = new FileDto();
 		
 		result.setFileKey(fileKey.toString());
-		result.setFilePath(path);
+		result.setFilePath(doc_root);
+		result.setFileUrl(realPath);
 		result.setFileName(fileName);
 		result.setFileExt(fileName.substring(fileName.lastIndexOf(".")+1, fileName.length()));
 
 		return result;
-	}
-
-	// 업로드 파일 저장 경로 얻는 메소드
-	private static String getSaveLocation(MultipartHttpServletRequest request) {
-
-		String uploadPath = request.getSession().getServletContext().getRealPath("/upload");
-		System.out.println("UtilFile getSaveLocation path : " + uploadPath);
-		
-		return uploadPath;
 	}
 }

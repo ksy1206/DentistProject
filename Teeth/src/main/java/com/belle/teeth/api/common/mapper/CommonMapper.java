@@ -40,6 +40,7 @@ public interface CommonMapper {
 	@Results({
 		@Result(property = "dentistNo", column = "dentist_no")
 		,@Result(property = "dentistName", column = "dentist_name")
+		,@Result(property = "dentistFileKey", column = "dentist_file_key")
 	})
 	@Select("SELECT * FROM dentist WHERE dentist_no = #{assignNo}")
 	public Dentist dentistInfo(@Param("assignNo") Integer assignNo);
@@ -50,6 +51,7 @@ public interface CommonMapper {
 			+ "file_type"
 			+ ", file_key"
 			+ ", file_path"
+			+ ", file_url"
 			+ ", file_ext"
 			+ ", file_name"
 			+ ", insert_date"
@@ -60,6 +62,7 @@ public interface CommonMapper {
 			+ "#{fileType}"
 			+ ", #{fileKey}"
 			+ ", #{filePath}"
+			+ ", #{fileUrl}"
 			+ ", #{fileExt}"
 			+ ", #{fileName}"
 			+ ", NOW()"
@@ -68,4 +71,19 @@ public interface CommonMapper {
 	@SelectKey(before = false, keyProperty = "fileSn", keyColumn="file_sn", resultType = Long.class, statement = { "SELECT LAST_INSERT_ID()" })
 	@Transactional
 	Long insertFileInfo(FileDto fileDto);
+
+	// 파일 정보 가져오기 : Key값으로 검색
+	@Results({
+		@Result(property = "fileSn", column = "file_sn")
+		,@Result(property = "fileKey", column = "file_key")
+		,@Result(property = "fileType", column = "file_type")
+		,@Result(property = "filePath", column = "file_path")
+		,@Result(property = "fileUrl", column = "file_url")
+		,@Result(property = "fileExt", column = "file_ext")
+		,@Result(property = "fileName", column = "file_name")
+		,@Result(property = "insertDate", column = "insert_date")
+		,@Result(property = "deleteYn", column = "delete_yn")
+	})
+	@Select("SELECT * FROM upload_file WHERE file_key = #{fileKey}")
+	public FileDto getFileInfoByKey(@Param("fileKey") String fileKey);
 }

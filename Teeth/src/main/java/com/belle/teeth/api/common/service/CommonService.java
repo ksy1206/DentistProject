@@ -46,6 +46,7 @@ public class CommonService {
 				Dentist dInfo = commonMapper.dentistInfo(member.getAssignNo());
 				sessionData.getDentist().setDentistNo(dInfo.getDentistNo());
 				sessionData.getDentist().setDentistName(dInfo.getDentistName());
+				sessionData.getDentist().setDentistFileKey(dInfo.getDentistFileKey());
 				
 			} else if(member.getMemberType().equals("C")) { // 기공소
 				
@@ -64,18 +65,34 @@ public class CommonService {
 	}
 	
 	/**
+	 * 치과 정보 가져오기
+	 */
+	public Dentist getDentistInfo(Integer dentistNo) {
+		return commonMapper.dentistInfo(dentistNo);
+	}
+	
+	
+	/**
 	 *  파일 저장
 	 * @param fileDto
 	 */
 	public void addFileInfo(FileDto fileDto, Integer dentistNo) {
 		Long fileSn = commonMapper.insertFileInfo(fileDto);
 		if(fileSn == 1) {
-			
 			// F01 -> 치과 테이블에 FileKey 등록
 			if(fileDto.getFileType().equals("F01")) {
 				commonMapper.updateDentistFileKey(fileDto.getFileKey(), dentistNo);
 			}
 			
 		}
+	}
+	
+	/**
+	 * 파일 키 값으로 파일 정보 가져오기
+	 * @param fileKey
+	 * @return
+	 */
+	public FileDto getFileFileKey(String fileKey) {
+		return commonMapper.getFileInfoByKey(fileKey);
 	}
 }

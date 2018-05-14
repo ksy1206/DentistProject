@@ -102,18 +102,14 @@ public class CommonController {
 		FileDto fileInfo = UtilFile.fileUpload(request, files);
 		fileInfo.setFileType(fileType);
 
-		log.error("@@@Result:"+fileInfo);
-		
 		Integer dentistNo = 0;
-		
-		
+
 		if(fileType.equals("F01")) {
 			SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 			dentistNo = sessionInfo.getDentist().getDentistNo();
 		}
 		
 		cService.addFileInfo(fileInfo, dentistNo);
-
 		// 파일 업로드 후, DB 저장
 		JSONObject result = new JSONObject(fileInfo);
 		return result.toString();
