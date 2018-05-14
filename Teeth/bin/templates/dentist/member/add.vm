@@ -25,9 +25,7 @@
 							<h4>이름 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<form>
-								<input type="text" id="userName" required>
-							</form>
+							<input type="text" id="memberName">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -36,9 +34,7 @@
 							<h4>나이 :</h4>
 						</div>
 						<div class="sign-up2">
-							<form>
-								<input type="text" required>
-							</form>
+							<input type="text" id="memberAge">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -47,9 +43,7 @@
 							<h4>이메일 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<form>
-								<input type="text" required>
-							</form>
+							<input type="text" id="memberEmail">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -58,10 +52,11 @@
 							<h4>성별 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<label> <input type="radio" name="Gender" required>
-								Male
-							</label> <label> <input type="radio" name="Gender" required>
-								Female
+							<label>
+								<input type="radio" name="gender" value="M" checked="checked"> Male
+							</label>
+							<label>
+								<input type="radio" name="gender" value="F"> Female
 							</label>
 						</div>
 						<div class="clearfix"></div>
@@ -72,9 +67,7 @@
 							<h4>아이디 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<form>
-								<input type="text" required>
-							</form>
+							<input type="text" id="memberId">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -83,16 +76,12 @@
 							<h4>비밀번호 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<form>
-								<input type="password" required>
-							</form>
+							<input type="password" id="memberPwd">
 						</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="sub_home">
-						<form>
-							<input type="submit" value="Submit">
-						</form>
+						<input type="submit" value="등록" onclick="app.memberAdd();">
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -105,5 +94,110 @@
 	
 	## Left-Navagation Script
 	#parse("dentist/common/left-nav-script.vm")
+
+
+
+<script>
+	function App() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+		_this.env.memberName = $('#memberName');
+		_this.env.memberAge = $('#memberAge');
+		_this.env.memberEmail = $('#memberEmail');
+		_this.env.memberId = $('#memberId');
+		_this.env.memberPwd = $('#memberPwd');
+
+		## login validation
+		_this.memberValidation = function() {
+
+			## memberName Check
+			if(_this.env.memberName.val().trim() == '') {
+				alert('이름을 입력 하세요.');
+				return false;
+			}
+
+			## memberAge Check
+			if(_this.env.memberAge.val().trim() == '') {
+				alert('나이를 입력 하세요.');
+				return false;
+			}
+
+			## memberEmail Check
+			if(_this.env.memberEmail.val().trim() == '') {
+				alert('이메일을 입력 하세요.');
+				return false;
+			}
+
+			## memberId Check
+			if(_this.env.memberId.val().trim() == '') {
+				alert('회원 아이디를 입력 하세요.');
+				return false;
+			}
+
+			## memberPwd Check
+			if(_this.env.memberPwd.val().trim() == '') {
+				alert('회원 비밀번호를 입력 하세요.');
+				return false;
+			}
+
+			## 통과할 경우
+			return true;
+		};
+
+		## login
+		_this.memberAdd = function() {
+			var valitdation = false;
+			valitdation = _this.memberValidation();
+
+			if(valitdation) {
+				var url = '/dentist/ajax/member/add';
+
+				var genderType = document.getElementsByName('gender');
+				var gender = "M";
+				for(var i=0; i<genderType.length; i++) {
+					if(genderType[i].checked == true) {
+						gender = genderType[i].value;
+					}
+				}
+
+				var params = {
+					memberName : _this.env.memberName.val(),
+					memberAge : _this.env.memberAge.val(),
+					memberEmail : _this.env.memberEmail.val(),
+					memberGender : gender,
+					memberId : _this.env.memberId.val(),
+					memberPwd : _this.env.memberPwd.val()
+				};
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: params,
+					success: function(result) {
+						alert("회원 등록이 완료 되었습니다.");
+						location.reload();
+					},
+					error: function(request, status, error) {
+						console.log(request);
+					}
+				});
+			};
+		};
+
+		_this.eventBind = function() {
+		
+		};
+
+		## Init
+		_this.init = function() {
+			_this.eventBind();
+		}();
+	}
+
+	var app = new App();
+</script>
+
 </body>
 </html>

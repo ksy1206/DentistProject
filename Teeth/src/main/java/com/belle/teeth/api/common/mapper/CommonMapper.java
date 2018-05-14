@@ -2,7 +2,6 @@ package com.belle.teeth.api.common.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -18,19 +17,6 @@ import com.belle.teeth.api.common.dto.MemberDto;
 @Mapper
 public interface CommonMapper {
 
-	// 회원정보 모두 가져오기
-	@Results({
-		@Result(property = "memberNo", column = "member_no")
-		,@Result(property = "memberType", column = "member_type")
-		,@Result(property = "memberName", column = "member_name")
-		,@Result(property = "memberAge", column = "member_age")
-		,@Result(property = "memberId", column = "member_id")
-		,@Result(property = "memberPwd", column = "member_pwd")
-		,@Result(property = "assignNo", column = "assign_no")
-	})
-	@Select("SELECT * FROM member WHERE member_id = #{userId} and member_pwd = #{password}")
-	public MemberDto memberInfo(@Param("userId") String userId, @Param("password") String password);
-	
 	// 치과 정보  -> 장치 사용법 파일 키 업데이트
 	@Update("UPDATE dentist "
 			+ "SET dentist_file_key = #{fileKey} WHERE dentist_no = #{dentistNo}")

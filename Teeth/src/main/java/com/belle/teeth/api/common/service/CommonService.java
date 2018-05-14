@@ -12,6 +12,7 @@ import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.mapper.CommonMapper;
+import com.belle.teeth.api.dentist.mapper.MemberMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class CommonService {
 	
+	@Autowired
+	private MemberMapper memberMapper;
 	@Autowired
 	private CommonMapper commonMapper;
 
@@ -28,7 +31,7 @@ public class CommonService {
 		JSONObject result = new JSONObject();
 		result.put("check", false);
 		
-		MemberDto member = commonMapper.memberInfo(userId, password);
+		MemberDto member = memberMapper.memberInfo(userId, password);
 		SessionDto sessionData = new SessionDto();
 		
 		// 로그인 여부 확인
