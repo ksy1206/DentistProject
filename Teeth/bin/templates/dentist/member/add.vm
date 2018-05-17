@@ -12,20 +12,23 @@
 		
 		## Top-Info
 		#parse("dentist/common/top-info.vm")
-		
 		## main content start
 		<div id="page-wrapper">
 			<div class="main-page signup-page">
-				<h3 class="title1">환자 등록</h3>
+				#if($!type=="modify")
+				<h3 class="title1" style="color: #4f52ba;">환자 정보 수정</h3>
+				#else
+				<h3 class="title1" style="color: #4f52ba;">환자 등록</h3>
+				#end
 				##<p class="creating">Having hands on experience in creating innovative designs,I do offer design solutions which harness.</p>
 				<div class="sign-up-row widget-shadow">
-					<h5>개인정보</h5>
+					<h5>개인 정보</h5>
 					<div class="sign-u">
 						<div class="sign-up1">
 							<h4>이름 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="text" id="memberName">
+							<input type="text" id="memberName" value="$!memberInfo.memberName">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -34,7 +37,7 @@
 							<h4>나이 :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="text" id="memberAge">
+							<input type="text" id="memberAge" value="$!memberInfo.memberAge">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -43,7 +46,7 @@
 							<h4>이메일 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="text" id="memberEmail">
+							<input type="text" id="memberEmail" value="$!memberInfo.memberEmail">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -53,21 +56,22 @@
 						</div>
 						<div class="sign-up2">
 							<label>
-								<input type="radio" name="gender" value="M" checked="checked"> Male
+								<input type="radio" name="gender" value="M" #if($!type=="modify") #if($!memberInfo.memberGender == "M") checked="checked" #end #else checked="checked"#end> Male
 							</label>
 							<label>
-								<input type="radio" name="gender" value="F"> Female
+								<input type="radio" name="gender" value="F" #if($!type=="modify" && $!memberInfo.memberGender == "F") checked="checked" #end> Female
 							</label>
 						</div>
 						<div class="clearfix"></div>
 					</div>
+					<hr>
 					<h6>로그인 정보</h6>
 					<div class="sign-u">
 						<div class="sign-up1">
 							<h4>아이디 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="text" id="memberId">
+							<input type="text" id="memberId" value="$!memberInfo.memberId">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -76,12 +80,17 @@
 							<h4>비밀번호 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="password" id="memberPwd">
+							<input type="password" id="memberPwd" value="$!memberInfo.memberPwd">
 						</div>
 						<div class="clearfix"></div>
 					</div>
+					<hr>
 					<div class="sub_home">
-						<input type="submit" value="등록" onclick="app.memberAdd();">
+						#if($!type=="modify")
+						<input class="btn" style="background-color: #4f52ba !important; color: white; width: 100%;" value="수정" onclick="app.memberAdd();">
+						#else
+						<input class="btn" style="background-color: #4f52ba !important; color: white; width: 100%;" value="등록" onclick="app.memberAdd();">
+						#end
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -146,13 +155,13 @@
 			return true;
 		};
 
-		## login
+		## 회원 정보 추가 및 수정
 		_this.memberAdd = function() {
 			var valitdation = false;
 			valitdation = _this.memberValidation();
 
 			if(valitdation) {
-				var url = '/dentist/ajax/member/add';
+				var url = "/dentist/ajax/member/add/$!type";
 
 				var genderType = document.getElementsByName('gender');
 				var gender = "M";
@@ -164,19 +173,27 @@
 
 				var params = {
 					memberName : _this.env.memberName.val(),
+					memberGender : gender,
 					memberAge : _this.env.memberAge.val(),
 					memberEmail : _this.env.memberEmail.val(),
-					memberGender : gender,
 					memberId : _this.env.memberId.val(),
 					memberPwd : _this.env.memberPwd.val()
 				};
+
+				#if($!type=="modify")
+					params.memberNo = $!memberInfo.memberNo; 
+				#end
 
 				$.ajax({
 					url: url,
 					type: 'POST',
 					data: params,
 					success: function(result) {
+						#if($!type=="modify")
+						alert("회원 정보 수정이 완료 되었습니다.");
+						#else
 						alert("회원 등록이 완료 되었습니다.");
+						#end
 						location.reload();
 					},
 					error: function(request, status, error) {

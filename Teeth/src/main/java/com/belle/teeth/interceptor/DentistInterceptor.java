@@ -24,9 +24,9 @@ public class DentistInterceptor implements HandlerInterceptor {
 
 		// 나중에 로그인 안할경우 Error처리
 		if(memberNo == null) {
-//			throw new Exception();
+			response.sendRedirect("/common/login");
+			return false;
 		}
-
 		return true;
 	}
 

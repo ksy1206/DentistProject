@@ -22,31 +22,21 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>#</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Username</th>
+									<th style="text-align: center; width:15%;">회원번호</th>
+									<th style="text-align: center;">성명</th>
+									<th style="text-align: center;">성별</th>
+									<th style="text-align: center;">이메일</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody style="text-align: center;">
+								#foreach($row in $memberList)
 								<tr>
-									<th scope="row">1</th>
-									<td><a href="/dentist/member/sub/info">Mark</a></td>
-									<td>Otto</td>
-									<td>@mdo</td>
+									<th scope="row" style="text-align: center;">$!row.memberNo</th>
+									<td><a href="/dentist/member/sub/info?memberNo=$!row.memberNo">$!row.memberName</a></td>
+									<td>$!row.memberGender</td>
+									<td>$!row.memberEmail</td>
 								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Larry</td>
-									<td>the Bird</td>
-									<td>@twitter</td>
-								</tr>
+								#end
 							</tbody>
 						</table>
 						
