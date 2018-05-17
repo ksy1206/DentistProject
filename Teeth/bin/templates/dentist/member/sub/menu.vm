@@ -17,7 +17,7 @@
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="typography widget-shadow">
-					<div class="alert alert-info" role="alert" style="text-align: center;">
+					<div class="alert" role="alert" style="text-align: center; color: #4f52ba; font-size: 18px;">
 						<b>[$!headerInfo.memberName]</b> 님의 회원 관리
 					</div>
 				</div>

@@ -114,6 +114,11 @@ public class MemberController {
 		return "dentist/member/sub/"+type;
 	}
 	
+	@RequestMapping(value = "/member/picture", method = RequestMethod.GET)
+	public String MemberPicture(HttpServletRequest request, HttpServletResponse response, Model model) {
+		return "dentist/detail";
+	}
+	
 	/**
 	 * 안쓰는것 같은데..
 	 * @param request
