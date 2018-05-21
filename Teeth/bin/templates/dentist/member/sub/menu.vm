@@ -39,7 +39,7 @@
 						<div class="row" style="margin-bottom: 3em;">
 							<div class="col-md-6 grid_box1" style="text-align: center;">
 								<img src="/img/up.png"><br><br>
-								<a class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 사진 정보 업로드</a>
+								<a href="/dentist/member/sub/info?type=picture&memberNo=$!memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 사진 정보 업로드</a>
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/down.png"><br><br>
@@ -56,7 +56,7 @@
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/question.png"><br><br>
-								<a class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 Q&A</a>
+								<a href="/dentist/member/sub/info?type=qa&memberNo=$!memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 Q&A</a>
 							</div>
 							<div class="clearfix"> </div>
 						</div>

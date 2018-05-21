@@ -104,6 +104,9 @@ public class CommonController {
 
 		Integer dentistNo = 0;
 
+		// 파일 타입별 종류
+		// F01 : 치과 장치 사용법 관련 이미지
+		// F02 : 회원별 사진 정보
 		if(fileType.equals("F01")) {
 			SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 			dentistNo = sessionInfo.getDentist().getDentistNo();
