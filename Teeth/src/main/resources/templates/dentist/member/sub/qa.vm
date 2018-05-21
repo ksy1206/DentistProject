@@ -19,425 +19,38 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4 profile widget-shadow chat-mdl-grid">
 					<h4 class="title3">Q & A</h4>
-					<div class="scrollbar" tabindex="5000" style="overflow: scroll; outline: none;">
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
+					<div class="scrollbar" tabindex="5000" style="overflow: scroll; outline: none; overflow-x: hidden;">
+						#foreach($row in $qaList)
+							#if($row.type == "SE01")
+							<div class="activity-row activity-row1 activity-right">
+								<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
+								<div class="col-xs-9 activity-img1">
+									<div class="activity-desc-sub">
+										<p>$!row.message</p>
+										<span>$!row.insertDate</span>
+										<span style="color:red; margin-left:0.5em;" onclick="app.messageDelete('$!row.qaNo')"><i class="fa fa-ban" aria-hidden="true"></i>삭제</span>
+									</div>
 								</div>
+								<div class="clearfix"> </div>
 							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
+							#elseif($row.type == "SE02")
+							<div class="activity-row activity-row1 activity-left">
+								<div class="col-xs-9 activity-img2">
+									<div class="activity-desc-sub1">
+										<p>$!row.message</p>
+										<span>$!row.insertDate</span>
+									</div>
 								</div>
+								<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
+								<div class="clearfix"> </div>
 							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div><div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div><div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div><div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div><div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div><div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div><div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div><div class="activity-row activity-row1 activity-right">
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-							<div class="col-xs-9 activity-img1">
-								<div class="activity-desc-sub">
-									<p>Hello ! Lorem ipsum dolor sit</p>
-									<span>10:00 PM</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="activity-row activity-row1 activity-left">
-							<div class="col-xs-9 activity-img2">
-								<div class="activity-desc-sub1">
-									<p>What about our next meeting?</p>
-									<span class="right">9:55 PM</span>
-								</div>
-							</div>
-							<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user" aria-hidden="true"></i></div>
-							<div class="clearfix"> </div>
-						</div>
+							#end
+						#end
 					</div>
+					<hr>
 					<div class="chat-bottom">
-						<form>
-							<input type="text" placeholder="답변" required="">
-						</form>
+						<input type="text" placeholder="답변" id="message"><br><br>
+						<input class="btn" style="background-color: #4f52ba !important; color: white; width: 100%;" value="등록" onclick="app.qaAdd();">
 					</div>
 				</div>
 			</div>
@@ -449,5 +62,87 @@
 	
 	## Left-Navagation Script
 	#parse("dentist/common/left-nav-script.vm")
+
+
+<script>
+	function App() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+		_this.env.message = $('#message');
+
+		## login validation
+		_this.qaValidation = function() {
+
+			## Message Check
+			if(_this.env.message.val().trim() == '') {
+				alert('내용을 입력하세요.');
+				return false;
+			}
+
+			## 통과할 경우
+			return true;
+		};
+
+		## Qa 등록
+		_this.qaAdd = function() {
+			var valitdation = false;
+			valitdation = _this.qaValidation();
+
+			if(valitdation) {
+				var url = '/dentist/ajax/qa/add';
+				var params = {
+					message : _this.env.message.val(),
+					memberNo : $!memberNo
+				};
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: params,
+					success: function(result) {
+						location.reload();
+					},
+					error: function(request, status, error) {
+						console.log(request);
+					}
+				});
+			};
+		};
+		
+		## Qa 삭제
+		_this.messageDelete = function(qa_no) {
+			var isVaild = confirm("정말 삭제하시겠습니까?");
+			if(isVaild) {
+				var url = '/dentist/ajax/qa/delete';
+				var params = {
+					qaNo : qa_no,
+					doctorNo : $!SessionData.memberNo
+				};
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: params,
+					success: function(result) {
+						location.reload();
+					},
+					error: function(request, status, error) {
+						console.log(request);
+					}
+				});
+			};
+		}
+
+		## Init
+		_this.init = function() {
+			
+		}();
+	}
+
+	var app = new App();
+</script>
+
 </body>
 </html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.SessionDto;
+import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.dentist.util.SessionUtil;
 
@@ -64,7 +65,7 @@ public class MemberController {
 	 * @param memberDto
 	 * @return
 	 */
-	@RequestMapping(value = "/ajax/member/add/{type}")
+	@RequestMapping(value = "/ajax/member/add/{type}", method = RequestMethod.POST)
 	@ResponseBody
 	public String MemberDeAdd(HttpServletRequest request, HttpServletResponse response
 			, @PathVariable String type , MemberDto memberDto) throws Exception {
@@ -102,17 +103,66 @@ public class MemberController {
 		MemberDto headerInfo = new MemberDto();
 		
 		headerInfo.setMemberName(memberInfo.getMemberName());
-		
+
+		if("info".equals(type)) {
+			// 회원 상세 정보
+			model.addAttribute("memberInfo", memberInfo);
+		} else if ("qa".equals(type)) {
+			// 질문 답변 페이지
+			SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
+			model.addAttribute("qaList", memberService.getQaList(sessionInfo.getMemberNo(), memberNo));
+		}
+
 		model.addAttribute("type", type);
 		model.addAttribute("memberNo", memberNo);
 		model.addAttribute("headerInfo", headerInfo);
-
-		if("info".equals(type)) {
-			model.addAttribute("memberInfo", memberInfo);
-		}
-		
 		return "dentist/member/sub/"+type;
 	}
+	
+	/**
+	 * 질문 답변 등록
+	 * @param request
+	 * @param response
+	 * @param message
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/ajax/qa/add", method = RequestMethod.POST)
+	@ResponseBody
+	public String QaAdd(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="message", required=true) String message
+			, @RequestParam(value="memberNo", required=true) Integer memberNo) throws Exception {
+		
+		QaDto qaInfo = new QaDto();
+		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
+		qaInfo.setType("SE01");
+		qaInfo.setQaDoctorNo(sessionInfo.getMemberNo());
+		qaInfo.setQaMemberNo(memberNo);
+		qaInfo.setMessage(message);
+		memberService.addQa(qaInfo);
+
+		return "true";
+	}
+
+	
+	/**
+	 * 질문 답변 삭제
+	 * @param request
+	 * @param response
+	 * @param qaNo
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/ajax/qa/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public String QaDelete(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="doctorNo", required=true) Integer doctorNo
+			, @RequestParam(value="qaNo", required=true) Integer qaNo) throws Exception {
+		memberService.qaDelete(qaNo, doctorNo);
+		return "true";
+	}
+	
 	
 	/**
 	 * 안쓰는것 같은데..

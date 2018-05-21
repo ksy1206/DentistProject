@@ -1,5 +1,6 @@
 package com.belle.teeth.api.dentist.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -9,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.belle.teeth.api.common.dto.MemberDto;
+import com.belle.teeth.api.dentist.dto.QaDto;
 
 @Mapper
 public interface MemberMapper {
@@ -82,8 +84,9 @@ public interface MemberMapper {
 			+ ", #{doctorMemberNo}"
 			+ ", NOW()"
 			+ ")")
-		void memberAdd(MemberDto data);
+	void memberAdd(MemberDto data);
 	
+	// 회원정보 업데이트
 	@Update("UPDATE member "
 			+ "SET member_name = #{memberName}"
 			+ ", member_gender = #{memberGender}"
@@ -93,4 +96,44 @@ public interface MemberMapper {
 			+ ", member_pwd = #{memberPwd} "
 			+ "WHERE member_no = #{memberNo}")
 	void memberUpdate(MemberDto data);
+	
+	// 질문 답변 리스트 가져오기
+	@Results({
+		@Result(property = "qaNo", column = "qa_no")
+		, @Result(property = "type", column = "type")
+		, @Result(property = "qaDoctorNo", column = "qa_doctor_no")
+		, @Result(property = "qaMemberNo", column = "qa_member_no")
+		, @Result(property = "message", column = "message")
+		, @Result(property = "insertDate", column = "insert_date")
+	})
+	@Select("SELECT * FROM qa WHERE qa_doctor_no = #{doctorNo} and qa_member_no = #{memberNo} ORDER BY insert_date DESC")
+	public QaDto[] getQaList(@Param("doctorNo") Integer doctorNo, @Param("memberNo") Integer memberNo);
+
+	// 질문 답변 등록
+	@Insert("INSERT INTO qa "
+			+ "("
+			+ "type"
+			+ ", qa_doctor_no"
+			+ ", qa_member_no"
+			+ ", message"
+			+ ", insert_date"
+			+ ") "
+			+ "VALUES "
+			+ "("
+			+ "#{type}"
+			+ ", #{qaDoctorNo}"
+			+ ", #{qaMemberNo}"
+			+ ", #{message}"
+			+ ", NOW()"
+			+ ")")
+	void insertQa(QaDto data);
+
+	/**
+	 * 질문 답변 삭제
+	 * @param qaNo
+	 */
+	@Delete("DELETE FROM qa WHERE qa_no = #{qaNo} and qa_doctor_no = #{doctorNo}")
+	void deleteQa(@Param("qaNo") Integer qaNo, @Param("doctorNo") Integer doctorNo);
+
+
 }

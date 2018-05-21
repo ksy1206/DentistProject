@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.belle.teeth.api.common.dto.MemberDto;
+import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.mapper.MemberMapper;
 
 @Service
@@ -43,5 +44,31 @@ public class MemberService {
 	 */
 	public MemberDto getMemberInfo(Integer memberNo) {
 		return memberMapper.memberInfo2(memberNo);
+	}
+	
+	/**
+	 * 환자 의사 질문 답변 리스트 가져오기
+	 * @param doctorNo
+	 * @param memberNo
+	 * @return
+	 */
+	public QaDto[] getQaList(Integer doctorNo, Integer memberNo) {
+		return memberMapper.getQaList(doctorNo, memberNo);
+	}
+	
+	/**
+	 * 질문 답변 등록
+	 * @param qaInfo
+	 */
+	public void addQa(QaDto qaInfo) {
+		memberMapper.insertQa(qaInfo);
+	}
+	
+	/**
+	 * 질문 답변 삭제
+	 * @param qaInfo
+	 */
+	public void qaDelete(Integer qaNo, Integer doctorNo) {
+		memberMapper.deleteQa(qaNo, doctorNo);
 	}
 }
