@@ -23,6 +23,11 @@ function FileUpload() {
 		// type 종류 -> F01:장치 사용법 이미지
 		var url = '/ajax/common/fileUpload?fileType='+type;
 
+		// 타입별 추가 파라미터
+		if(type == 'F02') {
+			url += "&patientNo="+app.env.memberNo;
+		}
+		
 		var imageUploadOptions = {
 			url: url,
 			dataType: 'json',
@@ -75,15 +80,17 @@ function FileUpload() {
 
 				// 유효성 통과 후 이미지 노출
 				if (isValidType && isValidSize) {
-					var eleItem;
-					$.each(data.files, function (index, file) {
-
-					var item = _this.preViewImg(URL.createObjectURL(data.files[0]), file.name);
-					eleItem = $(item);
-					// <div id="img_prev_div"></div> 미리보기가 표시될 곳에 미리 선언한다.
-					$('#img_prev_div').html(eleItem);
-
-					});
+					
+					// 미리보기는 F01 타입만
+					if(type == 'F01') {
+						var eleItem;
+						$.each(data.files, function (index, file) {
+							var item = _this.preViewImg(URL.createObjectURL(data.files[0]), file.name);
+							eleItem = $(item);
+							// <div id="img_prev_div"></div> 미리보기가 표시될 곳에 미리 선언한다.
+							$('#img_prev_div').html(eleItem);
+						});
+					}
 
 					// done, progressAll 이벤트시 처리하기 위해 itemNode에 dom을 캐싱함
 					this.itemNode = eleItem;
@@ -95,6 +102,9 @@ function FileUpload() {
 			done: function (e, data) {
 				// 업로드 완료 후
 				alert("이미지 업로드 완료");
+				if(type == 'F02') {
+					location.reload();
+				}
 			}
 		};
 

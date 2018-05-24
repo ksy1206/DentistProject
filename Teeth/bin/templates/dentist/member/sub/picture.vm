@@ -24,29 +24,27 @@
 				## 미리보기
 				<div id="img_prev_div"></div>
 				
-				<div class="panel-body widget-shadow">
+						##<img src="cinqueterre.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236">
+				<div class="panel-body widget-shadow" style="min-height:300px;">
 					<table class="table">
 						<thead>
 							<tr>
-								<th style="text-align: center; width:15%;">회원번호</th>
-								<th style="text-align: center;">성명</th>
-								<th style="text-align: center;">성별</th>
-								<th style="text-align: center;">이메일</th>
+								<th style="text-align: center;">사진 정보</th>
 							</tr>
 						</thead>
-						<tbody style="text-align: center;">
-							#foreach($row in $memberList)
-							<tr>
-								<th scope="row" style="text-align: center;">$!row.memberNo</th>
-								<td><a href="/dentist/member/sub/info?memberNo=$!row.memberNo">$!row.memberName</a></td>
-								<td>$!row.memberGender</td>
-								<td>$!row.memberEmail</td>
-							</tr>
-							#end
-						</tbody>
 					</table>
+					#foreach($row in $imgList)
+					<div class="col-md-4" style="margin-bottom:1em; text-align:center;">
+						<img src="$!row.fileUrl/$!row.fileName" class="img-rounded" width="100%" height="236">
+						<a class="btn btn-info" style="margin-top:0.5em;" href="$!row.fileUrl/$!row.fileName" download>이미지 다운로드</a>
+					</div>
+					#end
+					
+					## 사진이 없을경우
+					#if($imgList.size() == 0)
+						<p style="margin-top: 3em; margin-bottm: 3em; text-align:center;">등록된 이미지가 없습니다.</p>
+					#end
 				</div>
-
 				<div class="clearfix"> </div>
 			</div>
 		</div>
@@ -61,6 +59,18 @@
 	
 	## Left-Navagation Script
 	#parse("dentist/common/left-nav-script.vm")
+	
+	<script>
+		function App() {
+			var _this = this;
+	
+			## ENV
+			_this.env = {};
+			_this.env.memberNo = $!memberNo;
+		}
+	
+		var app = new App();
+	</script>
 	
 	## FileUpload Script
 	<script src="/js/fileupload/vendor/jquery.ui.widget.js" type="text/javascript"></script>

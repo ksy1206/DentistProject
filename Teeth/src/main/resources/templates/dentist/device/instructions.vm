@@ -18,8 +18,8 @@
 			<div class="main-page">
 				<div class="row calender widget-shadow">
 					<h4 class="title">장치사용법</h4>
-					<div>
-						<img src="$!fileInfo.fileUrl/$!fileInfo.fileName" width="100%">
+					<div> 
+						<img class="img-rounded" src="$!fileInfo.fileUrl/$!fileInfo.fileName" width="100%">
 					</div>
 				</div>
 				<div class="clearfix"> </div>

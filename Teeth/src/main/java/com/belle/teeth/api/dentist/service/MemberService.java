@@ -3,7 +3,9 @@ package com.belle.teeth.api.dentist.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
+import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.mapper.MemberMapper;
 
@@ -70,5 +72,23 @@ public class MemberService {
 	 */
 	public void qaDelete(Integer qaNo, Integer doctorNo) {
 		memberMapper.deleteQa(qaNo, doctorNo);
+	}
+	
+	/**
+	 * 회원 이미지 등록
+	 * @param memberInfo
+	 */
+	public void updateMemberImgInfo(MemberImgDto memberInfo) {
+		memberMapper.insertMemberImgInfo(memberInfo);
+	}
+	
+	/**
+	 * 회원 이미지 리스트 가져오기
+	 * @param memberNo
+	 * @param fileType
+	 * @return
+	 */
+	public FileDto[] getMemberInfo(Integer memberNo, String fileType) {
+		return memberMapper.selectMemberImgInfo(memberNo, fileType);
 	}
 }

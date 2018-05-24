@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.belle.teeth.api.common.component.UtilFile;
 import com.belle.teeth.api.common.dto.FileDto;
+import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.service.CommonService;
+import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.dentist.util.SessionUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +30,10 @@ public class CommonController {
 	
 	@Autowired
 	private CommonService cService;
+	@Autowired
+	private MemberService mService;
 	
+	// 이미지 업로드 테스트
 	@RequestMapping(value = "/common/imgUpload", method = RequestMethod.GET)
 	public String test(HttpServletRequest request, HttpServletResponse response) {
 		return "imgUpload";
@@ -94,28 +99,39 @@ public class CommonController {
 	 */
 	@RequestMapping(value = "/ajax/common/fileUpload", method = RequestMethod.POST)
 	@ResponseBody
-	public String fileUpload(MultipartHttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "fileType", required = false, defaultValue = "F01") String fileType,
-			@RequestParam("files") MultipartFile files) {
+	public String fileUpload(MultipartHttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value = "fileType", required = false, defaultValue = "F01") String fileType
+			, @RequestParam(value = "patientNo", required = false, defaultValue = "0") Long patientNo
+			, @RequestParam("files") MultipartFile files) {
 
 		// 파일 업로드
 		FileDto fileInfo = UtilFile.fileUpload(request, files);
+		MemberImgDto imgInfo = new MemberImgDto();
 		fileInfo.setFileType(fileType);
-
-		Integer dentistNo = 0;
-
-		// 파일 타입별 종류
-		// F01 : 치과 장치 사용법 관련 이미지
-		// F02 : 회원별 사진 정보
-		if(fileType.equals("F01")) {
-			SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
-			dentistNo = sessionInfo.getDentist().getDentistNo();
-		}
 		
-		cService.addFileInfo(fileInfo, dentistNo);
-		// 파일 업로드 후, DB 저장
-		JSONObject result = new JSONObject(fileInfo);
-		return result.toString();
+		fileInfo = cService.addFileInfo(fileInfo);
+
+		if(fileInfo != null) {
+			// 파일 타입별 종류
+			// F01 : 치과 장치 사용법 관련 이미지
+			// F02 : 환자 사진 정보
+			if("F01".equals(fileType)) {
+				SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
+				Integer dentistNo = sessionInfo.getDentist().getDentistNo();
+				cService.updateDentistFileKey(fileInfo.getFileKey(), dentistNo);
+			} else if("F02".equals(fileType)) {
+				imgInfo.setMemberNo(patientNo);
+				imgInfo.setFileSn(fileInfo.getFileSn());
+				mService.updateMemberImgInfo(imgInfo);
+			}
+			
+			// 파일 업로드 후, DB 저장
+			JSONObject result = new JSONObject(fileInfo);
+			return result.toString();
+		} else {
+			response.setStatus(400);
+			return "";
+		}
 	}
 	
 }

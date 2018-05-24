@@ -76,17 +76,22 @@ public class CommonService {
 	
 	
 	/**
+	 * 치과 정보 ( 장치사용법 ) Img 등록
+	 */
+	public void updateDentistFileKey(String fileKey, Integer dentistNo) {
+		commonMapper.updateDentistFileKey(fileKey, dentistNo);
+	}
+	
+	/**
 	 *  파일 저장
 	 * @param fileDto
 	 */
-	public void addFileInfo(FileDto fileDto, Integer dentistNo) {
-		Long fileSn = commonMapper.insertFileInfo(fileDto);
-		if(fileSn == 1) {
-			// F01 -> 치과 테이블에 FileKey 등록
-			if(fileDto.getFileType().equals("F01")) {
-				commonMapper.updateDentistFileKey(fileDto.getFileKey(), dentistNo);
-			}
-			
+	public FileDto addFileInfo(FileDto fileDto) {
+		Long checkSn = commonMapper.insertFileInfo(fileDto);
+		if(checkSn == 1) {
+			return fileDto;
+		} else {
+			return null;
 		}
 	}
 	

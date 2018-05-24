@@ -111,6 +111,8 @@ public class MemberController {
 			// 질문 답변 페이지
 			SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 			model.addAttribute("qaList", memberService.getQaList(sessionInfo.getMemberNo(), memberNo));
+		} else if ("picture".equals(type)) {
+			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F02"));
 		}
 
 		model.addAttribute("type", type);

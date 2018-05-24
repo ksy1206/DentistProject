@@ -9,7 +9,9 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
+import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
 
 @Mapper
@@ -136,4 +138,41 @@ public interface MemberMapper {
 	void deleteQa(@Param("qaNo") Integer qaNo, @Param("doctorNo") Integer doctorNo);
 
 
+	/**
+	 * 환자 사진 관련 정보 등록
+	 * @param data
+	 */
+	@Insert("INSERT INTO member_img "
+			+ "("
+			+ "member_no"
+			+ ", file_sn"
+			+ ", delete_yn"
+			+ ")"
+			+ " VALUES "
+			+ "("
+			+ "#{memberNo}"
+			+ ", #{fileSn}"
+			+ ", 'N'"
+			+ ")")
+	void insertMemberImgInfo(MemberImgDto data);
+	
+	/**
+	 * 환자 사진 리스트 가져오기
+	 * @param memberNo
+	 * @param fileType
+	 * @return
+	 */
+	@Results({
+		@Result(property = "fileSn", column = "file_sn")
+		,@Result(property = "fileKey", column = "file_key")
+		,@Result(property = "fileType", column = "file_type")
+		,@Result(property = "filePath", column = "file_path")
+		,@Result(property = "fileUrl", column = "file_url")
+		,@Result(property = "fileExt", column = "file_ext")
+		,@Result(property = "fileName", column = "file_name")
+		,@Result(property = "insertDate", column = "insert_date")
+		,@Result(property = "deleteYn", column = "delete_yn")
+	})
+	@Select("SELECT a.file_url, a.file_sn, a.file_name FROM upload_file a, member_img b WHERE a.file_sn = b.file_sn AND b.member_no = #{memberNo} AND a.file_type = #{fileType};")
+	FileDto[] selectMemberImgInfo(@Param("memberNo") Integer memberNo, @Param("fileType") String fileType);
 }
