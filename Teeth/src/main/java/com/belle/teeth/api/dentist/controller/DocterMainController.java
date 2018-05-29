@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping(value = "/dentist")
-public class MainController {
+public class DocterMainController {
 	
 	@Autowired
 	private NoticeService nService;

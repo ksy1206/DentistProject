@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.belle.teeth.interceptor.DentistInterceptor;
+import com.belle.teeth.interceptor.FactoryInterceptor;
 
 @Component
 @Configuration
@@ -21,6 +22,9 @@ public class InterceptorConfiguration {
 				registry.addInterceptor(new DentistInterceptor())
 					.addPathPatterns("/dentist/**")
 					.excludePathPatterns("/dentist/ajax/**");
+				registry.addInterceptor(new FactoryInterceptor())
+					.addPathPatterns("/factory/**")
+					.excludePathPatterns("/factory/ajax/**");
 			}
 		};
 	}

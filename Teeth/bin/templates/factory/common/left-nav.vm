@@ -1,0 +1,50 @@
+## left-fixed-navigation
+<div class=" sidebar" role="navigation">
+		<div class="navbar-collapse">
+		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+			<ul class="nav" id="side-menu">
+				<li>
+					<a href="/dentist/main" class="active"><i class="fa fa-home nav_icon"></i>홈</a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-bell-o nav_icon"></i></i>공지사항 <span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level collapse">
+						<li>
+							<a href="/dentist/notice/list?dentistNo=$!SessionData.dentist.dentistNo">· 공지 목록</a>
+						</li>
+						<li>
+							<a href="/dentist/notice/add">· 공지 등록</a>
+						</li>
+					</ul>
+					## nav-second-level
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-user nav_icon"></i> 회원 <span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level collapse">
+						<li>
+							<a href="/dentist/member/list">· 환자 목록</a>
+						</li>
+						<li>
+							<a href="/dentist/member/add">· 환자 등록</a>
+						</li>
+					</ul>
+					## nav-second-level
+				</li>
+				<li class="">
+					<a href="#"><i class="fa fa-cogs nav_icon"></i>설정 <span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level collapse">
+						<li>
+							<a href="/dentist/device/instructions">· 장치 사용법</a>
+						</li>
+						<li>
+							<a href="/dentist/device/instructions/add">· 장치 사용법 등록</a>
+						</li>
+					</ul>
+					## nav-second-level
+				</li>
+			</ul>
+			## sidebar-collapse
+		</nav>
+	</div>
+</div>
+## left-fixed -navigation
