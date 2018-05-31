@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.belle.teeth.api.factory.zxing.MakeQrCode;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,8 +25,21 @@ public class FactoryMainController {
 	 * @return
 	 */
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String DentistMain(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String FactoryMain(HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		return "factory/main";
+	}
+	
+	@RequestMapping(value = "/qrMake", method = RequestMethod.GET)
+	public String FactoryQrMaking(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		
+		// 회원번호와 단계를 파라미터로 받는다.
+		int step = 10;
+		
+		for(int i=1; i<=step; i++) {
+			String qrName = "step" + i + ".png";
+			MakeQrCode.MakeQrCodeFunction(request, 1, qrName);
+		}
+		return "factory/qrMaking";
 	}
 }

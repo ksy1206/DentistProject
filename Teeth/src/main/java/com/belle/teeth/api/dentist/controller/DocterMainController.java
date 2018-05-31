@@ -18,9 +18,6 @@ import com.belle.teeth.api.common.service.CommonService;
 import com.belle.teeth.api.dentist.dto.NoticeDto;
 import com.belle.teeth.api.dentist.service.NoticeService;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 @RequestMapping(value = "/dentist")
 public class DocterMainController {
