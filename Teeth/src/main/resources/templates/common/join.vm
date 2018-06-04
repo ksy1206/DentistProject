@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	## Header 설정 파일
+	#parse("dentist/common/header.vm")
+</head> 
+<body>
+	<div class="main-content">
+
+		## main content start
+		<div id="page-wrapper">
+			<div class="main-page signup-page">
+				<h3 class="title1" style="color: #4f52ba;">회원 가입</h3>
+				##<p class="creating">Having hands on experience in creating innovative designs,I do offer design solutions which harness.</p>
+				<div class="sign-up-row widget-shadow">
+					
+					
+					<h6>가입 유형 선택</h6>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>선택 * :</h4>
+						</div>
+						<div class="sign-up2">
+						<label class="radio-inline">
+							<input type="radio" name="type" value="doctor">치과 회원   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="type" value="factory">기공소 회원
+						</label>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<hr>
+					
+					<div id="doctor" style="display: none;">
+						<h5>개인 정보</h5>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>이름 * :</h4>
+							</div>
+							<div class="sign-up2">
+								<input type="text" id="memberName" value="$!memberInfo.memberName">
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>나이 :</h4>
+							</div>
+							<div class="sign-up2">
+								<input type="text" id="memberAge" value="$!memberInfo.memberAge">
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>이메일 * :</h4>
+							</div>
+							<div class="sign-up2">
+								<input type="text" id="memberEmail" value="$!memberInfo.memberEmail">
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>성별 * :</h4>
+							</div>
+							<div class="sign-up2">
+								<label>
+									<input type="radio" name="gender" value="M" #if($!type=="modify") #if($!memberInfo.memberGender == "M") checked="checked" #end #else checked="checked"#end> Male
+								</label>
+								<label>
+									<input type="radio" name="gender" value="F" #if($!type=="modify" && $!memberInfo.memberGender == "F") checked="checked" #end> Female
+								</label>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<hr>
+					</div>
+
+					<h6>로그인 정보</h6>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>아이디 * :</h4>
+						</div>
+						<div class="sign-up2">
+							<input type="text" id="memberId" value="$!memberInfo.memberId">
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>비밀번호 * :</h4>
+						</div>
+						<div class="sign-up2">
+							<input type="password" id="memberPwd" value="$!memberInfo.memberPwd">
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<hr>
+					<div class="sub_home">
+						<input class="btn" style="background-color: #4f52ba !important; color: white; width: 100%;" value="등록" onclick="app.memberAdd();">
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		## Footer 설정 파일
+		#parse("dentist/common/footer.vm")
+	</div>
+	
+	## Left-Navagation Script
+	#parse("dentist/common/left-nav-script.vm")
+
+
+
+<script>
+	function App() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+		_this.env.type = $(":input:radio[name=type]:checked");
+		
+		_this.checkType = function() {
+		
+		}
+
+		_this.eventBind = function() {
+			$("input[name='type']:radio").change(function () {
+				alert(_this.env.type.val());
+			});
+		};
+
+		## Init
+		_this.init = function() {
+			_this.eventBind();
+		}();
+	}
+
+	var app = new App();
+</script>
+
+</body>
+</html>

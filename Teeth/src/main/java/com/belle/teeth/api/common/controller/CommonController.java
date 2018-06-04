@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +50,19 @@ public class CommonController {
 	public String CommonLogin(HttpServletRequest request, HttpServletResponse response) {
 		log.warn("기업 | 의사 로그인");
 		return "common/login";
+	}
+
+	/**
+	 * 회원 가입
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/common/join", method = RequestMethod.GET)
+	public String DentistJoin(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		return "common/join";
 	}
 
 	/**

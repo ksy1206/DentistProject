@@ -40,7 +40,7 @@
 				<div class="login-page-bottom">
 					<br><br><br>
 					<div class="social-btn">
-						<a href="#">
+						<a href="/common/join">
 							<i class="fa fa-sign-in"></i>
 							<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
 						</a>
