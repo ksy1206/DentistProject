@@ -59,31 +59,6 @@ public class MemberController {
 	}
 	
 	/**
-	 * 회원 DB 등록
-	 * @param request
-	 * @param response
-	 * @param memberDto
-	 * @return
-	 */
-	@RequestMapping(value = "/ajax/member/add/{type}", method = RequestMethod.POST)
-	@ResponseBody
-	public String MemberDeAdd(HttpServletRequest request, HttpServletResponse response
-			, @PathVariable String type , MemberDto memberDto) throws Exception {
-		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
-		
-		if("modify".equals(type)) {
-			memberService.memberModify(memberDto);
-		} else {
-			memberDto.setMemberType("A"); // 일반회원
-			memberDto.setAssignNo(sessionInfo.getAssignNo());
-			memberDto.setDoctorMemberNo(sessionInfo.getMemberNo());
-			memberService.memberAdd(memberDto);
-		}
-
-		return "true";
-	}
-	
-	/**
 	 * 회원 정보 상세 페이지
 	 * @param request
 	 * @param response

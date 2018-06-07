@@ -2,7 +2,7 @@
 <html>
 <head>
 	## Header 설정 파일
-	#parse("dentist/common/header.vm")
+	#parse("common/setting/header.vm")
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">
@@ -11,7 +11,7 @@
 		#parse("dentist/common/left-nav.vm")
 		
 		## Top-Info
-		#parse("dentist/common/top-info.vm")
+		#parse("common/setting/top-info.vm")
 		
 		## main content start
 		<div id="page-wrapper">
@@ -20,9 +20,9 @@
 			</div>
 		</div>
 		## Footer 설정 파일
-		#parse("dentist/common/footer.vm")
+		#parse("common/setting/footer.vm")
 	</div>
 	## Left-Navagation Script
-	#parse("dentist/common/left-nav-script.vm")
+	#parse("common/setting/left-nav-script.vm")
 </body>
 </html>

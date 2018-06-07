@@ -74,7 +74,14 @@ public class CommonService {
 		return commonMapper.dentistInfo(dentistNo);
 	}
 	
-	
+	/**
+	 * 치과 리스트 가져오기
+	 * @return
+	 */
+	public Dentist[] getDentistList() {
+		return commonMapper.dentistList();
+	}
+
 	/**
 	 * 치과 정보 ( 장치사용법 ) Img 등록
 	 */

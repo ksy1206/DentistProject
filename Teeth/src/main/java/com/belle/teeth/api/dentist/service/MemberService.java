@@ -16,6 +16,34 @@ public class MemberService {
 	private MemberMapper memberMapper;
 	
 	/**
+	 * 회원 이메일 중복 체크
+	 * @param email
+	 * @return
+	 */
+	public boolean checkEmail(String email) {
+		Integer count = memberMapper.checkEmail(email);
+		if(count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 회원 아이디 중복 체크
+	 * @param userId
+	 * @return
+	 */
+	public boolean checkUserId(String userId) {
+		Integer count = memberMapper.checkUserId(userId);
+		if(count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
 	 * 회원 추가
 	 * @param memberDto
 	 */

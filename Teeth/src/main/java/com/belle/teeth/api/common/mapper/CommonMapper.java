@@ -28,6 +28,15 @@ public interface CommonMapper {
 		,@Result(property = "dentistName", column = "dentist_name")
 		,@Result(property = "dentistFileKey", column = "dentist_file_key")
 	})
+	@Select("SELECT * FROM dentist")
+	public Dentist[] dentistList();
+
+	// 치과 정보 가져오기
+	@Results({
+		@Result(property = "dentistNo", column = "dentist_no")
+		,@Result(property = "dentistName", column = "dentist_name")
+		,@Result(property = "dentistFileKey", column = "dentist_file_key")
+	})
 	@Select("SELECT * FROM dentist WHERE dentist_no = #{assignNo}")
 	public Dentist dentistInfo(@Param("assignNo") Integer assignNo);
 	

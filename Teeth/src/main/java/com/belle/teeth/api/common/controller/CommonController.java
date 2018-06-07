@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.belle.teeth.api.common.component.UtilFile;
 import com.belle.teeth.api.common.dto.FileDto;
+import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.service.CommonService;
@@ -62,8 +64,83 @@ public class CommonController {
 	@RequestMapping(value = "/common/join", method = RequestMethod.GET)
 	public String DentistJoin(HttpServletRequest request, HttpServletResponse response, Model model) {
 		
+		model.addAttribute("dentistList", cService.getDentistList());
 		return "common/join";
 	}
+
+	
+	/**
+	 * 회원 DB 등록
+	 * @param request
+	 * @param response
+	 * @param memberDto
+	 * @return
+	 */
+	@RequestMapping(value = "/ajax/member/add/{type}/{userType}", method = RequestMethod.POST)
+	@ResponseBody
+	public String MemberDeAdd(HttpServletRequest request, HttpServletResponse response
+			, @PathVariable String type , @PathVariable String userType , MemberDto memberDto) throws Exception {
+
+		// 일반 회원 등록
+		if("general".equals(userType)) {
+			if("modify".equals(type)) {
+				mService.memberModify(memberDto);
+			} else {
+				SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
+				memberDto.setMemberType("A"); // 일반회원
+				memberDto.setAssignNo(sessionInfo.getAssignNo());
+				memberDto.setDoctorMemberNo(sessionInfo.getMemberNo());
+				mService.memberAdd(memberDto);
+			}
+		} else {
+			// 기타 회원 등록
+			mService.memberAdd(memberDto);
+		}
+		return "true";
+	}
+	
+	
+	/**
+	 * 이메일 중복 체크
+	 * @param request
+	 * @param response
+	 * @param email
+	 * @return
+	 */
+	@RequestMapping(value = "/ajax/common/email/check", method = RequestMethod.GET)
+	@ResponseBody
+	public String CheckEmail(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value = "email") String email) {
+		boolean isVaild = mService.checkEmail(email);
+
+		if(isVaild) {
+			return "Possible";
+		} else {
+			return "ImPossible";
+		}
+	}
+	
+	/**
+	 * 회원 아이디 중복 체크
+	 * @param request
+	 * @param response
+	 * @param email
+	 * @return
+	 */
+	@RequestMapping(value = "/ajax/common/userId/check", method = RequestMethod.GET)
+	@ResponseBody
+	public String CheckUserId(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value = "userId") String userId) {
+		boolean isVaild = mService.checkUserId(userId);
+
+		if(isVaild) {
+			return "Possible";
+		} else {
+			return "ImPossible";
+		}
+	}
+	
+	
 
 	/**
 	 * 로그 아웃 및 세션 삭제

@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 	## Header 설정 파일
-	#parse("dentist/common/header.vm")
+	#parse("common/setting/header.vm")
 </head> 
 <body>
 	<div class="main-content">
@@ -51,11 +51,8 @@
 		</div>
 
 		## Footer 설정 파일
-		#parse("dentist/common/footer.vm")
+		#parse("common/setting/footer.vm")
 	</div>
-	
-	## Left-Navagation Script
-	#parse("dentist/common/left-nav-script.vm")
 	
 <script>
 	function App() {
