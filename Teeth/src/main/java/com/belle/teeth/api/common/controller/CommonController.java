@@ -50,7 +50,6 @@ public class CommonController {
 	 */
 	@RequestMapping(value = "/common/login", method = RequestMethod.GET)
 	public String CommonLogin(HttpServletRequest request, HttpServletResponse response) {
-		log.warn("기업 | 의사 로그인");
 		return "common/login";
 	}
 
@@ -62,12 +61,22 @@ public class CommonController {
 	 * @return
 	 */
 	@RequestMapping(value = "/common/join", method = RequestMethod.GET)
-	public String DentistJoin(HttpServletRequest request, HttpServletResponse response, Model model) {
-		
+	public String CommonJoin(HttpServletRequest request, HttpServletResponse response, Model model) {
 		model.addAttribute("dentistList", cService.getDentistList());
 		return "common/join";
 	}
 
+	/**
+	 * 회원 아이디 비번 찾기
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/common/find", method = RequestMethod.GET)
+	public String CommonFind(HttpServletRequest request, HttpServletResponse response, Model model) {
+		return "common/find";
+	}
 	
 	/**
 	 * 회원 DB 등록
@@ -78,7 +87,7 @@ public class CommonController {
 	 */
 	@RequestMapping(value = "/ajax/member/add/{type}/{userType}", method = RequestMethod.POST)
 	@ResponseBody
-	public String MemberDeAdd(HttpServletRequest request, HttpServletResponse response
+	public String MemberAdd(HttpServletRequest request, HttpServletResponse response
 			, @PathVariable String type , @PathVariable String userType , MemberDto memberDto) throws Exception {
 
 		// 일반 회원 등록

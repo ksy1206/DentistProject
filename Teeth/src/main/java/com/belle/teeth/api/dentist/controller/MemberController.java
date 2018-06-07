@@ -30,7 +30,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/list", method = RequestMethod.GET)
 	public String MemberList(HttpServletRequest request, HttpServletResponse response, Model model) {
-		log.warn("환자 리스트 페이지");
 		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 		Integer assignNo = sessionInfo.getAssignNo();
 		Integer doctorNo = sessionInfo.getMemberNo();

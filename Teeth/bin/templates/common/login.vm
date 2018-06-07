@@ -37,15 +37,20 @@
 					</div>
 				</div>
 				
-				<div class="login-page-bottom">
-					<br><br><br>
-					<div class="social-btn">
+				<div>
+					<br><br>
+					<div class="social-btn" style="width:50%;">
 						<a href="/common/join">
 							<i class="fa fa-sign-in"></i>
-							<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+							<i>회원가입</i>
 						</a>
 					</div>
-					<div class="social-btn"><a href="#"><i class="fa fa-unlock-alt"></i><i>아이디/비밀번호 찾기</i></a></div>
+					<div class="social-btn" style="width:49%;">
+						<a href="/common/find">
+							<i class="fa fa-unlock-alt"></i>
+							<i>비밀번호 찾기</i>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>

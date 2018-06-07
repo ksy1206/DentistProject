@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	## Header 설정 파일
+	#parse("common/setting/header.vm")
+</head> 
+<body>
+	<div class="main-content">
+
+		## main content start
+		<div id="page-wrapper" style="padding: 4em 8em 2.5em;">
+			<p style="text-align: center;font-size: 50px;"><b>4U Smile<b></p>
+			<br>
+			<div class="main-page login-page ">
+				<h3 class="title1" style="color: #4f52ba;">비밀번호 찾기</h3>
+				<div class="widget-shadow">
+					
+					<div class="login-body">
+						<form>
+							<input type="text" class="user" id="userId" name="userId" placeholder="아이디를 입력하세요.">
+							<input type="text" class="user" id="email" name="email" placeholder="이메일을 입력하세요.">
+
+							<input type="button" onclick="app.find();" value="찾기" style="border: none;outline: none;cursor: pointer;color: #fff;background: #6164C1;width: 100%;padding: .5em 1em;font-size: 1em;margin: 0.5em 0 0;">
+							<br>
+							<input type="password" id="password" name="password" class="lock" placeholder="새로운 비밀번호를 입력하세요">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		## Footer 설정 파일
+		#parse("common/setting/footer.vm")
+	</div>
+	
+<script>
+	function App() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+
+		_this.eventBind = function() {
+		
+		};
+
+		## Init
+		_this.init = function() {
+			_this.eventBind();
+		}();
+	}
+
+	var app = new App();
+</script>
+	
+	
+</body>
+</html>
