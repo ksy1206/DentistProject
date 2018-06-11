@@ -52,7 +52,39 @@
 		_this.env.findButton = $('#findButton');
 		_this.env.findInfoDiv = $('#findInfoDiv');
 		_this.env.newPasswordForm = $('#newPasswordForm');
+		_this.env.password = $('#password');
 		
+		## 비밀번호 변경
+		_this.changePwd = function() {
+			
+			## password Check
+			if(_this.env.password.val().trim() == '') {
+				alert('변경할 비밀번호를 입력하세요.');
+				return false;
+			}
+			
+			var params = {
+				userId : _this.env.userId.val(),
+				email : _this.env.email.val(),
+				password : _this.env.password.val().trim()
+			}
+			
+			var url = "/ajax/common/modify/password";
+			$.ajax({
+				url: url,
+				type: 'POST',
+				data: params,
+				success: function(result) {
+					console.log(result);
+				},
+				error: function(request, status, error) {
+					console.log(request);
+				}
+			});
+		
+		};
+		
+		## 비밀번호 변경하기 위한 확인
 		_this.find = function() {
 			var userId = _this.env.userId.val();
 			var email = _this.env.email.val();

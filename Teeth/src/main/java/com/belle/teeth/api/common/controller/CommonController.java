@@ -100,6 +100,29 @@ public class CommonController {
 	}
 	
 	/**
+	 * 회원 비밀번호 변경
+	 * @param request
+	 * @param response
+	 * @param userId
+	 * @param email
+	 * @param password
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/ajax/common/modify/password", method = RequestMethod.POST)
+	@ResponseBody
+	public String modifyPwdCheck(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value = "userId") String userId
+			, @RequestParam(value = "email") String email
+			, @RequestParam(value = "password") String password, Model model) throws Exception {
+		
+		log.error("@@@@"+userId + "@@" + email + "@@" + password);
+		
+		return "";
+	}
+	
+	/**
 	 * 회원 DB 등록
 	 * @param request
 	 * @param response

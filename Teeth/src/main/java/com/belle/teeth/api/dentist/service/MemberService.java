@@ -59,6 +59,23 @@ public class MemberService {
 	}
 	
 	/**
+	 * 비밀번호 변경
+	 * @param userId
+	 * @param email
+	 * @param pwd
+	 * @return
+	 */
+	public boolean modifyPwd(String userId, String email, String pwd, String type) {
+		Integer count = memberMapper.checkFindPwd(userId, email, type);
+		if(count == 0) {
+			return false;
+		} else {
+			// 여기서 직접 비밀번호를 수정 한다.
+			return true;
+		}
+	}
+	
+	/**
 	 * 회원 추가
 	 * @param memberDto
 	 */
