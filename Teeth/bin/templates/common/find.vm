@@ -12,17 +12,23 @@
 			<p style="text-align: center;font-size: 50px;"><b>4U Smile<b></p>
 			<br>
 			<div class="main-page login-page ">
-				<h3 class="title1" style="color: #4f52ba;">비밀번호 찾기</h3>
+				<h3 class="title1" style="color: #4f52ba;">의사 회원 비밀번호 찾기</h3>
 				<div class="widget-shadow">
 					
 					<div class="login-body">
 						<form>
 							<input type="text" class="user" id="userId" name="userId" placeholder="아이디를 입력하세요.">
-							<input type="text" class="user" id="email" name="email" placeholder="이메일을 입력하세요.">
-
-							<input type="button" onclick="app.find();" value="찾기" style="border: none;outline: none;cursor: pointer;color: #fff;background: #6164C1;width: 100%;padding: .5em 1em;font-size: 1em;margin: 0.5em 0 0;">
-							<br>
+							<input type="text" id="email" name="email" placeholder="이메일을 입력하세요." style="background: url(../images/email.png) no-repeat 4px 5px #fff;">
+							<input type="button" id="findButton" onclick="app.find();" value="찾기" style="border: none;outline: none;cursor: pointer;color: #fff;background: #6164C1;width: 100%;padding: .5em 1em;font-size: 1em;margin: 0.5em 0 0;">
+						</form>
+						<div id="findInfoDiv" style="margin-top: 8px;font-size: 12px;color: gray;">
+							<i class="fa fa-bell-o" aria-hidden="true"></i>
+							<span>아이디 및 이메일 정보를 모르는경우, 기공소에 문의해 주세요.</span>
+						</div>
+						<br>
+						<form id="newPasswordForm" style="display: none;">
 							<input type="password" id="password" name="password" class="lock" placeholder="새로운 비밀번호를 입력하세요">
+							<input type="button" onclick="app.changePwd();" value="변경하기" style="border: none;outline: none;cursor: pointer;color: #fff;background: #6164C1;width: 100%;padding: .5em 1em;font-size: 1em;margin: 0.5em 0 0;">
 						</form>
 					</div>
 				</div>
@@ -39,6 +45,56 @@
 
 		## ENV
 		_this.env = {};
+		_this.env.userId = $('#userId');
+		_this.env.email = $('#email');
+		
+		## Button & Form
+		_this.env.findButton = $('#findButton');
+		_this.env.findInfoDiv = $('#findInfoDiv');
+		_this.env.newPasswordForm = $('#newPasswordForm');
+		
+		_this.find = function() {
+			var userId = _this.env.userId.val();
+			var email = _this.env.email.val();
+			
+			## userId Check
+			if(_this.env.userId.val().trim() == '') {
+				alert('회원 아이디를 입력 하세요.');
+				return false;
+			}
+			
+			## email Check
+			if(_this.env.email.val().trim() == '') {
+				alert("이메일을 입력하세요.");
+				return false;
+			}
+			
+			var url = "/ajax/common/find/check";
+			var params = {
+				userId : userId,
+				email : email
+			}
+
+			$.ajax({
+				url: url,
+				type: 'POST',
+				data: params,
+				success: function(result) {
+					if(result != 'true') {
+						_this.env.userId.attr("readonly", true);
+						_this.env.email.attr("readonly", true);
+						_this.env.findButton.hide();
+						_this.env.findInfoDiv.hide();
+						_this.env.newPasswordForm.show();
+					} else {
+						alert("일치하는 정보가 없습니다.");
+					}
+				},
+				error: function(request, status, error) {
+					console.log(request);
+				}
+			});
+		};
 
 		_this.eventBind = function() {
 		

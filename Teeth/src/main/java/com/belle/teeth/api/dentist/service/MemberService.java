@@ -44,6 +44,21 @@ public class MemberService {
 	}
 	
 	/**
+	 * 회원 비밀번호 찾기
+	 * @param userId
+	 * @param email
+	 * @return
+	 */
+	public boolean checkFindPwd(String userId, String email, String type) {
+		Integer count = memberMapper.checkFindPwd(userId, email, type);
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/**
 	 * 회원 추가
 	 * @param memberDto
 	 */

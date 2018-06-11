@@ -77,6 +77,27 @@ public class CommonController {
 	public String CommonFind(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return "common/find";
 	}
+
+	/**
+	 * 회원 비밀번호 찾기 확인 로직
+	 * @param request
+	 * @param response
+	 * @param userId
+	 * @param email
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/ajax/common/find/check", method = RequestMethod.POST)
+	@ResponseBody
+	public String findPwdCheck(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value = "userId") String userId
+			, @RequestParam(value = "email") String email, Model model) throws Exception {
+		
+		log.error("@@@@"+userId + "@@" + email);
+		
+		return "";
+	}
 	
 	/**
 	 * 회원 DB 등록

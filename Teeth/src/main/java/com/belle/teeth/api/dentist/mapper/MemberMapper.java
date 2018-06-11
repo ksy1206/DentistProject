@@ -16,14 +16,18 @@ import com.belle.teeth.api.dentist.dto.QaDto;
 
 @Mapper
 public interface MemberMapper {
-	
+
 	// Email 중복 체크
 	@Select("SELECT COUNT(*) FROM member WHERE member_email = #{email}")
 	public Integer checkEmail(@Param("email") String email);
-	
+
 	// UserId 중복 체크
 	@Select("SELECT COUNT(*) FROM member WHERE member_id = #{userId}")
 	public Integer checkUserId(@Param("userId") String userId);
+
+	// 회원 비밀번호 찾기 유효성 검사
+	@Select("SELECT COUNT(*) FROM member WHERE member_id = #{userId} AND member_email=#{email} AND member_type = #{type}")
+	public Integer checkFindPwd(@Param("userId") String userId, @Param("email") String email, @Param("type") String type);
 
 	// 회원정보 아이디와 비밀번호로 가져오기
 	@Results({
