@@ -94,9 +94,13 @@ public class CommonController {
 			, @RequestParam(value = "userId") String userId
 			, @RequestParam(value = "email") String email, Model model) throws Exception {
 		
-		log.error("@@@@"+userId + "@@" + email);
+		String result = "false";
+		boolean isvaild = mService.checkFindPwd(userId, email, "B");
 		
-		return "";
+		if(isvaild) {
+			result = "true";
+		}
+		return result;
 	}
 	
 	/**
@@ -117,9 +121,14 @@ public class CommonController {
 			, @RequestParam(value = "email") String email
 			, @RequestParam(value = "password") String password, Model model) throws Exception {
 		
-		log.error("@@@@"+userId + "@@" + email + "@@" + password);
+		String result = "false";
+		boolean isvaild = mService.modifyPwd(userId, email, password, "B");
 		
-		return "";
+		if(isvaild) {
+			result = "true";
+		}
+		
+		return result;
 	}
 	
 	/**

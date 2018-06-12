@@ -57,7 +57,7 @@ public class MemberService {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * 비밀번호 변경
 	 * @param userId
@@ -70,7 +70,7 @@ public class MemberService {
 		if(count == 0) {
 			return false;
 		} else {
-			// 여기서 직접 비밀번호를 수정 한다.
+			memberMapper.changePwd(userId, email, pwd, type);
 			return true;
 		}
 	}

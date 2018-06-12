@@ -75,7 +75,12 @@
 				type: 'POST',
 				data: params,
 				success: function(result) {
-					console.log(result);
+					if(result != 'true') {
+						alert("변경이 완료 되었습니다.");
+						location.reload();
+					} else {
+						alert("변경이 되지 않았습니다. 관리자에게 문의 하세요.");
+					}
 				},
 				error: function(request, status, error) {
 					console.log(request);
