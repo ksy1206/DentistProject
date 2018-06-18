@@ -75,9 +75,9 @@
 				type: 'POST',
 				data: params,
 				success: function(result) {
-					if(result != 'true') {
-						alert("변경이 완료 되었습니다.");
-						location.reload();
+					if(result == 'true') {
+						alert("변경이 완료 되었습니다. \n 로그인 화면으로 이동합니다.");
+						location.href="/common/login";
 					} else {
 						alert("변경이 되지 않았습니다. 관리자에게 문의 하세요.");
 					}
@@ -88,7 +88,7 @@
 			});
 		
 		};
-		
+
 		## 비밀번호 변경하기 위한 확인
 		_this.find = function() {
 			var userId = _this.env.userId.val();
@@ -117,7 +117,7 @@
 				type: 'POST',
 				data: params,
 				success: function(result) {
-					if(result != 'true') {
+					if(result == 'true') {
 						_this.env.userId.attr("readonly", true);
 						_this.env.email.attr("readonly", true);
 						_this.env.findButton.hide();

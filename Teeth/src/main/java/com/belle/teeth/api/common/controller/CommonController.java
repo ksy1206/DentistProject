@@ -93,10 +93,8 @@ public class CommonController {
 	public String findPwdCheck(HttpServletRequest request, HttpServletResponse response
 			, @RequestParam(value = "userId") String userId
 			, @RequestParam(value = "email") String email, Model model) throws Exception {
-		
 		String result = "false";
 		boolean isvaild = mService.checkFindPwd(userId, email, "B");
-		
 		if(isvaild) {
 			result = "true";
 		}
@@ -120,14 +118,11 @@ public class CommonController {
 			, @RequestParam(value = "userId") String userId
 			, @RequestParam(value = "email") String email
 			, @RequestParam(value = "password") String password, Model model) throws Exception {
-		
 		String result = "false";
 		boolean isvaild = mService.modifyPwd(userId, email, password, "B");
-		
 		if(isvaild) {
 			result = "true";
 		}
-		
 		return result;
 	}
 	

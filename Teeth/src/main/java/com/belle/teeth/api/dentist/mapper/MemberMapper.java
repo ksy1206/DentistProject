@@ -32,9 +32,7 @@ public interface MemberMapper {
 	// 회원 비밀번호 업데이트
 	@Update("UPDATE member "
 			+ "SET member_pwd = #{pwd} "
-			+ "WHERE member_id = #{userID} "
-			+ "AND member_email= #{email} "
-			+ "AND member_type = #{type}")
+			+ "WHERE member_id = #{userId} AND member_email=#{email} AND member_type = #{type}")
 	public void changePwd(@Param("userId") String userId, @Param("email") String email, @Param("type") String type, @Param("pwd") String pwd);
 	
 	// 회원정보 아이디와 비밀번호로 가져오기

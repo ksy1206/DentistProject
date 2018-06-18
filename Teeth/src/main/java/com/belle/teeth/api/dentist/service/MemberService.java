@@ -2,6 +2,7 @@ package com.belle.teeth.api.dentist.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
@@ -9,6 +10,9 @@ import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.mapper.MemberMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MemberService {
 
@@ -65,12 +69,13 @@ public class MemberService {
 	 * @param pwd
 	 * @return
 	 */
+	@Transactional
 	public boolean modifyPwd(String userId, String email, String pwd, String type) {
 		Integer count = memberMapper.checkFindPwd(userId, email, type);
 		if(count == 0) {
 			return false;
 		} else {
-			memberMapper.changePwd(userId, email, pwd, type);
+			memberMapper.changePwd(userId, email, type, pwd);
 			return true;
 		}
 	}
