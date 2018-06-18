@@ -45,6 +45,8 @@ public class MemberController {
 		pagingInfo.setPo(po);
 		pagingInfo.setPs(ps);
 		pagingInfo.setTotalCount(memberService.getMemberListTotalCount(assignNo, doctorNo, sKey, sValue));
+		pagingInfo.setSKey(sKey);
+		pagingInfo.setSValue(sValue);
 		model.addAttribute("paging", pagingInfo);
 		model.addAttribute("listName", "member");
 		

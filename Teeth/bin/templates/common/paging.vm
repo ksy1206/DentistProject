@@ -1,9 +1,7 @@
 ## Paging Nav Start
 <div class="col-md-6 col-md-offset-3">
-	<nav>
+	<nav style="text-align:  center;">
 		<ul class="pagination pagination-lg" id="pageNavArea">
-			##<li class="disabled"><a href="#">«</a></li>
-			##<li class="active"><a href="#">1</a></li>
 		</ul>
 	</nav>
 </div>
@@ -25,7 +23,7 @@
 		_this.env.url = "";
 		
 		#if($listName == "member")
-			_this.env.url = "/dentist/member/list?sKey=$!sKey&sValue=$!sValue";
+			_this.env.url = "/dentist/member/list?sKey=$!$!paging.sKey&sValue=$!$!paging.sValue";
 		#end
 		
 		_this.pageNavCreative = function() {

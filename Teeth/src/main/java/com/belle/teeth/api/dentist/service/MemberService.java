@@ -129,11 +129,11 @@ public class MemberService {
 	public Integer getMemberListTotalCount(Integer assignNo, Integer doctorNo, String sKey, String sValue) {
 		Integer result = 0;
 		if ("name".equals(sKey)) {
-			
+			result = memberMapper.getMemberListByNameCount(assignNo, doctorNo, sValue);
 		} else if("email".equals(sKey)) {
-			
+			result = memberMapper.getMemberListByIdCount(assignNo, doctorNo, sValue);
 		} else if("id".equals(sKey)) {
-			
+			result = memberMapper.getMemberListByEmailCount(assignNo, doctorNo, sValue);
 		} else {
 			result = memberMapper.getMemberTotalListCount(assignNo, doctorNo);
 		}

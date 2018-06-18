@@ -91,7 +91,9 @@ public interface MemberMapper {
 	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_name LIKE CONCAT ('%', #{sValue}, '%')" 
 			+ "ORDER BY join_date_time DESC")
 	public MemberDto[] getMemberListByName(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
-
+	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_name LIKE CONCAT ('%', #{sValue}, '%')")
+	public Integer getMemberListByNameCount(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
+	
 	// 회원 목록 검색 by MemberId
 	@Results({
 		@Result(property = "memberNo", column = "member_no")
@@ -102,7 +104,9 @@ public interface MemberMapper {
 	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_id LIKE CONCAT ('%', #{sValue}, '%')"
 			+ " ORDER BY join_date_time DESC")
 	public MemberDto[] getMemberListById(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
-
+	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_id LIKE CONCAT ('%', #{sValue}, '%')")
+	public Integer getMemberListByIdCount(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
+	
 	// 회원 목록 검색 by MemberEmail
 	@Results({
 		@Result(property = "memberNo", column = "member_no")
@@ -113,6 +117,8 @@ public interface MemberMapper {
 	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_email LIKE CONCAT ('%', #{sValue}, '%') "
 			+ "ORDER BY join_date_time DESC")
 	public MemberDto[] getMemberListByEmail(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
+	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_email LIKE CONCAT ('%', #{sValue}, '%')")
+	public Integer getMemberListByEmailCount(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
 	
 	// 회원 정보 등록
 	@Insert("INSERT INTO member "
