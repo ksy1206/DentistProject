@@ -46,6 +46,7 @@
 							</div>
 							#end
 						#end
+						<div id="focusDiv"></div>
 					</div>
 					<hr>
 					<div class="chat-bottom">
@@ -137,7 +138,7 @@
 
 		## Init
 		_this.init = function() {
-			
+			document.getElementById("focusDiv").scrollIntoView();
 		}();
 	}
 

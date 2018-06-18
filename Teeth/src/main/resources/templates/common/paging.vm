@@ -1,0 +1,73 @@
+## Paging Nav Start
+<div class="col-md-6 col-md-offset-3">
+	<nav>
+		<ul class="pagination pagination-lg" id="pageNavArea">
+			##<li class="disabled"><a href="#">«</a></li>
+			##<li class="active"><a href="#">1</a></li>
+		</ul>
+	</nav>
+</div>
+## Paging Nav End
+
+<script>
+	function Paging() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+		_this.env.totalCount = $!paging.totalCount;
+		_this.env.po = $!paging.po;
+		_this.env.ps = $!paging.ps;
+		_this.env.pageSet = $!paging.pageSet;
+		_this.env.pageCount = Math.ceil(_this.env.totalCount / _this.env.ps);
+		_this.env.startPageNum = Math.floor(_this.env.po / _this.env.pageSet) * _this.env.pageSet;
+		_this.env.lastPageNum = _this.env.startPageNum + _this.env.pageSet;
+		_this.env.url = "";
+		
+		#if($listName == "member")
+			_this.env.url = "/dentist/member/list?sKey=$!sKey&sValue=$!sValue";
+		#end
+		
+		_this.pageNavCreative = function() {
+		
+			var html = "";
+			
+			## 리스트가 없을경우에는 바루 리턴
+			if(_this.env.totalCount <= 0) {
+				return;
+			}
+			
+			if(_this.env.po < 1) {
+				html += '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
+			} else {
+				html += '<li><a href="'+_this.env.url+'&po='+(_this.env.po - 1)+'" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
+			}
+
+			for(var i=_this.env.startPageNum; i<_this.env.lastPageNum; i++) {
+				if(i >= _this.env.pageCount) {
+					break;
+				}
+				if(i == (_this.env.po)) {
+					html += '<li class="active"><a href="#">'+(i+1)+'</a></li>';
+				} else {
+					html += '<li><a href="'+_this.env.url+'&po='+i+'">'+(i+1)+'</a></li>';
+				}
+			}
+			
+			if(_this.env.lastPageNum <=_this.env.pageCount) {
+				html += '<li><a href="'+_this.env.url+'&po='+(_this.env.po + 1)+'" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
+			} else {
+				html += '<li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
+			}
+			
+			$('#pageNavArea').append(html);
+		};
+		
+		## Init
+		_this.init = function() {
+			_this.pageNavCreative();
+		}();
+	}
+
+	var paging = new Paging();
+</script>

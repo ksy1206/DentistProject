@@ -74,8 +74,45 @@ public interface MemberMapper {
 		,@Result(property = "memberGender", column = "member_gender")
 		,@Result(property = "memberEmail", column = "member_email")
 	})
-	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} and doctor_member_no = #{doctorNo}")
-	public MemberDto[] getMemberList(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo);
+	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} "
+			+ "ORDER BY join_date_time DESC LIMIT #{po}, #{ps}")
+	public MemberDto[] getMemberList(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("po") Integer po, @Param("ps") Integer ps);
+	// 회원 목록 토탈 카운트
+	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo}")
+	public Integer getMemberTotalListCount(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo);
+	
+	// 회원 목록 검색 by MemberName
+	@Results({
+		@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberGender", column = "member_gender")
+		,@Result(property = "memberEmail", column = "member_email")
+	})
+	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_name LIKE CONCAT ('%', #{sValue}, '%')" 
+			+ "ORDER BY join_date_time DESC")
+	public MemberDto[] getMemberListByName(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
+
+	// 회원 목록 검색 by MemberId
+	@Results({
+		@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberGender", column = "member_gender")
+		,@Result(property = "memberEmail", column = "member_email")
+	})
+	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_id LIKE CONCAT ('%', #{sValue}, '%')"
+			+ " ORDER BY join_date_time DESC")
+	public MemberDto[] getMemberListById(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
+
+	// 회원 목록 검색 by MemberEmail
+	@Results({
+		@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberGender", column = "member_gender")
+		,@Result(property = "memberEmail", column = "member_email")
+	})
+	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_email LIKE CONCAT ('%', #{sValue}, '%') "
+			+ "ORDER BY join_date_time DESC")
+	public MemberDto[] getMemberListByEmail(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
 	
 	// 회원 정보 등록
 	@Insert("INSERT INTO member "
@@ -126,7 +163,7 @@ public interface MemberMapper {
 		, @Result(property = "message", column = "message")
 		, @Result(property = "insertDate", column = "insert_date")
 	})
-	@Select("SELECT * FROM qa WHERE qa_doctor_no = #{doctorNo} and qa_member_no = #{memberNo} ORDER BY insert_date DESC")
+	@Select("SELECT * FROM qa WHERE qa_doctor_no = #{doctorNo} and qa_member_no = #{memberNo} ORDER BY insert_date ASC")
 	public QaDto[] getQaList(@Param("doctorNo") Integer doctorNo, @Param("memberNo") Integer memberNo);
 
 	// 질문 답변 등록

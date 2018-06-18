@@ -32,8 +32,8 @@
 
 	<logger name="com.example" level="DEBUG" />
 	<logger name="org.springframework.web" level="DEBUG" />
-	<logger name="jdbc.audit" level="INFO" />
-	<logger name="jdbc.resultset" level="INFO" />
+	<logger name="jdbc.audit" level="DEBUG" />
+	<logger name="jdbc.resultset" level="DEBUG" />
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />

@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FactoryMainController {
 
 	/**
-	 * 치과 메인 페이지
+	 * 기공소 메인 페이지
 	 * @param request
 	 * @param response
 	 * @param model
@@ -28,6 +28,19 @@ public class FactoryMainController {
 	public String FactoryMain(HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		return "factory/main";
+	}
+	
+	/**
+	 * 치과 목록 페이지
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/dentist/list", method = RequestMethod.GET)
+	public String FactoryDentistList(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		return "factory/dentist/list";
 	}
 	
 	@RequestMapping(value = "/qrMake", method = RequestMethod.GET)

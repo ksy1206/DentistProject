@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.belle.teeth.api.common.dto.MemberDto;
+import com.belle.teeth.api.common.dto.PagingDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.service.MemberService;
@@ -29,11 +30,24 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@RequestMapping(value = "/member/list", method = RequestMethod.GET)
-	public String MemberList(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String MemberList(HttpServletRequest request, HttpServletResponse response, Model model
+			, @RequestParam(value="po", required=false, defaultValue="0") int po
+			, @RequestParam(value="ps", required=false, defaultValue="10") int ps
+			, @RequestParam(value="sKey", required=false) String sKey
+			, @RequestParam(value="sValue", required=false) String sValue) {
 		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 		Integer assignNo = sessionInfo.getAssignNo();
 		Integer doctorNo = sessionInfo.getMemberNo();
-		model.addAttribute("memberList", memberService.getMemberList(assignNo, doctorNo));
+		
+		model.addAttribute("memberList", memberService.getMemberList(assignNo, doctorNo, po, ps, sKey, sValue));
+		
+		PagingDto pagingInfo = new PagingDto();
+		pagingInfo.setPo(po);
+		pagingInfo.setPs(ps);
+		pagingInfo.setTotalCount(memberService.getMemberListTotalCount(assignNo, doctorNo, sKey, sValue));
+		model.addAttribute("paging", pagingInfo);
+		model.addAttribute("listName", "member");
+		
 		return "dentist/member/list";
 	}
 	
@@ -121,7 +135,6 @@ public class MemberController {
 		return "true";
 	}
 
-	
 	/**
 	 * 질문 답변 삭제
 	 * @param request
@@ -138,8 +151,7 @@ public class MemberController {
 		memberService.qaDelete(qaNo, doctorNo);
 		return "true";
 	}
-	
-	
+
 	/**
 	 * 안쓰는것 같은데..
 	 * @param request

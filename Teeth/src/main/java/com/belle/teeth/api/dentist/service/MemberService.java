@@ -100,8 +100,44 @@ public class MemberService {
 	 * 환자 목록 가져오기
 	 * @return
 	 */
-	public MemberDto[] getMemberList(Integer assignNo, Integer doctorNo) {
-		return memberMapper.getMemberList(assignNo, doctorNo);
+	public MemberDto[] getMemberList(Integer assignNo, Integer doctorNo, int po, int ps, String sKey, String sValue) {
+		int pageStart = po * ps;
+		MemberDto[] list = null;
+		// sKey : 검색 조건 (name, email, id)
+		if ("name".equals(sKey)) {
+			list = memberMapper.getMemberListByName(assignNo, doctorNo, sValue);
+		} else if("email".equals(sKey)) {
+			list = memberMapper.getMemberListByEmail(assignNo, doctorNo, sValue);
+		} else if("id".equals(sKey)) {
+			list = memberMapper.getMemberListById(assignNo, doctorNo, sValue);
+		} else {
+			list = memberMapper.getMemberList(assignNo, doctorNo, pageStart, ps);
+		}
+		return list;
+	}
+
+	/**
+	 * 환자 목록 토탈 카운트
+	 * @param assignNo
+	 * @param doctorNo
+	 * @param po
+	 * @param ps
+	 * @param sKey
+	 * @param sValue
+	 * @return
+	 */
+	public Integer getMemberListTotalCount(Integer assignNo, Integer doctorNo, String sKey, String sValue) {
+		Integer result = 0;
+		if ("name".equals(sKey)) {
+			
+		} else if("email".equals(sKey)) {
+			
+		} else if("id".equals(sKey)) {
+			
+		} else {
+			result = memberMapper.getMemberTotalListCount(assignNo, doctorNo);
+		}
+		return result;
 	}
 	
 	/**
