@@ -103,14 +103,7 @@
 					userId : _this.env.userId.val(),
 					password : _this.env.password.val()
 				};
-				
-				var saveUserID = _this.env.saveId.is(':checked');
-				
-				if(saveUserID) {
-					storage.saveLocalId(_this.env.userId.val());
-				}
-				
-				#*
+
 				$.ajax({
 					url: url,
 					type: 'POST',
@@ -118,12 +111,20 @@
 					success: function(result) {
 						var r = JSON.parse(result);
 						if(r.check) {
+							var saveUserID = _this.env.saveId.is(':checked');
+
 							if(r.type == 'A') {## 회원
 								
 							} else if(r.type == 'B') { ## 의사
 								location.href= '/dentist/main';
+								if(saveUserID) {
+									storage.saveLocalId(_this.env.userId.val());
+								}
 							} else if(r.type == 'C') { ## 기공소
 								location.href= '/factory/main';
+								if(saveUserID) {
+									storage.saveLocalId(_this.env.userId.val());
+								}
 							}
 						} else {
 							alert('아이디 또는 비밀번호가 일치하지 않습니다.');
@@ -133,7 +134,7 @@
 					error: function(request, status, error) {
 						console.log(request);
 					}
-				}); *#
+				});
 			};
 		};
 

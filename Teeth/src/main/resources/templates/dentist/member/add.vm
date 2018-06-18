@@ -46,7 +46,12 @@
 							<h4>이메일 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="text" id="memberEmail" value="$!memberInfo.memberEmail">
+							#if($!type == "modify")
+							<input type="text" id="memberEmail" value="$!memberInfo.memberEmail" readonly>
+							#else
+							<input type="text" id="memberEmail" value="$!memberInfo.memberEmail" style="width:70%;">
+							<button type="button" id="emailCheckButton" class="btn btn-warning" style="width:28%;" onclick="app.checkEmail();">중복확인</button>
+							#end
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -71,7 +76,12 @@
 							<h4>아이디 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="text" id="memberId" value="$!memberInfo.memberId">
+							#if($!type == "modify")
+							<input type="text" id="memberId" value="$!memberInfo.memberId" readonly>
+							#else
+							<input type="text" id="memberId" value="$!memberInfo.memberId" style="width:70%;">
+							<button type="button" id="memberIdCheckButton" class="btn btn-warning" style="width:28%;" onclick="app.checkMemberId();">중복확인</button>
+							#end
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -80,7 +90,8 @@
 							<h4>비밀번호 * :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="password" id="memberPwd" value="$!memberInfo.memberPwd">
+							<input type="password" id="memberPwd" value="$!memberInfo.memberPwd" style="width:70%;">
+							<button type="button" class="btn btn-warning" style="width:28%;" onclick="app.pwdConfirm();">확인</button>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -88,6 +99,7 @@
 					<div class="sub_home">
 						#if($!type=="modify")
 						<input class="btn" style="background-color: #4f52ba !important; color: white; width: 100%;" value="수정" onclick="app.memberAdd();">
+						<span style="font-size: 12px; color: #f31c1c;"><i class="fa fa-info-circle" aria-hidden="true"></i> 아이디 & 이메일은 수정할 수 없습니다.</span>
 						#else
 						<input class="btn" style="background-color: #4f52ba !important; color: white; width: 100%;" value="등록" onclick="app.memberAdd();">
 						#end
@@ -104,7 +116,8 @@
 	## Left-Navagation Script
 	#parse("common/setting/left-nav-script.vm")
 
-
+<input type="hidden" value="Impossible" id="checkEmail">
+<input type="hidden" value="Impossible" id="checkMemberId">
 
 <script>
 	function App() {
@@ -117,6 +130,9 @@
 		_this.env.memberEmail = $('#memberEmail');
 		_this.env.memberId = $('#memberId');
 		_this.env.memberPwd = $('#memberPwd');
+		
+		_this.env.checkEmail = $('#checkEmail');
+		_this.env.checkMemberId = $('#checkMemberId');
 
 		## login validation
 		_this.memberValidation = function() {
@@ -180,8 +196,18 @@
 					memberPwd : _this.env.memberPwd.val()
 				};
 
-				#if($!type=="modify")
-					params.memberNo = $!memberInfo.memberNo; 
+				#if($!type == "modify")
+					params.memberNo = $!memberInfo.memberNo;
+				#else
+					## 회원 이메일 및 아이디 중복 체크 여부
+					if(_this.env.checkEmail.val() != 'Possible') {
+						alert("이메일 중복체크후 이용가능 합니다.");
+						return false;
+					}
+					if(_this.env.checkMemberId.val() != 'Possible') {
+						alert("아이디 중복체크후 이용가능 합니다.");
+						return false;
+					}
 				#end
 
 				$.ajax({
@@ -202,6 +228,66 @@
 				});
 			};
 		};
+
+		## 회원 이메일 중복 체크
+		_this.checkEmail = function() {
+			if(_this.env.memberEmail.val().trim() == '') {
+				alert("이메일 정보를 입력 하신후, 이용 가능합니다.");
+				return;
+			}
+			var url = "/ajax/common/email/check?email="+_this.env.memberEmail.val();
+			$.ajax({
+				url: url,
+				type: 'GET',
+				success: function(result) {
+					if(result == 'Possible') {
+						alert("사용 가능 합니다.");
+						_this.env.checkEmail.val(result);
+						_this.env.memberEmail.attr("readonly", true);
+						_this.env.memberEmail.css("width", "100%");
+						$('#emailCheckButton').css("display", "none");
+					} else {
+						alert("중복된 이메일 주소 입니다.");
+						_this.env.checkEmail.val(result);
+					}
+				},
+				error: function(request, status, error) {
+					console.log(request);
+				}
+			});
+		};
+
+		## 회원 아이디 중복 체크
+		_this.checkMemberId = function() {
+			if(_this.env.memberId.val().trim() == '') {
+				alert("아이디 정보를 입력 하신후, 이용 가능합니다.");
+				return;
+			}
+			var url = "/ajax/common/userId/check?userId="+_this.env.memberId.val();
+			$.ajax({
+				url: url,
+				type: 'GET',
+				success: function(result) {
+					if(result == 'Possible') {
+						alert("사용 가능 합니다.");
+						_this.env.checkMemberId.val(result);
+						_this.env.memberId.attr("readonly", true);
+						_this.env.memberId.css("width", "100%");
+						$('#memberIdCheckButton').css("display", "none");
+					} else {
+						alert("사용할 수없는 아이디 입니다.");
+						_this.env.checkMemberId.val(result);
+					}
+				},
+				error: function(request, status, error) {
+					console.log(request);
+				}
+			});
+		};
+
+		_this.pwdConfirm = function() {
+			_this.env.memberPwd.attr('type', 'text');
+		}
 
 		_this.eventBind = function() {
 		
