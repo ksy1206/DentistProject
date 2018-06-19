@@ -50,7 +50,7 @@
 								<tr>
 									<th scope="row" style="text-align: center;">$!row.dentistNo</th>
 									<td>$!row.dentistName</td>
-									<td><a href="#">$!row.memberName</a> 원장</td>
+									<td><a href="/factory/dentist/member/list?doctorNo=$!row.memberNo">$!row.memberName</a> 원장</td>
 								</tr>
 								#end
 							</tbody>

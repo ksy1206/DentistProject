@@ -116,6 +116,23 @@ public class MemberService {
 		}
 		return list;
 	}
+	
+	/**페이징 없이 환자 이름만으로 검색
+	 * @param memberName //이름
+	 * @return
+	 */
+	public MemberDto[] getMemberOnlyName(String memberName, Integer doctorNo) {
+		// 의사에 관련없이 검색
+		if(doctorNo == 0 && !"".equals(memberName)) {
+			return memberMapper.getMemberOnlyNameList(memberName);
+		} else if(doctorNo != 0 && "".equals(memberName)) {
+			return memberMapper.getMemberByDoctorList(doctorNo);
+		} else if(doctorNo != 0 && !"".equals(memberName)) {
+			return memberMapper.getMemberByDoctorByNameList(memberName, doctorNo);
+		} else {
+			return null;
+		}
+	}
 
 	/**
 	 * 환자 목록 토탈 카운트

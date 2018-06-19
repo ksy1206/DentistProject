@@ -68,6 +68,68 @@ public interface MemberMapper {
 	@Select("SELECT * FROM member WHERE member_no = #{memberNo}")
 	public MemberDto memberInfo2(@Param("memberNo") Integer memberNo);
 	
+	// 환자회원 이름만으로 검색해서 가져오기
+	@Results({
+		@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberAge", column = "member_age")
+		,@Result(property = "dentistName", column = "dentist_name")
+		,@Result(property = "doctorName", column = "doctor_name")
+	})
+	@Select("SELECT a.member_no"
+			+ ", a.member_name"
+			+ ", a.member_age"
+			+ ", b.dentist_name"
+			+ ", c.member_name as doctor_name "
+			+ "FROM member a, dentist b, member c "
+			+ "WHERE a.doctor_member_no = c.member_no "
+			+ "AND a.assign_no = b.dentist_no "
+			+ "AND a.member_name LIKE CONCAT ('%', #{memberName}, '%') "
+			+ "AND a.member_type = 'A'")
+	public MemberDto[] getMemberOnlyNameList(@Param("memberName") String memberName);
+	
+	// 의사 번호로 검색해서 가져오기
+	@Results({
+		@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberAge", column = "member_age")
+		,@Result(property = "dentistName", column = "dentist_name")
+		,@Result(property = "doctorName", column = "doctor_name")
+	})
+	@Select("SELECT a.member_no"
+			+ ", a.member_name"
+			+ ", a.member_age"
+			+ ", b.dentist_name"
+			+ ", c.member_name as doctor_name "
+			+ "FROM member a, dentist b, member c "
+			+ "WHERE a.doctor_member_no = c.member_no "
+			+ "AND a.assign_no = b.dentist_no "
+			+ "AND a.doctor_member_no = #{doctorNo} "
+			+ "AND a.member_type = 'A'")
+	public MemberDto[] getMemberByDoctorList(@Param("doctorNo") Integer doctorNo);
+	
+	// 환자회원 이름 & 의사 번호로 검색해서 가져오기
+	@Results({
+		@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberAge", column = "member_age")
+		,@Result(property = "dentistName", column = "dentist_name")
+		,@Result(property = "doctorName", column = "doctor_name")
+	})
+	@Select("SELECT a.member_no"
+			+ ", a.member_name"
+			+ ", a.member_age"
+			+ ", b.dentist_name"
+			+ ", c.member_name as doctor_name "
+			+ "FROM member a, dentist b, member c "
+			+ "WHERE a.doctor_member_no = c.member_no "
+			+ "AND a.assign_no = b.dentist_no "
+			+ "AND a.member_name LIKE CONCAT ('%', #{memberName}, '%') "
+			+ "AND a.doctor_member_no = #{doctorNo} "
+			+ "AND a.member_type = 'A'")
+	public MemberDto[] getMemberByDoctorByNameList(@Param("memberName") String memberName, @Param("doctorNo") Integer doctorNo);
+	
+	
 	// 회원 목록 가져오기
 	@Results({
 		@Result(property = "memberNo", column = "member_no")
@@ -168,10 +230,12 @@ public interface MemberMapper {
 		@Result(property = "dentistNo", column = "assign_no")
 		,@Result(property = "dentistName", column = "dentist_name")
 		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberNo", column = "member_no")
 	})
 	@Select("SELECT a.assign_no"
 			+ ", b.dentist_name"
 			+ ", a.member_name "
+			+ ", a.member_no "
 			+ "FROM member a, dentist b "
 			+ "WHERE a.assign_no = b.dentist_no "
 			+ "AND a.member_type = 'B' "
@@ -185,10 +249,12 @@ public interface MemberMapper {
 		@Result(property = "dentistNo", column = "assign_no")
 		,@Result(property = "dentistName", column = "dentist_name")
 		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberNo", column = "member_no")
 	})
 	@Select("SELECT a.assign_no"
 			+ ", b.dentist_name"
 			+ ", a.member_name "
+			+ ", a.member_no "
 			+ "FROM member a, dentist b "
 			+ "WHERE a.assign_no = b.dentist_no "
 			+ "AND a.member_type = 'B' "
@@ -203,10 +269,12 @@ public interface MemberMapper {
 		@Result(property = "dentistNo", column = "assign_no")
 		,@Result(property = "dentistName", column = "dentist_name")
 		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberNo", column = "member_no")
 	})
 	@Select("SELECT a.assign_no"
 			+ ", b.dentist_name"
 			+ ", a.member_name "
+			+ ", a.member_no "
 			+ "FROM member a, dentist b "
 			+ "WHERE a.assign_no = b.dentist_no "
 			+ "AND a.member_type = 'B' "

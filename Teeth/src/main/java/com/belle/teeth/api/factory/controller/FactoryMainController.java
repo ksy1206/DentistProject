@@ -39,7 +39,7 @@ public class FactoryMainController {
 	}
 	
 	/**
-	 * 치과 목록 페이지
+	 * 의사 목록 페이지
 	 * @param request
 	 * @param response
 	 * @param model
@@ -63,6 +63,30 @@ public class FactoryMainController {
 		model.addAttribute("listName", "dentist");
 		return "factory/dentist/list";
 	}
+	
+	/**
+	 * 환자 목록 페이지
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/dentist/member/list", method = RequestMethod.GET)
+	public String FactoryDentistMemberList(HttpServletRequest request, HttpServletResponse response, Model model
+			, @RequestParam(value="doctorNo", required=false, defaultValue="0") int doctorNo
+			, @RequestParam(value="memberName", required=false, defaultValue="") String memberName) throws Exception {
+
+		model.addAttribute("List", memberService.getMemberOnlyName(memberName, doctorNo));
+		model.addAttribute("doctorNo", doctorNo);
+		model.addAttribute("memberName", memberName);
+		return "factory/dentist/memberList";
+	}
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/qrMake", method = RequestMethod.GET)
 	public String FactoryQrMaking(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {

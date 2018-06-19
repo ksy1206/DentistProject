@@ -17,22 +17,15 @@
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">의사 목록</h3>
+					<h3 class="title1">환자 목록</h3>
 					<div class="panel-body widget-shadow">
 						<div class="form-group">
-							<div class="col-md-4">
-								<label for="sel1">검색</label>
-								<select class="form-control" id="sKey">
-									<option value="">선택</option>
-									<option value="dentistName" #if($!paging.sKey == "dentistName") selected #end>치과명</option>
-									<option value="doctorName" #if($!paging.sKey == "doctorName") selected #end>원장명</option>
-								</select>
-							</div>
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<label for="usr"></label>
-								<input type="text" class="form-control" id="sValue" placeholder="검색어를 입력하세요." value="$!paging.sValue">
+								<input type="hidden" id="doctorNo" value="$!doctorNo">
+								<input type="text" class="form-control" id="memberName" placeholder="환자명을 입력하세요." value="$!memberName">
 							</div>
-							<div class="col-md-2">
+							<div class="col-md-4">
 								<input type="button" class="btn btn-primary" value="검색" style="margin-top: 21px;width: 100%;" onclick="app.searchList();">
 							</div>
 						</div>
@@ -40,24 +33,25 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th style="text-align: center; width:15%;">치과번호</th>
-									<th style="text-align: center; width:50%;">치과명</th>
+									<th style="text-align: center; width:15%;">No.</th>
+									<th style="text-align: center; width:30%;">치과명</th>
 									<th style="text-align: center;">원장명</th>
+									<th style="text-align: center;">환자명</th>
+									<th style="text-align: center;">나이</th>
 								</tr>
 							</thead>
 							<tbody style="text-align: center;">
 								#foreach($row in $List)
 								<tr>
-									<th scope="row" style="text-align: center;">$!row.dentistNo</th>
+									<th scope="row" style="text-align: center;">$!row.memberNo</th>
 									<td>$!row.dentistName</td>
-									<td><a href="/factory/dentist/member/list?doctorNo=$!row.memberNo">$!row.memberName</a> 원장</td>
+									<td>$!row.doctorName</td>
+									<td><a href="#">$!row.memberName</a></td>
+									<td>$!row.memberAge</td>
 								</tr>
 								#end
 							</tbody>
 						</table>
-
-						## 리스트 페이징 정보
-						#parse("common/paging.vm")
 					</div>
 				</div>
 			</div>
@@ -76,21 +70,17 @@
 
 		## ENV
 		_this.env = {};
-		_this.env.sKey = $('#sKey');
-		_this.env.sValue = $('#sValue');
+		_this.env.doctorNo = $('#doctorNo');
+		_this.env.memberName = $('#memberName');
 		
 		## 리스트 검색
 		_this.searchList = function() {
-		
-			if(_this.env.sKey.val() == "") {
-				alert("검색 조건을 선택하세요.");
+
+			if(_this.env.memberName.val().trim() == "") {
+				alert("환자명을 입력하세요.");
 				return false;
 			}
-			if(_this.env.sValue.val().trim() == "") {
-				alert("검색어를 입력하세요.");
-				return false;
-			}
-			location.href="/factory/dentist/list?sKey="+_this.env.sKey.val() + "&sValue="+_this.env.sValue.val().trim();
+			location.href="/factory/dentist/member/list?doctorNo="+_this.env.doctorNo.val() + "&memberName="+_this.env.memberName.val().trim();
 		};
 
 	}

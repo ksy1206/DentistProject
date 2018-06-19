@@ -10,4 +10,5 @@ public class Dentist {
 	
 	//의사 이름
 	private String memberName;
+	private Integer memberNo;
 }

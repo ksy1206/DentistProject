@@ -19,7 +19,7 @@
 					<a href="#"><i class="fa fa-users nav_icon"></i>회원 <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level collapse">
 						<li>
-							<a href="#">· 회원 목록</a>
+							<a href="/factory/dentist/member/list">· 회원 목록</a>
 						</li>
 					</ul>
 					## nav-second-level
