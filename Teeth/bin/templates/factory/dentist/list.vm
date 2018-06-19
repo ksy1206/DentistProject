@@ -17,7 +17,7 @@
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">치과 목록</h3>
+					<h3 class="title1">의사 목록</h3>
 					<div class="panel-body widget-shadow">
 						<div class="form-group">
 							<div class="col-md-4">
@@ -40,18 +40,17 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th style="text-align: center; width:25%;">치과번호</th>
-									<th style="text-align: center;">치과명</th>
+									<th style="text-align: center; width:15%;">치과번호</th>
+									<th style="text-align: center; width:50%;">치과명</th>
 									<th style="text-align: center;">원장명</th>
 								</tr>
 							</thead>
 							<tbody style="text-align: center;">
-								#foreach($row in $memberList)
+								#foreach($row in $List)
 								<tr>
-									<th scope="row" style="text-align: center;">$!row.memberNo</th>
-									<td><a href="/dentist/member/sub/info?memberNo=$!row.memberNo">$!row.memberName</a></td>
-									<td>$!row.memberGender</td>
-									<td>$!row.memberEmail</td>
+									<th scope="row" style="text-align: center;">$!row.dentistNo</th>
+									<td>$!row.dentistName</td>
+									<td><a href="#">$!row.memberName</a> 원장</td>
 								</tr>
 								#end
 							</tbody>
@@ -91,7 +90,7 @@
 				alert("검색어를 입력하세요.");
 				return false;
 			}
-			location.href="/dentist/member/list?sKey="+_this.env.sKey.val() + "&sValue="+_this.env.sValue.val().trim();
+			location.href="/factory/dentist/list?sKey="+_this.env.sKey.val() + "&sValue="+_this.env.sValue.val().trim();
 		};
 
 	}

@@ -10,7 +10,7 @@
 					<a href="#"><i class="fa fa-hospital-o nav_icon"></i>치과 <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level collapse">
 						<li>
-							<a href="/factory/dentist/list">· 치과 목록</a>
+							<a href="/factory/dentist/list">· 의사 목록</a>
 						</li>
 					</ul>
 					## nav-second-level
@@ -32,6 +32,9 @@
 						</li>
 						<li>
 							<a href="#">· 주의 사항 등록</a>
+						</li>
+						<li>
+							<a href="#">· 치과 등록</a>
 						</li>
 					</ul>
 					## nav-second-level

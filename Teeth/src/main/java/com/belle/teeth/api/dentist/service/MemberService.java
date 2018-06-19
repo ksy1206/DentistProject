@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.belle.teeth.api.common.dto.Dentist;
 import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.MemberImgDto;
@@ -105,11 +106,11 @@ public class MemberService {
 		MemberDto[] list = null;
 		// sKey : 검색 조건 (name, email, id)
 		if ("name".equals(sKey)) {
-			list = memberMapper.getMemberListByName(assignNo, doctorNo, sValue);
+			list = memberMapper.getMemberListByName(assignNo, doctorNo, sValue, pageStart, ps);
 		} else if("email".equals(sKey)) {
-			list = memberMapper.getMemberListByEmail(assignNo, doctorNo, sValue);
+			list = memberMapper.getMemberListByEmail(assignNo, doctorNo, sValue, pageStart, ps);
 		} else if("id".equals(sKey)) {
-			list = memberMapper.getMemberListById(assignNo, doctorNo, sValue);
+			list = memberMapper.getMemberListById(assignNo, doctorNo, sValue, pageStart, ps);
 		} else {
 			list = memberMapper.getMemberList(assignNo, doctorNo, pageStart, ps);
 		}
@@ -136,6 +137,32 @@ public class MemberService {
 			result = memberMapper.getMemberListByEmailCount(assignNo, doctorNo, sValue);
 		} else {
 			result = memberMapper.getMemberTotalListCount(assignNo, doctorNo);
+		}
+		return result;
+	}
+	
+	// 치과 의사 정보 가져오기
+	public  Dentist[] getDentistList(int po, int ps, String sKey, String sValue) {
+		int pageStart = po * ps;
+		Dentist[] list = null;
+		// sKey : 검색 조건 (dentistName, doctorName)
+		if ("dentistName".equals(sKey)) {
+			list = memberMapper.getDentistListByDentist(sValue, po, ps);
+		} else if("doctorName".equals(sKey)) {
+			list = memberMapper.getDentistListByDoctor(sValue, po, ps);
+		} else {
+			list = memberMapper.getDentistList(pageStart, ps);
+		}
+		return list;
+	}
+	public Integer getDentistListCount(String sKey, String sValue) {
+		Integer result = 0;
+		if ("dentistName".equals(sKey)) {
+			result = memberMapper.getDentistListByDentistCount(sValue);
+		} else if("doctorName".equals(sKey)) {
+			result = memberMapper.getDentistListByDoctorCount(sValue);
+		} else {
+			result = memberMapper.getDentistListCount();
 		}
 		return result;
 	}

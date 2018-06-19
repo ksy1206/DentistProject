@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.belle.teeth.api.common.dto.Dentist;
 import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.MemberImgDto;
@@ -74,11 +75,11 @@ public interface MemberMapper {
 		,@Result(property = "memberGender", column = "member_gender")
 		,@Result(property = "memberEmail", column = "member_email")
 	})
-	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} "
+	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_type = 'A'"
 			+ "ORDER BY join_date_time DESC LIMIT #{po}, #{ps}")
 	public MemberDto[] getMemberList(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("po") Integer po, @Param("ps") Integer ps);
 	// 회원 목록 토탈 카운트
-	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo}")
+	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_type = 'A'")
 	public Integer getMemberTotalListCount(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo);
 	
 	// 회원 목록 검색 by MemberName
@@ -88,10 +89,10 @@ public interface MemberMapper {
 		,@Result(property = "memberGender", column = "member_gender")
 		,@Result(property = "memberEmail", column = "member_email")
 	})
-	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_name LIKE CONCAT ('%', #{sValue}, '%')" 
-			+ "ORDER BY join_date_time DESC")
-	public MemberDto[] getMemberListByName(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
-	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_name LIKE CONCAT ('%', #{sValue}, '%')")
+	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_type = 'A' AND member_name LIKE CONCAT ('%', #{sValue}, '%')" 
+			+ "ORDER BY join_date_time DESC LIMIT #{po}, #{ps}")
+	public MemberDto[] getMemberListByName(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue, @Param("po") Integer po, @Param("ps") Integer ps);
+	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_type = 'A' AND member_name LIKE CONCAT ('%', #{sValue}, '%')")
 	public Integer getMemberListByNameCount(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
 	
 	// 회원 목록 검색 by MemberId
@@ -101,10 +102,10 @@ public interface MemberMapper {
 		,@Result(property = "memberGender", column = "member_gender")
 		,@Result(property = "memberEmail", column = "member_email")
 	})
-	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_id LIKE CONCAT ('%', #{sValue}, '%')"
-			+ " ORDER BY join_date_time DESC")
-	public MemberDto[] getMemberListById(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
-	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_id LIKE CONCAT ('%', #{sValue}, '%')")
+	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_type = 'A' AND member_id LIKE CONCAT ('%', #{sValue}, '%')"
+			+ " ORDER BY join_date_time DESC LIMIT #{po}, #{ps}")
+	public MemberDto[] getMemberListById(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue, @Param("po") Integer po, @Param("ps") Integer ps);
+	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_type = 'A' AND member_id LIKE CONCAT ('%', #{sValue}, '%')")
 	public Integer getMemberListByIdCount(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
 	
 	// 회원 목록 검색 by MemberEmail
@@ -114,10 +115,10 @@ public interface MemberMapper {
 		,@Result(property = "memberGender", column = "member_gender")
 		,@Result(property = "memberEmail", column = "member_email")
 	})
-	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_email LIKE CONCAT ('%', #{sValue}, '%') "
-			+ "ORDER BY join_date_time DESC")
-	public MemberDto[] getMemberListByEmail(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
-	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_email LIKE CONCAT ('%', #{sValue}, '%')")
+	@Select("SELECT * FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_type = 'A' AND member_email LIKE CONCAT ('%', #{sValue}, '%') "
+			+ "ORDER BY join_date_time DESC LIMIT #{po}, #{ps}")
+	public MemberDto[] getMemberListByEmail(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue, @Param("po") Integer po, @Param("ps") Integer ps);
+	@Select("SELECT COUNT(*) FROM member WHERE assign_no = #{assignNo} AND doctor_member_no = #{doctorNo} AND member_type = 'A' AND member_email LIKE CONCAT ('%', #{sValue}, '%')")
 	public Integer getMemberListByEmailCount(@Param("assignNo") Integer assignNo, @Param("doctorNo") Integer doctorNo, @Param("sValue") String sValue);
 	
 	// 회원 정보 등록
@@ -160,6 +161,62 @@ public interface MemberMapper {
 			+ "WHERE member_no = #{memberNo}")
 	void memberUpdate(MemberDto data);
 	
+	
+	
+	// 치과 의사 목록
+	@Results({
+		@Result(property = "dentistNo", column = "assign_no")
+		,@Result(property = "dentistName", column = "dentist_name")
+		,@Result(property = "memberName", column = "member_name")
+	})
+	@Select("SELECT a.assign_no"
+			+ ", b.dentist_name"
+			+ ", a.member_name "
+			+ "FROM member a, dentist b "
+			+ "WHERE a.assign_no = b.dentist_no "
+			+ "AND a.member_type = 'B' "
+			+ "ORDER BY a.join_date_time DESC LIMIT #{po}, #{ps}")
+	public Dentist[] getDentistList(@Param("po") Integer po, @Param("ps") Integer ps);
+	@Select("SELECT COUNT(*) FROM member WHERE member_type = 'B'")
+	public Integer getDentistListCount();
+	
+	// 치과 의사목록 치과로 검색
+	@Results({
+		@Result(property = "dentistNo", column = "assign_no")
+		,@Result(property = "dentistName", column = "dentist_name")
+		,@Result(property = "memberName", column = "member_name")
+	})
+	@Select("SELECT a.assign_no"
+			+ ", b.dentist_name"
+			+ ", a.member_name "
+			+ "FROM member a, dentist b "
+			+ "WHERE a.assign_no = b.dentist_no "
+			+ "AND a.member_type = 'B' "
+			+ "AND b.dentist_name LIKE CONCAT ('%', #{dentistName}, '%')"
+			+ "ORDER BY a.join_date_time DESC LIMIT #{po}, #{ps}")
+	public Dentist[] getDentistListByDentist(@Param("dentistName") String dentistName, @Param("po") Integer po, @Param("ps") Integer ps);
+	@Select("SELECT COUNT(a.member_name) FROM member a, dentist b WHERE a.member_type = 'B' AND b.dentist_name LIKE CONCAT ('%', #{dentistName}, '%')")
+	public Integer getDentistListByDentistCount(@Param("dentistName") String dentistName);
+	
+	// 치과 의사목록 원장으로 검색
+	@Results({
+		@Result(property = "dentistNo", column = "assign_no")
+		,@Result(property = "dentistName", column = "dentist_name")
+		,@Result(property = "memberName", column = "member_name")
+	})
+	@Select("SELECT a.assign_no"
+			+ ", b.dentist_name"
+			+ ", a.member_name "
+			+ "FROM member a, dentist b "
+			+ "WHERE a.assign_no = b.dentist_no "
+			+ "AND a.member_type = 'B' "
+			+ "AND a.member_name LIKE CONCAT ('%', #{doctroName}, '%')"
+			+ "ORDER BY a.join_date_time DESC LIMIT #{po}, #{ps}")
+	public Dentist[] getDentistListByDoctor(@Param("doctroName") String doctroName, @Param("po") Integer po, @Param("ps") Integer ps);
+	@Select("SELECT COUNT(*) FROM member WHERE member_type = 'B' AND member_name LIKE CONCAT ('%', #{doctroName}, '%')")
+	public Integer getDentistListByDoctorCount(@Param("doctroName") String doctroName);
+	
+
 	// 질문 답변 리스트 가져오기
 	@Results({
 		@Result(property = "qaNo", column = "qa_no")

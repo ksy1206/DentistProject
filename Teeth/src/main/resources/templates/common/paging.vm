@@ -21,11 +21,13 @@
 		_this.env.startPageNum = Math.floor(_this.env.po / _this.env.pageSet) * _this.env.pageSet;
 		_this.env.lastPageNum = _this.env.startPageNum + _this.env.pageSet;
 		_this.env.url = "";
-		
-		#if($listName == "member")
-			_this.env.url = "/dentist/member/list?sKey=$!$!paging.sKey&sValue=$!$!paging.sValue";
+
+		#if("$!listName" == "member")
+			_this.env.url = "/dentist/member/list?sKey=$!paging.sKey&sValue=$!paging.sValue";
+		#elseif("$!listName" == "dentist")
+			_this.env.url = "/factory/dentist/list?sKey=$!paging.sKey&sValue=$!paging.sValue";
 		#end
-		
+
 		_this.pageNavCreative = function() {
 		
 			var html = "";
@@ -51,13 +53,11 @@
 					html += '<li><a href="'+_this.env.url+'&po='+i+'">'+(i+1)+'</a></li>';
 				}
 			}
-			
-			if(_this.env.lastPageNum <=_this.env.pageCount) {
+			if((_this.env.po+1) < _this.env.pageCount) {
 				html += '<li><a href="'+_this.env.url+'&po='+(_this.env.po + 1)+'" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
 			} else {
 				html += '<li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
 			}
-			
 			$('#pageNavArea').append(html);
 		};
 		
