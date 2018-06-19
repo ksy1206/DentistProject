@@ -46,7 +46,7 @@
 									<th scope="row" style="text-align: center;">$!row.memberNo</th>
 									<td>$!row.dentistName</td>
 									<td>$!row.doctorName</td>
-									<td><a href="#">$!row.memberName</a></td>
+									<td><a href="/factory/dentist/member/menu?memberNo=$!row.memberNo">$!row.memberName</a></td>
 									<td>$!row.memberAge</td>
 								</tr>
 								#end

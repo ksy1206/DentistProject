@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
 import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.factory.zxing.MakeQrCode;
@@ -82,7 +83,23 @@ public class FactoryMainController {
 		return "factory/dentist/memberList";
 	}
 	
-	
+	/**
+	 * 환자 메뉴 페이지
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/dentist/member/menu", method = RequestMethod.GET)
+	public String FactoryDentistMemberMenu(HttpServletRequest request, HttpServletResponse response, Model model
+			, @RequestParam(value="memberNo") int memberNo) throws Exception {
+
+		MemberDto memberInfo = memberService.getMemberInfo(memberNo);
+		MemberDto headerInfo = new MemberDto();
+		headerInfo.setMemberName(memberInfo.getMemberName());
+		model.addAttribute("headerInfo", headerInfo);
+		return "factory/member/menu";
+	}
 	
 	
 	

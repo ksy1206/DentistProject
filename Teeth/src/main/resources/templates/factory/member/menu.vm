@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	## Header 설정 파일
+	#parse("common/setting/header.vm")
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		
+		## Left-Navigation
+		#parse("factory/common/left-nav.vm")
+		
+		## Top-Info
+		#parse("common/setting/top-info.vm")
+		
+		## main content start
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="typography widget-shadow">
+					<div class="alert" role="alert" style="text-align: center; color: #4f52ba; font-size: 18px;">
+						<b>[$!headerInfo.memberName]</b> 님의 회원 관리
+					</div>
+				</div>
+				<div class="grids widget-shadow">
+					<div class="form-group">
+						<div class="row" style="margin-bottom: 3em;">
+							<div class="col-md-6 grid_box1" style="text-align: center;">
+								<img src="/img/up.png"><br><br>
+								<a href="#" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">셋업 사진 업로드</a>
+							</div>
+							<div class="col-md-6" style="text-align: center;">
+								<img src="/img/down.png"><br><br>
+								<a href="#" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 사진 다운로드</a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row" style="margin-bottom: 3em;">
+							<div class="col-md-6 grid_box1" style="text-align: center;">
+								<img src="/img/user.png"><br><br>
+								<a href="#" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 QR코드 생성</a>
+							</div>
+							<div class="col-md-6" style="text-align: center;">
+								<img src="/img/teath.png"><br><br>
+								<a href="#" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 3차원 영상 업로드</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+
+		## Footer 설정 파일
+		#parse("common/setting/footer.vm")
+	</div>
+	
+	## Left-Navagation Script
+	#parse("common/setting/left-nav-script.vm")
+</body>
+</html>
