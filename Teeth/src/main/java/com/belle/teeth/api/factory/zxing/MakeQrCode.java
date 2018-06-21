@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class MakeQrCode {
 
-	public static void MakeQrCodeFunction(HttpServletRequest request, Integer memberNo, String qrName) throws Exception {
+	public static void MakeQrCodeFunction(HttpServletRequest request, Integer memberNo, String userId, String qrName) throws Exception {
 		// 코드인식시 링크걸 URL주소
 		String codeurl = new String("http://localhost:8000/factory/qrMake?ksy=1234&test=2323".getBytes("UTF-8"), "ISO-8859-1");
 		// 큐알코드 바코드 생상값

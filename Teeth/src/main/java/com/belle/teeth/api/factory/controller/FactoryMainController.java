@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
@@ -95,26 +96,45 @@ public class FactoryMainController {
 			, @RequestParam(value="memberNo") int memberNo) throws Exception {
 
 		MemberDto memberInfo = memberService.getMemberInfo(memberNo);
-		MemberDto headerInfo = new MemberDto();
-		headerInfo.setMemberName(memberInfo.getMemberName());
-		model.addAttribute("headerInfo", headerInfo);
+		model.addAttribute("memberInfo", memberInfo);
 		return "factory/member/menu";
 	}
 	
-	
-	
-	
-	
-	@RequestMapping(value = "/qrMake", method = RequestMethod.GET)
-	public String FactoryQrMaking(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+	@RequestMapping(value = "/member/sub", method = RequestMethod.GET)
+	public String FactoryMemberSub(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="type", required=false, defaultValue="menu") String type
+			, @RequestParam(value="memberNo", required=true) Integer memberNo, Model model) throws Exception {
+
+		if ("picture".equals(type)) {
+			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F02"));
+		} else if("qrcode".equals(type)) {
+			model.addAttribute("memberInfo", memberService.getMemberInfo(memberNo));
+		}
+		return "factory/member/sub/"+type;
+	}
+
+	/**
+	 * QR 코드 생성 함수
+	 * @param request
+	 * @param response
+	 * @param memberNo
+	 * @param step
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/qrMake", method = RequestMethod.POST)
+	@ResponseBody
+	public String FactoryQrMaking(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="memberNo") Integer memberNo
+			, @RequestParam(value="step", required=false, defaultValue="10") Integer step, Model model) throws Exception {
 		
-		// 회원번호와 단계를 파라미터로 받는다.
-		int step = 10;
-		
+		MemberDto memberInfo = memberService.getMemberInfo(memberNo);
+
 		for(int i=1; i<=step; i++) {
 			String qrName = "step" + i + ".png";
-			MakeQrCode.MakeQrCodeFunction(request, 1, qrName);
+			MakeQrCode.MakeQrCodeFunction(request, memberInfo.getMemberNo(), memberInfo.getMemberId(), qrName);
 		}
-		return "factory/qrMaking";
+		return "true";
 	}
 }

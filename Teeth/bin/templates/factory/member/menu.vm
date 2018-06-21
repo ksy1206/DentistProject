@@ -18,7 +18,7 @@
 			<div class="main-page">
 				<div class="typography widget-shadow">
 					<div class="alert" role="alert" style="text-align: center; color: #4f52ba; font-size: 18px;">
-						<b>[$!headerInfo.memberName]</b> 님의 회원 관리
+						<b>[$!memberInfo.memberName]</b> 님의 회원 관리
 					</div>
 				</div>
 				<div class="grids widget-shadow">
@@ -30,7 +30,7 @@
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/down.png"><br><br>
-								<a href="#" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 사진 다운로드</a>
+								<a href="/factory/member/sub?type=picture&memberNo=$!memberInfo.memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 사진 다운로드</a>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -39,7 +39,7 @@
 						<div class="row" style="margin-bottom: 3em;">
 							<div class="col-md-6 grid_box1" style="text-align: center;">
 								<img src="/img/user.png"><br><br>
-								<a href="#" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 QR코드 생성</a>
+								<a href="/factory/member/sub?type=qrcode&memberNo=$!memberInfo.memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 QR코드 생성</a>
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/teath.png"><br><br>
