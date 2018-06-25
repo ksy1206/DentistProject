@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 
+import com.belle.teeth.api.common.dto.FileDto;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -19,9 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class MakeQrCode {
 
-	public static void MakeQrCodeFunction(HttpServletRequest request, Integer memberNo, String userId, String qrName) throws Exception {
+	public static FileDto MakeQrCodeFunction(HttpServletRequest request, Integer memberNo, String userId, String qrName, Integer step) throws Exception {
 		// 코드인식시 링크걸 URL주소
-		String codeurl = new String("http://localhost:8000/factory/qrMake?ksy=1234&test=2323".getBytes("UTF-8"), "ISO-8859-1");
+		String url = "http://localhost:8000/factory/qrMake?memberId="+userId+"&step="+step;
+		String codeurl = new String(url.getBytes("UTF-8"), "ISO-8859-1");
 		// 큐알코드 바코드 생상값
 		int qrcodeColor = 0xFF2e4e96;
 		// 큐알코드 배경색상값
@@ -36,20 +38,29 @@ public class MakeQrCode {
 
 		// 파일 경로 생성
 		String doc_root = "";
-		String QrMakeFilePath = "/upload/qrcode";
+		String QrMakeFilePath = "/upload/qrcode" + File.separator  + memberNo;
 
 		HttpSession session = request.getSession();
-		doc_root = session.getServletContext().getRealPath(QrMakeFilePath + File.separator  + memberNo);
+		doc_root = session.getServletContext().getRealPath(QrMakeFilePath);
 
 		File file = new File(doc_root);
 
 		if(!file.exists()) {
 			file.mkdirs();
 		}
-		log.error("@@@@@@@@"+doc_root);
-
+		Long fileKey = System.currentTimeMillis();
 		// ImageIO를 사용한 바코드 파일쓰기
 		ImageIO.write(bufferedImage, "png", new File(doc_root + File.separator + qrName));
+
+		FileDto result = new FileDto();
+		result.setFileType("F99");
+		result.setFileKey(fileKey.toString());
+		result.setFilePath(doc_root);
+		result.setFileUrl(QrMakeFilePath);
+		result.setFileName(qrName);
+		result.setFileExt("png");
+		
+		return result;
 	}
 
 }

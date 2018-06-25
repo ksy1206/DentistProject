@@ -61,6 +61,7 @@ public interface MemberMapper {
 		,@Result(property = "memberEmail", column = "member_email")
 		,@Result(property = "memberId", column = "member_id")
 		,@Result(property = "memberPwd", column = "member_pwd")
+		,@Result(property = "memberLevel", column = "member_level")
 		,@Result(property = "assignNo", column = "assign_no")
 		,@Result(property = "doctorMemberNo", column = "doctor_member_no")
 		,@Result(property = "joinDateTime", column = "join_date_time")
@@ -128,8 +129,7 @@ public interface MemberMapper {
 			+ "AND a.doctor_member_no = #{doctorNo} "
 			+ "AND a.member_type = 'A'")
 	public MemberDto[] getMemberByDoctorByNameList(@Param("memberName") String memberName, @Param("doctorNo") Integer doctorNo);
-	
-	
+
 	// 회원 목록 가져오기
 	@Results({
 		@Result(property = "memberNo", column = "member_no")
@@ -222,8 +222,12 @@ public interface MemberMapper {
 			+ ", member_pwd = #{memberPwd} "
 			+ "WHERE member_no = #{memberNo}")
 	void memberUpdate(MemberDto data);
-	
-	
+
+	// 회원정보 업데이트 : 교정 단계 업데이트
+	@Update("UPDATE member "
+			+ "SET member_level = #{step} "
+			+ "WHERE member_no = #{memberNo}")
+	void updateMemberLevel(@Param("step") Integer step, @Param("memberNo") Integer memberNo);
 	
 	// 치과 의사 목록
 	@Results({

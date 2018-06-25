@@ -236,4 +236,13 @@ public class MemberService {
 	public FileDto[] getMemberInfo(Integer memberNo, String fileType) {
 		return memberMapper.selectMemberImgInfo(memberNo, fileType);
 	}
+	
+	/**
+	 * 회원 교정 단계 업데이트
+	 * @param step
+	 * @param memberNo
+	 */
+	public void updateMemberLevel(Integer step, Integer memberNo) {
+		memberMapper.updateMemberLevel(step, memberNo);
+	}
 }

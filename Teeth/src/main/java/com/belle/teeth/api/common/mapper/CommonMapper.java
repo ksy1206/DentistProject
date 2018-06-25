@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.belle.teeth.api.common.dto.Dentist;
 import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
+import com.belle.teeth.api.common.dto.QRCodeDto;
 
 @Mapper
 public interface CommonMapper {
@@ -67,6 +68,10 @@ public interface CommonMapper {
 	@Transactional
 	Long insertFileInfo(FileDto fileDto);
 
+	// 파일 삭제
+	@Update("UPDATE upload_file SET delete_yn = 'Y' WHERE file_sn = #{fileSn}")
+	public void deleteFile(@Param("fileSn") Long fileSn);
+	
 	// 파일 정보 가져오기 : Key값으로 검색
 	@Results({
 		@Result(property = "fileSn", column = "file_sn")
@@ -81,4 +86,48 @@ public interface CommonMapper {
 	})
 	@Select("SELECT * FROM upload_file WHERE file_key = #{fileKey}")
 	public FileDto getFileInfoByKey(@Param("fileKey") String fileKey);
+	
+	// QR코드 정보 등록
+	@Insert("INSERT INTO member_qrcode "
+			+ "("
+			+ "member_no "
+			+ ", file_sn "
+			+ ", step"
+			+ ") "
+			+ "VALUES "
+			+ "("
+			+ "#{memberNo} "
+			+ ", #{fileSn} "
+			+ ", #{step}"
+			+ ")")
+	public void addQrInfo(@Param("fileSn") Long fileSn, @Param("memberNo") Integer memberNo, @Param("step") Integer step);
+
+	// QR코드 삭제
+	@Update("UPDATE member_qrcode SET delete_yn = 'Y' WHERE member_no = #{memberNo}")
+	public void deleteQrInfo(@Param("memberNo") Integer memberNo);
+	
+	// QR코드 정보 회원 정보로 불러오기
+	@Results({
+		@Result(property = "qrNo", column = "qr_no")
+		,@Result(property = "step", column = "step")
+		,@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "fileSn", column = "file_sn")
+		,@Result(property = "deleteYn", column = "delete_yn")
+	})
+	@Select("SELECT * FROM member_qrcode WHERE member_no = #{memberNo}")
+	public QRCodeDto[] getQRInfoList(@Param("memberNo") Integer memberNo);
+
+	// 삭제되지 않은 QR코드 정보 및 이미지 정보 불러오기
+	@Results({
+		@Result(property = "qrNo", column = "qr_no")
+		,@Result(property = "step", column = "step")
+		,@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "fileSn", column = "file_sn")
+		,@Result(property = "deleteYn", column = "delete_yn")
+		,@Result(property = "fileUrl", column = "file_url")
+		,@Result(property = "fileName", column = "file_name")
+	})
+	@Select("SELECT a.qr_no, a.step, a.member_no, a.file_sn, b.file_url, b.file_name FROM member_qrcode a, upload_file b WHERE a.file_sn = b.file_sn AND a.member_no = #{memberNo} AND a.delete_yn = 'N'")
+	public QRCodeDto[] getQRInfoListNoDelete(@Param("memberNo") Integer memberNo);
+	
 }

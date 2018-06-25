@@ -57,6 +57,16 @@
 					</div>
 					<div class="sign-u">
 						<div class="sign-up1">
+							<h4>교정단계 * :</h4>
+						</div>
+						<div class="sign-up2">
+							<input type="text" id="level" value="$!memberInfo.memberLevel" readonly>
+							<span style="font-size: 10px;color: #da3939;font-weight: bolder;">교정단계는 기공서에서 QR코드 생성후 확인 가능합니다.</span>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
 							<h4>성별 * :</h4>
 						</div>
 						<div class="sign-up2">

@@ -6,10 +6,12 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.belle.teeth.api.common.dto.Dentist;
 import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
+import com.belle.teeth.api.common.dto.QRCodeDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.mapper.CommonMapper;
 import com.belle.teeth.api.dentist.mapper.MemberMapper;
@@ -109,5 +111,40 @@ public class CommonService {
 	 */
 	public FileDto getFileFileKey(String fileKey) {
 		return commonMapper.getFileInfoByKey(fileKey);
+	}
+	
+	/**
+	 * QR코드 정보 등록
+	 * @param fileSn
+	 * @param memberNo
+	 * @param step
+	 */
+	public void saveQrInfo(Long fileSn, Integer memberNo, Integer step) {
+		commonMapper.addQrInfo(fileSn, memberNo, step);
+	}
+	
+	/**
+	 * QR코드 정보 삭제
+	 * @param memberNo
+	 */
+	@Transactional
+	public void deleteQRInfo(Integer memberNo) {
+		QRCodeDto[] qrCodeList = null;
+		commonMapper.deleteQrInfo(memberNo);
+		qrCodeList = commonMapper.getQRInfoList(memberNo);
+		if(qrCodeList != null && qrCodeList.length > 0) {
+			for(int i=0; i<qrCodeList.length; i++) {
+				commonMapper.deleteFile(qrCodeList[i].getFileSn());
+			}
+		}
+	}
+	
+	/**
+	 * QR코드 이미지 정보
+	 * @param memberNo
+	 * @return
+	 */
+	public QRCodeDto[] getQrImgList(Integer memberNo) {
+		return commonMapper.getQRInfoListNoDelete(memberNo);
 	}
 }

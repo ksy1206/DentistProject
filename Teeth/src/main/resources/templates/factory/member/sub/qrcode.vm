@@ -32,10 +32,11 @@
 							</tr>
 						</thead>
 					</table>
+					
 					#foreach($row in $qrList)
 					<div class="col-md-4" style="margin-bottom:1em; text-align:center;">
 						<img src="$!row.fileUrl/$!row.fileName" class="img-rounded" width="100%" height="236">
-						<a class="btn btn-info" style="margin-top:0.5em;" href="$!row.fileUrl/$!row.fileName" download>이미지 다운로드</a>
+						<a class="btn btn-info" style="margin-top:0.5em;" href="$!row.fileUrl/$!row.fileName" download>$!row.fileName 다운로드</a>
 					</div>
 					#end
 					
@@ -62,38 +63,66 @@
 			</div>
 			<div class="modal-body">
 				<ul class="list-group">
-				  <li class="list-group-item">First item</li>
-				  <li class="list-group-item">Second item</li>
-				  <li class="list-group-item">Third item</li>
+					<li class="list-group-item">회원 성명 : $!memberInfo.memberName</li>
+					<li class="list-group-item">회원 이메일 : $!memberInfo.memberEmail</li>
+					<li class="list-group-item">회원 나이 : $!memberInfo.memberAge</li>
+					<li class="list-group-item">회원 성별 : $!memberInfo.memberGender</li>
 				</ul>
 				<div class="form-group">
 					<label for="usr">단계 설정:</label>
-					<input type="number" class="form-control" id="step">
+					<input type="number" class="form-control" id="memberLevel" value="0">
+					<span style="font-size: 10px;color: #da3939;font-weight: bolder;">회원 교정 단계를 설정해 주세요.</span>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">생성</button>
+				<button type="button" class="btn btn-default" onclick="app.makeQrCode();">생성</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-
-
-	## Left-Navagation Script
-	#parse("common/setting/left-nav-script.vm")
+## Left-Navagation Script
+#parse("common/setting/left-nav-script.vm")
 	
-	<script>
-		function App() {
-			var _this = this;
-	
-			## ENV
-			_this.env = {};
-			_this.env.memberNo = $!memberNo;
+<script>
+	function App() {
+		var _this = this;
+
+		_this.env = {};
+		_this.env.memberNo = $!memberInfo.memberNo;
+		_this.env.memberLevel = $('#memberLevel');
+
+		## QR생성 버튼
+		_this.makeQrCode = function() {
+
+			if(_this.env.memberLevel.val().trim() <= 0) {
+				alert("교정 단계를 입력해 주세요.");
+				return false;
+			}
+
+			var params = {
+				memberNo : _this.env.memberNo,
+				step : _this.env.memberLevel.val()
+			}
+
+			var url = "/factory/ajax/qrMake";
+			$.ajax({
+				url: url,
+				type: 'POST',
+				data: params,
+				success: function(result) {
+					location.reload();
+				},
+				error: function(request, status, error) {
+					console.log(request);
+				}
+			});
 		}
-	
-		var app = new App();
-	</script>
+
+	}
+
+	var app = new App();
+</script>
 </body>
 </html>

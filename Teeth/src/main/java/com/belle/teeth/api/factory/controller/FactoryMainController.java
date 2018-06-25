@@ -5,14 +5,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
+import com.belle.teeth.api.common.service.CommonService;
 import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.factory.zxing.MakeQrCode;
 
@@ -26,6 +29,8 @@ public class FactoryMainController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private CommonService cService;
 	
 	/**
 	 * 기공소 메인 페이지
@@ -100,6 +105,16 @@ public class FactoryMainController {
 		return "factory/member/menu";
 	}
 	
+	/**
+	 * 회원 서브 메뉴
+	 * @param request
+	 * @param response
+	 * @param type
+	 * @param memberNo
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/member/sub", method = RequestMethod.GET)
 	public String FactoryMemberSub(HttpServletRequest request, HttpServletResponse response
 			, @RequestParam(value="type", required=false, defaultValue="menu") String type
@@ -108,6 +123,7 @@ public class FactoryMainController {
 		if ("picture".equals(type)) {
 			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F02"));
 		} else if("qrcode".equals(type)) {
+			model.addAttribute("qrList", cService.getQrImgList(memberNo));
 			model.addAttribute("memberInfo", memberService.getMemberInfo(memberNo));
 		}
 		return "factory/member/sub/"+type;
@@ -123,18 +139,25 @@ public class FactoryMainController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/qrMake", method = RequestMethod.POST)
+	@RequestMapping(value = "/ajax/qrMake", method = RequestMethod.POST)
 	@ResponseBody
+	@Transactional
 	public String FactoryQrMaking(HttpServletRequest request, HttpServletResponse response
 			, @RequestParam(value="memberNo") Integer memberNo
 			, @RequestParam(value="step", required=false, defaultValue="10") Integer step, Model model) throws Exception {
 		
 		MemberDto memberInfo = memberService.getMemberInfo(memberNo);
 
+		// QR코드 만들기전 기존 데이터 있으면 삭제.
+		cService.deleteQRInfo(memberNo);
+		
 		for(int i=1; i<=step; i++) {
 			String qrName = "step" + i + ".png";
-			MakeQrCode.MakeQrCodeFunction(request, memberInfo.getMemberNo(), memberInfo.getMemberId(), qrName);
+			FileDto fileInfo =  MakeQrCode.MakeQrCodeFunction(request, memberInfo.getMemberNo(), memberInfo.getMemberId(), qrName, i);
+			fileInfo = cService.addFileInfo(fileInfo);
+			cService.saveQrInfo(fileInfo.getFileSn(), memberNo, i);
 		}
+		memberService.updateMemberLevel(step, memberNo);
 		return "true";
 	}
 }
