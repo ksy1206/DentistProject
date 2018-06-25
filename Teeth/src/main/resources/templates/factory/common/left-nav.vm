@@ -28,10 +28,10 @@
 					<a href="#"><i class="fa fa-cogs nav_icon"></i>설정 <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level collapse">
 						<li>
-							<a href="#">· 주의 사항</a>
+							<a href="/factory/careful/attention">· 주의 사항</a>
 						</li>
 						<li>
-							<a href="#">· 주의 사항 등록</a>
+							<a href="/factory/careful/attention/add">· 주의 사항 등록</a>
 						</li>
 						<li>
 							<a href="#">· 치과 등록</a>

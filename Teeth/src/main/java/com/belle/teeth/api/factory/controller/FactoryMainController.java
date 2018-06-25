@@ -2,6 +2,7 @@ package com.belle.teeth.api.factory.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.belle.teeth.api.common.dto.Dentist;
 import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
+import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.service.CommonService;
 import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.factory.zxing.MakeQrCode;
@@ -164,5 +167,19 @@ public class FactoryMainController {
 		}
 		memberService.updateMemberLevel(step, memberNo);
 		return "true";
+	}
+	
+	
+	// 장치 사용법
+	@RequestMapping(value = "/careful/attention", method = RequestMethod.GET)
+	public String cafeful(HttpServletRequest request, HttpServletResponse response, Model model) {
+		model.addAttribute("fileInfo", "");
+		return "factory/careful/attention";
+	}
+
+	// 장치 사용법 등록 페이지
+	@RequestMapping(value = "/careful/attention/add", method = RequestMethod.GET)
+	public String cafefulAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
+		return "factory/careful/attentionAdd";
 	}
 }
