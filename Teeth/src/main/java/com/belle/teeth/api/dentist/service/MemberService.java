@@ -228,6 +228,14 @@ public class MemberService {
 	}
 	
 	/**
+	 * 회원 이미지 삭제
+	 * @param memberInfo
+	 */
+	public void deleteMemberImgInfo(MemberImgDto memberInfo) {
+		memberMapper.deleteMemberImgInfo(memberInfo);
+	}
+	
+	/**
 	 * 회원 이미지 리스트 가져오기
 	 * @param memberNo
 	 * @param fileType
@@ -236,7 +244,7 @@ public class MemberService {
 	public FileDto[] getMemberInfo(Integer memberNo, String fileType) {
 		return memberMapper.selectMemberImgInfo(memberNo, fileType);
 	}
-	
+
 	/**
 	 * 회원 교정 단계 업데이트
 	 * @param step

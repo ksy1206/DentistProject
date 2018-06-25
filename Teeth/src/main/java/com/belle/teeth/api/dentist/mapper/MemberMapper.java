@@ -346,6 +346,11 @@ public interface MemberMapper {
 			+ ")")
 	void insertMemberImgInfo(MemberImgDto data);
 	
+	@Update("UPDATE member_img "
+			+ "SET delete_yn = 'Y' "
+			+ "WHERE member_no = #{memberNo}")
+	void deleteMemberImgInfo(MemberImgDto memberInfo);
+	
 	/**
 	 * 환자 사진 리스트 가져오기
 	 * @param memberNo
@@ -363,6 +368,6 @@ public interface MemberMapper {
 		,@Result(property = "insertDate", column = "insert_date")
 		,@Result(property = "deleteYn", column = "delete_yn")
 	})
-	@Select("SELECT a.file_url, a.file_sn, a.file_name FROM upload_file a, member_img b WHERE a.file_sn = b.file_sn AND b.member_no = #{memberNo} AND a.file_type = #{fileType};")
+	@Select("SELECT a.file_url, a.file_sn, a.file_name FROM upload_file a, member_img b WHERE a.file_sn = b.file_sn AND b.member_no = #{memberNo} AND a.file_type = #{fileType} AND a.delete_yn = 'N'")
 	FileDto[] selectMemberImgInfo(@Param("memberNo") Integer memberNo, @Param("fileType") String fileType);
 }

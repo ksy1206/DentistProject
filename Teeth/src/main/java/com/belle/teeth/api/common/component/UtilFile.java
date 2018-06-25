@@ -46,7 +46,6 @@ public class UtilFile {
 				file.mkdirs();
 			}
 
-			
 			// 파일명이 중복으로 존재할 경우
 			if (fileName != null && !fileName.equals("")) {
 				if (file.exists()) {

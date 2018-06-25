@@ -43,7 +43,7 @@
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/teath.png"><br><br>
-								<a href="#" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 3차원 영상 업로드</a>
+								<a href="/factory/member/sub?type=3Dvideo&memberNo=$!memberInfo.memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 3차원 영상 업로드</a>
 							</div>
 							<div class="clearfix"></div>
 						</div>

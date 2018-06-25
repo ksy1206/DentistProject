@@ -127,6 +127,8 @@ public class FactoryMainController {
 			model.addAttribute("memberInfo", memberService.getMemberInfo(memberNo));
 		} else if("setUpImg".equals(type)) {
 			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F03"));
+		} else if("3Dvideo".equals(type)) {
+			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "Video"));
 		}
 		model.addAttribute("memberNo", memberNo);
 		return "factory/member/sub/"+type;

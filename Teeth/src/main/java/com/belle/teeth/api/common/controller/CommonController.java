@@ -260,15 +260,16 @@ public class CommonController {
 		fileInfo = cService.addFileInfo(fileInfo);
 
 		if(fileInfo != null) {
-			// 파일 타입별 종류
-			// F01 : 치과 장치 사용법 관련 이미지
-			// F02 : 환자 사진 정보
-			// F03 : 환자 셋업 사진 정보
+			// 파일 타입별 종류 | F01 : 치과 장치 사용법 관련 이미지  F02 : 환자 사진 정보  F03 : 환자 셋업 사진 정보
 			if("F01".equals(fileType)) {
 				SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 				Integer dentistNo = sessionInfo.getDentist().getDentistNo();
 				cService.updateDentistFileKey(fileInfo.getFileKey(), dentistNo);
 			} else if("F02".equals(fileType) || "F03".equals(fileType)) {
+				imgInfo.setMemberNo(patientNo);
+				imgInfo.setFileSn(fileInfo.getFileSn());
+				mService.updateMemberImgInfo(imgInfo);
+			} else if("Video".equals(fileType)) {
 				imgInfo.setMemberNo(patientNo);
 				imgInfo.setFileSn(fileInfo.getFileSn());
 				mService.updateMemberImgInfo(imgInfo);
