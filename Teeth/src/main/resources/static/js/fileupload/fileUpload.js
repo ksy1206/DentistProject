@@ -24,7 +24,7 @@ function FileUpload() {
 		var url = '/ajax/common/fileUpload?fileType='+type;
 
 		// 타입별 추가 파라미터
-		if(type == 'F02') {
+		if(type == 'F02' || type == 'F03') {
 			url += "&patientNo="+app.env.memberNo;
 		}
 		
@@ -102,7 +102,7 @@ function FileUpload() {
 			done: function (e, data) {
 				// 업로드 완료 후
 				alert("이미지 업로드 완료");
-				if(type == 'F02') {
+				if(type == 'F02' || type == 'F03') {
 					location.reload();
 				}
 			}

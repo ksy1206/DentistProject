@@ -103,6 +103,8 @@ public class MemberController {
 			model.addAttribute("qaList", memberService.getQaList(sessionInfo.getMemberNo(), memberNo));
 		} else if ("picture".equals(type)) {
 			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F02"));
+		} else if("setUpImg".equals(type)) {
+			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F03"));
 		}
 
 		model.addAttribute("type", type);

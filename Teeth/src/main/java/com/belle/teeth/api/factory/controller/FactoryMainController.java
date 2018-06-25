@@ -125,7 +125,10 @@ public class FactoryMainController {
 		} else if("qrcode".equals(type)) {
 			model.addAttribute("qrList", cService.getQrImgList(memberNo));
 			model.addAttribute("memberInfo", memberService.getMemberInfo(memberNo));
+		} else if("setUpImg".equals(type)) {
+			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F03"));
 		}
+		model.addAttribute("memberNo", memberNo);
 		return "factory/member/sub/"+type;
 	}
 

@@ -43,7 +43,7 @@
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/down.png"><br><br>
-								<a class="btn" style="background-color: #4f52ba; color:white;width: 60%;">셋업 사진 다운로드</a>
+								<a href="/dentist/member/sub/info?type=setUpImg&memberNo=$!memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">셋업 사진 다운로드</a>
 							</div>
 							<div class="clearfix"> </div>
 						</div>

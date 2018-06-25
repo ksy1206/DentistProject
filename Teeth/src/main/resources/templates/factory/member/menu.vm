@@ -26,7 +26,7 @@
 						<div class="row" style="margin-bottom: 3em;">
 							<div class="col-md-6 grid_box1" style="text-align: center;">
 								<img src="/img/up.png"><br><br>
-								<a href="#" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">셋업 사진 업로드</a>
+								<a href="/factory/member/sub?type=setUpImg&memberNo=$!memberInfo.memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">셋업 사진 업로드</a>
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/down.png"><br><br>
