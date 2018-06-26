@@ -34,7 +34,7 @@
 							<a href="/factory/careful/attention/add">· 주의 사항 등록</a>
 						</li>
 						<li>
-							<a href="#">· 치과 등록</a>
+							<a href="/factory/dentist/add">· 치과 등록</a>
 						</li>
 					</ul>
 					## nav-second-level

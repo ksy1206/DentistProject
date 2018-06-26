@@ -31,6 +31,10 @@ public interface CommonMapper {
 	})
 	@Select("SELECT * FROM dentist")
 	public Dentist[] dentistList();
+	
+	// 치과 이름 중복 카운트
+	@Select("SELECT COUNT(*) FROM dentist WHERE dentist_name = #{name}")
+	public Integer checkDenitstName(@Param("name") String name);
 
 	// 치과 정보 가져오기
 	@Results({
@@ -40,6 +44,10 @@ public interface CommonMapper {
 	})
 	@Select("SELECT * FROM dentist WHERE dentist_no = #{assignNo}")
 	public Dentist dentistInfo(@Param("assignNo") Integer assignNo);
+	
+	// 치과 등록
+	@Insert("INSERT INTO dentist (dentist_name, dentist_file_key) VALUES (#{name}, '0')")
+	public void addDentist(@Param("name") String name);
 	
 	// 파일 정보 등록하기
 	@Insert("INSERT INTO upload_file "

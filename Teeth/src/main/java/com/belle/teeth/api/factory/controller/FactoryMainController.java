@@ -182,4 +182,33 @@ public class FactoryMainController {
 	public String cafefulAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return "factory/careful/attentionAdd";
 	}
+	
+	// 치과 등록페이지 이동
+	@RequestMapping(value = "/dentist/add", method = RequestMethod.GET)
+	public String addDentist(HttpServletRequest request, HttpServletResponse response, Model model) {
+		model.addAttribute("dentistList", cService.getDentistList());
+		return "factory/addDentist";
+	}
+	
+	// 치과 이름 중복 확인
+	@RequestMapping(value = "/ajax/check/dentist/name", method = RequestMethod.GET)
+	@ResponseBody
+	public String CheckDentistName(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="dentistName") String dentistName, Model model) throws Exception {
+		boolean isVaild = cService.checkDentistName(dentistName);
+		String result = "possible";
+		if(!isVaild) {
+			result = "imPossible";
+		}
+		return result;
+	}
+	
+	// 치과 등록
+	@RequestMapping(value = "/ajax/save/dentist/name", method = RequestMethod.POST)
+	@ResponseBody
+	public String SaveDentistName(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="dentistName") String dentistName, Model model) throws Exception {
+		cService.saveDentistName(dentistName);
+		return "true";
+	}
 }

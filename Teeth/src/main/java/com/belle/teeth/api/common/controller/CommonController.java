@@ -155,8 +155,7 @@ public class CommonController {
 		}
 		return "true";
 	}
-	
-	
+
 	/**
 	 * 이메일 중복 체크
 	 * @param request
@@ -196,8 +195,6 @@ public class CommonController {
 			return "ImPossible";
 		}
 	}
-	
-	
 
 	/**
 	 * 로그 아웃 및 세션 삭제
@@ -229,15 +226,11 @@ public class CommonController {
 	public String ConfirmLogin(HttpServletRequest request, HttpServletResponse response
 			, @RequestParam(value = "userId") String userId
 			, @RequestParam(value = "password") String password) {
-		log.warn("기업 | 의사 로그인 확인");
-		
 		JSONObject paramJson = new JSONObject();
 		paramJson = cService.loginCheck(userId, password, request);
-		
 		return paramJson.toString();
 	}
 
-	
 	/**
 	 * 파일 업로드
 	 * @param request

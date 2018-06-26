@@ -83,6 +83,28 @@ public class CommonService {
 	public Dentist[] getDentistList() {
 		return commonMapper.dentistList();
 	}
+	
+	/**
+	 * 치과 이름 중복 확인
+	 * @param name
+	 * @return
+	 */
+	public boolean checkDentistName(String name) {
+		int count = commonMapper.checkDenitstName(name);
+		if(count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 치과 등록
+	 * @param name
+	 */
+	public void saveDentistName(String name) {
+		commonMapper.addDentist(name);
+	}
 
 	/**
 	 * 치과 정보 ( 장치사용법 ) Img 등록
