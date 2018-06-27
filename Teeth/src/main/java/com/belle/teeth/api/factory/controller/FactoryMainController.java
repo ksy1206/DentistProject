@@ -173,7 +173,7 @@ public class FactoryMainController {
 	// 장치 사용법
 	@RequestMapping(value = "/careful/attention", method = RequestMethod.GET)
 	public String cafeful(HttpServletRequest request, HttpServletResponse response, Model model) {
-		model.addAttribute("fileInfo", "");
+		model.addAttribute("imgList", cService.getFileFileType("F04"));
 		return "factory/careful/attention";
 	}
 

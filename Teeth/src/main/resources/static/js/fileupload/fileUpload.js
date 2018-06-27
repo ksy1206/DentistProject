@@ -85,7 +85,7 @@ function FileUpload() {
 				if (isValidType && isValidSize) {
 					
 					// 미리보기는 F01 타입만
-					if(type == 'F01') {
+					if(type == 'F01' || type == 'F04') {
 						var eleItem;
 						$.each(data.files, function (index, file) {
 							var item = _this.preViewImg(URL.createObjectURL(data.files[0]), file.name);

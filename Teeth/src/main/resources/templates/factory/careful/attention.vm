@@ -18,13 +18,18 @@
 			<div class="main-page">
 				<div class="row calender widget-shadow">
 					<h4 class="title">주의사항</h4>
-					<div> 
-						#if("$!fileInfo.fileUrl" != "")
-							<img class="img-rounded" src="$!fileInfo.fileUrl/$!fileInfo.fileName" width="100%">
-						#else
-							<p>등록된 정보가 없습니다.</p>
+					
+					
+					#if($imgList.size() > 0)
+						#foreach($row in $imgList)
+						<div class="col-md-6" style="margin-bottom:1em; text-align:center;">
+							<img src="$!row.fileUrl/$!row.fileName" class="img-rounded" width="100%" height="236">
+							<a class="btn btn-info" style="margin-top:0.5em;" href="javascript:;" onclick="common.fileDelete('$!row.fileSn');">삭제</a>
+						</div>
 						#end
-					</div>
+					#else
+						<p>등록된 주의사항이 없습니다.</p>
+					#end
 				</div>
 				<div class="clearfix"> </div>
 			</div>

@@ -127,12 +127,31 @@ public class CommonService {
 	}
 	
 	/**
+	 * 파일 삭제
+	 * @param fileSn
+	 * @return
+	 */
+	public boolean deleteFile(Long fileSn) {
+		commonMapper.deleteFile(fileSn);
+		return true;
+	}
+	
+	/**
 	 * 파일 키 값으로 파일 정보 가져오기
 	 * @param fileKey
 	 * @return
 	 */
 	public FileDto getFileFileKey(String fileKey) {
 		return commonMapper.getFileInfoByKey(fileKey);
+	}
+	
+	/**
+	 * 파일 타입 값으로 파일 정보 가져오기 : 삭제된것은 가져오기 않는다.
+	 * @param fileType
+	 * @return
+	 */
+	public FileDto[] getFileFileType(String fileType) {
+		return commonMapper.getFileListByFileType(fileType);
 	}
 	
 	/**

@@ -277,4 +277,13 @@ public class CommonController {
 		}
 	}
 	
+	@RequestMapping(value = "/ajax/common/fileDelete", method = RequestMethod.POST)
+	@ResponseBody
+	public String DeleteFile(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value = "fileSn") Long fileSn) {
+		
+		cService.deleteFile(fileSn);
+		
+		return "true";
+	}
 }

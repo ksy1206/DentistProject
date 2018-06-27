@@ -95,6 +95,21 @@ public interface CommonMapper {
 	@Select("SELECT * FROM upload_file WHERE file_key = #{fileKey}")
 	public FileDto getFileInfoByKey(@Param("fileKey") String fileKey);
 	
+	// 파일 정보 리스트 가져오기 : FileType
+	@Results({
+		@Result(property = "fileSn", column = "file_sn")
+		,@Result(property = "fileKey", column = "file_key")
+		,@Result(property = "fileType", column = "file_type")
+		,@Result(property = "filePath", column = "file_path")
+		,@Result(property = "fileUrl", column = "file_url")
+		,@Result(property = "fileExt", column = "file_ext")
+		,@Result(property = "fileName", column = "file_name")
+		,@Result(property = "insertDate", column = "insert_date")
+		,@Result(property = "deleteYn", column = "delete_yn")
+	})
+	@Select("SELECT * FROM upload_file WHERE file_type = #{fileType} AND delete_yn = 'N'")
+	public FileDto[] getFileListByFileType(@Param("fileType") String fileType);
+	
 	// QR코드 정보 등록
 	@Insert("INSERT INTO member_qrcode "
 			+ "("
