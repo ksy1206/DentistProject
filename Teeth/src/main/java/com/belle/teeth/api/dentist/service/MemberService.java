@@ -9,6 +9,7 @@ import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
+import com.belle.teeth.api.dentist.dto.SchedualDto;
 import com.belle.teeth.api.dentist.mapper.MemberMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -252,5 +253,28 @@ public class MemberService {
 	 */
 	public void updateMemberLevel(Integer step, Integer memberNo) {
 		memberMapper.updateMemberLevel(step, memberNo);
+	}
+	
+	// 회원 스케쥴 정보 가져오기
+	public SchedualDto[] getSchedual(Integer memberNo) {
+		return memberMapper.selectSchedual(memberNo);
+	}
+	
+	// 회원 스케쥴 등록
+	public boolean addSchedual(SchedualDto schedual) {
+		memberMapper.insertSchedual(schedual);
+		return true;
+	}
+	
+	// 일정 수정
+	public boolean modifySchedual(SchedualDto schedual) {
+		memberMapper.updateSchedual(schedual);
+		return true;
+	}
+	
+	// 일정 삭제
+	public boolean deleteSchedual(SchedualDto schedual) {
+		memberMapper.deleteSchedual(schedual);
+		return true;
 	}
 }

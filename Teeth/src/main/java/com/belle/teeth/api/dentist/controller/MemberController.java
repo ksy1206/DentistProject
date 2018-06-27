@@ -16,6 +16,7 @@ import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
+import com.belle.teeth.api.dentist.dto.SchedualDto;
 import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.dentist.util.SessionUtil;
 
@@ -105,6 +106,8 @@ public class MemberController {
 			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F02"));
 		} else if("setUpImg".equals(type)) {
 			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F03"));
+		} else if("schedual".equals(type)) {
+			model.addAttribute("schedualList", memberService.getSchedual(memberNo));
 		}
 
 		model.addAttribute("type", type);
@@ -112,6 +115,66 @@ public class MemberController {
 		model.addAttribute("headerInfo", headerInfo);
 		return "dentist/member/sub/"+type;
 	}
+	
+	/**
+	 * 신규 스케쥴 등록
+	 * @param request
+	 * @param response
+	 * @param info
+	 * @param datetime
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/ajax/schedual/add", method = RequestMethod.POST)
+	@ResponseBody
+	public String SchedualAdd(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="info") String info
+			, @RequestParam(value="datetime") String datetime
+			, @RequestParam(value="memberNo") Integer memberNo) throws Exception {
+		
+		SchedualDto schedual = new SchedualDto();
+		schedual.setDatetime(datetime);
+		schedual.setInfo(info);
+		schedual.setMemberNo(memberNo);
+		memberService.addSchedual(schedual);
+		return "";
+	}
+	
+	/**
+	 * 스케쥴 수정
+	 * @param request
+	 * @param response
+	 * @param info
+	 * @param datetime
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/ajax/schedual/modify", method = RequestMethod.POST)
+	@ResponseBody
+	public String SchedualModify(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="status") String status
+			, @RequestParam(value="scNo") Integer scNo) throws Exception {
+		
+		SchedualDto schedual = new SchedualDto();
+		schedual.setScNo(scNo);
+		schedual.setStatus(status);
+		memberService.modifySchedual(schedual);
+		return "";
+	}
+	
+	@RequestMapping(value = "/ajax/schedual/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public String SchedualDelete(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="scNo") Integer scNo) throws Exception {
+		
+		SchedualDto schedual = new SchedualDto();
+		schedual.setScNo(scNo);
+		memberService.deleteSchedual(schedual);
+		return "";
+	}
+	
 	
 	/**
 	 * 질문 답변 등록

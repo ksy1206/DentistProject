@@ -14,6 +14,7 @@ import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
+import com.belle.teeth.api.dentist.dto.SchedualDto;
 
 @Mapper
 public interface MemberMapper {
@@ -370,4 +371,50 @@ public interface MemberMapper {
 	})
 	@Select("SELECT a.file_url, a.file_sn, a.file_name FROM upload_file a, member_img b WHERE a.file_sn = b.file_sn AND b.member_no = #{memberNo} AND a.file_type = #{fileType} AND a.delete_yn = 'N'")
 	FileDto[] selectMemberImgInfo(@Param("memberNo") Integer memberNo, @Param("fileType") String fileType);
+
+
+	/**
+	 * 회원 스케쥴 정보 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	@Results({
+		@Result(property = "scNo", column = "sc_no")
+		,@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "info", column = "info")
+		,@Result(property = "datetime", column = "datetime")
+		,@Result(property = "status", column = "status")
+	})
+	@Select("SELECT * FROM member_schedual WHERE member_no = #{memberNo}")
+	SchedualDto[] selectSchedual(@Param("memberNo") Integer memberNo);
+
+	/**
+	 * 회원 스케쥴 추가
+	 * @param data
+	 */
+	@Insert("INSERT INTO member_schedual "
+			+ "("
+			+ "member_no"
+			+ ", info"
+			+ ", datetime"
+			+ ", status"
+			+ ")"
+			+ " VALUES "
+			+ "("
+			+ "#{memberNo}"
+			+ ", #{info}"
+			+ ", #{datetime}"
+			+ ", 'new'"
+			+ ")")
+	void insertSchedual(SchedualDto data);
+
+	// 스케쥴 수정
+	@Update("UPDATE member_schedual "
+			+ "SET status = #{status} "
+			+ "WHERE sc_no = #{scNo}")
+	void updateSchedual(SchedualDto data);
+	
+	// 스케쥴 삭제
+	@Delete("DELETE FROM member_schedual WHERE sc_no = #{scNo}")
+	void deleteSchedual(SchedualDto data);
 }

@@ -52,7 +52,7 @@
 						<div class="row" style="margin-bottom: 3em;">
 							<div class="col-md-6 grid_box1" style="text-align: center;">
 								<img src="/img/calendar.png"><br><br>
-								<a class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 약속 일정 관리</a>
+								<a href="/dentist/member/sub/info?type=schedual&memberNo=$!memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 약속 일정 관리</a>
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/question.png"><br><br>
