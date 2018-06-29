@@ -1,0 +1,36 @@
+<nav class="w3-sidebar w3-bar-block w3-card" id="mySidebar">
+<div class="w3-container w3-theme-d2">
+	<span onclick="closeSidebar()" class="w3-button w3-display-topright w3-large">X</span>
+	<br>
+	<div class="w3-padding w3-center">
+		<p>장진수 회원님</p>
+	</div>
+</div>
+<br>
+<a class="w3-bar-item w3-button" href="/user/main">· 메인 홈</a>
+<hr>
+<a class="w3-bar-item w3-button" href="/user/notice">· 공지 사항</a>
+<hr>
+<a class="w3-bar-item w3-button" href="/user/qa">· 교정 상담</a>
+<hr>
+<a class="w3-bar-item w3-button" href="/user/schedual">· 치과 방문 일정</a>
+<hr>
+<a class="w3-bar-item w3-button" href="/user/logOut">· 로그아웃</a>
+<hr>
+</nav>
+
+<header class="w3-bar w3-card w3-theme">
+	<button class="w3-bar-item w3-button w3-xxxlarge w3-hover-theme" onclick="openSidebar()">&#9776;</button>
+	<h1 class="w3-bar-item">4USmile</h1>
+</header>
+
+## Nav Script
+<script>
+closeSidebar();
+function openSidebar() {
+		document.getElementById("mySidebar").style.display = "block";
+}
+function closeSidebar() {
+		document.getElementById("mySidebar").style.display = "none";
+}
+</script>

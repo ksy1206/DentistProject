@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	#parse("user/setting/header.vm")
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body style="background-color: #f5f8f9;">
+	<header class="w3-bar w3-card w3-theme">
+		<h1 class="w3-bar-item">4U-Smail</h1>
+	</header>
+
+	<form action="#" class="w3-container w3-text-blue w3-display-middle" style="width:80%;">
+		<div style="text-align: center;margin-bottom: 5em;margin-top: 3em;">
+			<img src="/img/user.png" style="width: 190px;">
+		</div>
+		<div class="w3-row w3-section">
+			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+			<div class="w3-rest">
+				<input class="w3-input w3-border" id="userId" type="text" placeholder="아이디">
+			</div>
+		</div>
+		<div class="w3-row w3-section">
+			<div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-unlock-alt"></i></div>
+			<div class="w3-rest">
+				<input class="w3-input w3-border" id="password" type="password" placeholder="비밀번호">
+			</div>
+		</div>
+		<div class="w3-row w3-section">
+			<button class="w3-btn w3-block w3-teal" style="color: #fff !important;background-color: #009688 !important;" onclick="app.login();">로그인</button>
+		</div>
+	</form>
+	## Footer
+	#parse("user/setting/footer.vm")
+<script>
+	function App() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+		_this.env.userId = $('#userId');
+		_this.env.password = $('#password');
+		
+		## login validation
+		_this.loginValidation = function() {
+		
+			## Id Check
+			if(_this.env.userId.val().trim() == '') {
+				alert('아이디를 입력하세요.');
+				return false;
+			}
+			
+			## Pwd Cehck
+			if(_this.env.password.val().trim() == '') {
+				alert('비밀번호를 입력하세요.');
+				return false;
+			}
+			
+			## 통과할 경우
+			return true;
+		};
+		
+		## login
+		_this.login = function() {
+			var valitdation = false;
+			valitdation = _this.loginValidation();
+			
+			if(valitdation) {
+				var url = '/ajax/common/login/confirm';
+				
+				var params = {
+					userId : _this.env.userId.val(),
+					password : _this.env.password.val()
+				};
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: params,
+					success: function(result) {
+						var r = JSON.parse(result);
+						console.log(r);
+						if(r.check) {
+							if(r.type == 'A') {## 회원
+								location.href= '/user/main';
+							}
+						} else {
+							alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+						}
+					},
+					error: function(request, status, error) {
+						console.log(request);
+					}
+				});
+			};
+		};
+
+		_this.eventBind = function() {
+		
+		};
+
+		## Init
+		_this.init = function() {
+			_this.eventBind();
+		}();
+	}
+
+	var app = new App();
+</script>
+</body>

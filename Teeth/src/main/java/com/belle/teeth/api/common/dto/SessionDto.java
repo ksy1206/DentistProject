@@ -12,7 +12,9 @@ public class SessionDto {
 	private String	memberId;
 	private Integer assignNo;
 
-	// 치과 의사일경우
+	// 환자일 경우 사용
+	private Integer doctorNo;
+	// 치과 의사일경우 && 환자일 경우
 	private Dentist dentist = new Dentist();
 
 }

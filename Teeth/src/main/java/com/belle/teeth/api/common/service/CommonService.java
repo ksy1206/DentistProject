@@ -45,7 +45,7 @@ public class CommonService {
 			sessionData.setMemberAge(member.getMemberAge());
 			sessionData.setMemberId(member.getMemberId());
 			sessionData.setAssignNo(member.getAssignNo());
-			
+
 			// 회원 타입 체크해서 추가 정보 가져오기
 			if(member.getMemberType().equals("B")) { // 의사
 				Dentist dInfo = commonMapper.dentistInfo(member.getAssignNo());
@@ -55,6 +55,12 @@ public class CommonService {
 				
 			} else if(member.getMemberType().equals("C")) { // 기공소
 				
+			} else if(member.getMemberType().equals("A")) { // 일반 회원
+				sessionData.setDoctorNo(member.getDoctorMemberNo());
+				Dentist dInfo = commonMapper.dentistInfo(member.getAssignNo());
+				sessionData.getDentist().setDentistNo(dInfo.getDentistNo());
+				sessionData.getDentist().setDentistName(dInfo.getDentistName());
+				sessionData.getDentist().setDentistFileKey(dInfo.getDentistFileKey());
 			}
 
 			// 새션 생성

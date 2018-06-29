@@ -31,7 +31,7 @@
 								#foreach($row in $NoticeList)
 								<tr>
 									<th scope="row">$row.noticeNo</th>
-									<td><a href="/dentist/notice/details?noticeNo=$!row.noticeNo">$row.title</a<</td>
+									<td><a href="/dentist/notice/details?noticeNo=$!row.noticeNo">$row.title</a></td>
 									<td>$row.writerId</td>
 								</tr>
 								#end

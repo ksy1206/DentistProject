@@ -48,6 +48,7 @@ public interface MemberMapper {
 		,@Result(property = "memberId", column = "member_id")
 		,@Result(property = "memberPwd", column = "member_pwd")
 		,@Result(property = "assignNo", column = "assign_no")
+		,@Result(property = "doctorMemberNo", column = "doctor_member_no")
 	})
 	@Select("SELECT * FROM member WHERE member_id = #{userId} and member_pwd = #{password}")
 	public MemberDto memberInfo(@Param("userId") String userId, @Param("password") String password);

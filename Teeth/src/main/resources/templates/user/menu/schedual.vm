@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+	#parse("user/setting/header.vm")
+<body>
+	#parse("user/setting/layout.vm")
+	## 본문 내용
+	<div class="w3-container">
+	
+	</div>
+	## Footer
+	#parse("user/setting/footer.vm")
+</body>

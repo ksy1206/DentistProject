@@ -277,6 +277,13 @@ public class CommonController {
 		}
 	}
 	
+	/**
+	 * 파일 삭제
+	 * @param request
+	 * @param response
+	 * @param fileSn
+	 * @return
+	 */
 	@RequestMapping(value = "/ajax/common/fileDelete", method = RequestMethod.POST)
 	@ResponseBody
 	public String DeleteFile(HttpServletRequest request, HttpServletResponse response

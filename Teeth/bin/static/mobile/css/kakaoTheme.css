@@ -1,0 +1,136 @@
+.kakaoTheme {
+/* 	background-color: #9bbad8; */
+	background-color: #eceff3;
+	padding: 4px 4px 0px 4px;
+}
+
+.kakaoTheme .clear {
+	clear: both;
+}
+
+.kakaoTheme .blank {
+	clear: both;
+	height: 4px;
+}
+
+.kakaoTheme .msg {
+	height: calc(100% - 72px);
+	overflow-y: scroll;
+	font-size: 14px;
+}
+
+.kakaoTheme .msg .time {
+	font-size: 10px;
+}
+
+.kakaoTheme .msg .mytalk {
+	float: right;
+	width: 100%;
+}
+
+.kakaoTheme .msg .mytalk .time {
+	float: right;
+	bottom: 0;
+	padding-top: .2em;
+}
+
+.kakaoTheme .msg .mytalk .a {
+	float: right;
+	position: relative;
+	min-height: 24px;
+	max-width: calc(100% - 64px);
+	left: 2px;
+/* 	background-color: #ffec42; */
+	background-color: #a2f797;
+	border-radius: 12px;
+	z-index: 2;
+	padding: 3px 6px 3px 6px;
+	word-break: break-all;
+}
+
+.kakaoTheme .msg .mytalk .b {
+	float: right;
+	position: relative;
+	width: 8px;
+	height: 22px;
+	z-index: 1;
+}
+
+.kakaoTheme .msg .othertalk {
+	float: left;
+	width: 100%;
+}
+
+.kakaoTheme .msg .othertalk .profile_image {
+	float: left;
+	width: 40px;
+	height: 40px;
+	border-radius: 14px;
+}
+
+.kakaoTheme .msg .othertalk .box {
+	float: left;
+	width: calc(100% - 48px);
+}
+
+.kakaoTheme .msg .othertalk .box .profile_name {
+	font-size: 12px;
+}
+
+.kakaoTheme .msg .othertalk .box .a {
+	float: left;
+	position: relative;
+	width: 8px;
+	height: 22px;
+	z-index: 1;
+}
+
+.kakaoTheme .msg .othertalk .box .b {
+	float: left;
+	position: relative;
+	min-height: 24px;
+	max-width: calc(100% - 64px);
+	left: -2px;
+	background-color: #ffffff;
+	border-radius: 12px;
+	z-index: 2;
+	padding: 3px 6px 3px 6px;
+	word-break: break-all;
+}
+
+.kakaoTheme .msg .othertalk .box .time {
+	float: left;
+	padding-top: .2em;
+}
+
+.kakaoTheme .sendmsg {
+	
+}
+
+.kakaoTheme .sendmsg .textarea {
+	float: left;
+	width: calc(100% - 68px);
+	height: 64px;
+	border-radius: 8px 0px 0px 8px;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 2px 2px 2px;
+	resize: none;
+}
+
+.kakaoTheme .sendmsg .button {
+	float: right;
+	width: 62px;
+	height: 64px;
+	background-color: #a2f797;
+	border-radius: 0px 8px 8px 0px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: center;
+	display: table;
+	cursor: pointer;
+}
+
+.kakaoTheme .sendmsg .button p {
+	display: table-cell;
+	vertical-align: middle;
+}

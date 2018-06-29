@@ -132,6 +132,4 @@ public class DocterMainController {
 	public String DeviceInstructionsAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return "dentist/device/instructionsAdd";
 	}
-	
-	
 }

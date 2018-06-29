@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	#parse("user/setting/header.vm")
+	
+	<link href="/mobile/css/kakaoTheme.css" rel='stylesheet' type='text/css' />
+<body>
+	#parse("user/setting/layout.vm")
+	## 본문 내용
+	<div>
+		<div class="kakaoTheme" style="position: fixed;padding-bottom:13em;padding-top: 1em;width: 100%; height: 100%;">
+			<div class="msg">
+				## 보낸사람
+				#foreach($row in $qaList)
+				#if($row.type == "SE01")
+				<div class="othertalk" style="margin-bottom:1em;">
+					<div class="profile_image" style="background: url(/img/kakaoUser.png) no-repeat;"></div>
+					<div class="box">
+						<div class="profile_name">원장님</div>
+						<div class="a"></div>
+						<div class="b">$!row.message</div>
+						<div class="time">$!row.insertDate.substring(5,10)</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				#elseif($row.type == "SE02")
+				## 내 메세지
+				<div class="mytalk" style="margin-bottom:1em;">
+					<div class="b"></div>
+					<div class="a">$!row.message</div>
+					<div class="time">$!row.insertDate.substring(5,10)</div>
+					<div class="clear"></div>
+				</div>
+				#end
+			#end
+			<div id="focusDiv"></div>
+			</div>
+			<hr>
+			<div class="sendmsg">
+				<textarea class="textarea" id="message"></textarea>
+				<div class="button" onclick="app.qaAdd();"><p>전송</p></div>
+				<div class="clear"></div>
+			</div>
+		
+		</div>
+	</div>
+	## Footer
+	#parse("user/setting/footer.vm")
+<script>
+	function App() {
+		var _this = this;
+
+		## ENV
+		_this.env = {};
+		_this.env.message = $('#message');
+
+		## login validation
+		_this.qaValidation = function() {
+
+			## Message Check
+			if(_this.env.message.val().trim() == '') {
+				alert('내용을 입력하세요.');
+				return false;
+			}
+
+			## 통과할 경우
+			return true;
+		};
+
+		## Qa 등록
+		_this.qaAdd = function() {
+			var valitdation = false;
+			valitdation = _this.qaValidation();
+
+			if(valitdation) {
+				var url = '/user/ajax/qa/add';
+				var params = {
+					message : _this.env.message.val()
+				};
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: params,
+					success: function(result) {
+						location.reload();
+					},
+					error: function(request, status, error) {
+						console.log(request);
+					}
+				});
+			};
+		};
+		
+		## Qa 삭제
+		_this.messageDelete = function(qa_no) {
+			var isVaild = confirm("정말 삭제하시겠습니까?");
+			if(isVaild) {
+				var url = '/dentist/ajax/qa/delete';
+				var params = {
+					qaNo : qa_no,
+					doctorNo : 123
+				};
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: params,
+					success: function(result) {
+						location.reload();
+					},
+					error: function(request, status, error) {
+						console.log(request);
+					}
+				});
+			};
+		}
+
+		## Init
+		_this.init = function() {
+			document.getElementById("focusDiv").scrollIntoView();
+		}();
+	}
+
+	var app = new App();
+</script>
+</body>
