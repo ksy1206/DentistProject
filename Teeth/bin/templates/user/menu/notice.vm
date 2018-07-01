@@ -5,24 +5,24 @@
 	#parse("user/setting/layout.vm")
 	## 본문 내용
 	<div class="w3-container">
-	<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" style="margin-top: 1em;">
-	<tbody>
-		<tr style="color: #fff!important;background-color: #4CAF50!important;">
-			<th style="text-align: center;">번호</th>
-			<th style="">제목</th>
-			<th style="text-align: center;">작성자</th>
-		</tr>
-	</tbody>
-	<tbody>
-	#foreach($row in $NoticeList)
-	<tr>
-		<td style="text-align: center;">$row.noticeNo</td>
-		<td>$row.title</td>
-		<td style="text-align: center;">$row.writerId</td>
-	</tr>
-	#end
-	</tbody>
-	</table>
+		<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" style="margin-top: 1em;">
+			<tbody>
+				<tr style="color: #fff!important;background-color: #4CAF50!important;">
+					<th style="text-align: center;">번호</th>
+					<th style="">제목</th>
+					<th style="text-align: center;">작성자</th>
+				</tr>
+			</tbody>
+			<tbody>
+			#foreach($row in $NoticeList)
+			<tr>
+				<td style="text-align: center;">$row.noticeNo</td>
+				<td><a style="text-decoration:none;" href="/user/notice/details?noticeNo=$!row.noticeNo">$row.title</a></td>
+				<td style="text-align: center;">$row.writerId</td>
+			</tr>
+			#end
+			</tbody>
+		</table>
 	</div>
 	## Footer
 	#parse("user/setting/footer.vm")

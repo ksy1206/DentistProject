@@ -23,7 +23,7 @@ public class NoticeService {
 	public NoticeDto[] getNoticeList(Integer dentistNo ) {
 		return nMapper.getNoticeList(dentistNo);
 	}
-	
+
 	/**
 	 * 치과 공지사항 상세정보 가져오기
 	 * @param noticeNo

@@ -17,6 +17,7 @@ import com.belle.teeth.api.common.dto.Dentist;
 import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
+import com.belle.teeth.api.common.dto.QRCodeDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.service.CommonService;
 import com.belle.teeth.api.dentist.dto.QaDto;
@@ -36,6 +37,8 @@ public class UserController {
 	private MemberService memberService;
 	@Autowired
 	private NoticeService noticeService;
+	@Autowired
+	private CommonService commonService;
 	
 	/**
 	 * 메인 페이지
@@ -46,7 +49,26 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String Main(HttpServletRequest request, HttpServletResponse response, Model model) {
+		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
+		// 환자 이미지 정보
+		model.addAttribute("imgList", memberService.getMemberInfo(sessionInfo.getMemberNo(), "F02"));
+		
+		// 환자 교정 정보
+		MemberDto memberInfo = memberService.getMemberInfo(sessionInfo.getMemberNo());
+		QRCodeDto[] qrInfo = commonService.getQrImgList(sessionInfo.getMemberNo());
+		
+		int memberStep = memberInfo.getMemberLevel();
+		int stepSize = qrInfo.length;
+		double process = 0.0 ;
+		double nonProcess = 100 - process;
+		if(stepSize > 0) {
+			process = (memberStep* 100) / stepSize ;
+			nonProcess = 100 - process;
+		}
 
+		model.addAttribute("process", process);
+		model.addAttribute("nonProcess", nonProcess);
+		
 		return "user/main";
 	}
 	
@@ -75,6 +97,21 @@ public class UserController {
 		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 		model.addAttribute("NoticeList", noticeService.getNoticeList(sessionInfo.getDentist().getDentistNo()));
 		return "user/menu/notice";
+	}
+	
+	/**
+	 * 공지 사항 상세정보 페이지
+	 * @param request
+	 * @param response
+	 * @param noticeNo
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/notice/details", method = RequestMethod.GET)
+	public String noticeDetails(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value = "noticeNo") Integer noticeNo, Model model) {
+		model.addAttribute("Notice",  noticeService.getNoticeDetails(noticeNo));
+		return "user/menu/noticeDetails";
 	}
 	
 	/**
@@ -128,7 +165,8 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/schedual", method = RequestMethod.GET)
 	public String schedual(HttpServletRequest request, HttpServletResponse response, Model model) {
-
+		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
+		model.addAttribute("schedualList", memberService.getSchedual(sessionInfo.getMemberNo()));
 		return "user/menu/schedual";
 	}
 
