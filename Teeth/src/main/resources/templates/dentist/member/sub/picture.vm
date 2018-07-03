@@ -34,7 +34,7 @@
 						</thead>
 					</table>
 					#foreach($row in $imgList)
-					<div class="col-md-4" style="margin-bottom:1em; text-align:center;">
+					<div class="col-md-4" style="margin-bottom:1em; text-align:center;" onclick="common.fileDelete('$!row.fileSn');">
 						<img src="$!row.fileUrl/$!row.fileName" class="img-rounded" width="100%" height="236">
 						<a class="btn btn-info" style="margin-top:0.5em;" href="$!row.fileUrl/$!row.fileName" download>이미지 다운로드</a>
 					</div>
