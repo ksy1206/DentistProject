@@ -14,9 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.belle.teeth.api.common.dto.FileDto;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Component
 public class UtilFile {
 

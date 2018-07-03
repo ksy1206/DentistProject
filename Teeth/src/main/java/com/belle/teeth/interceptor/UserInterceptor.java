@@ -10,9 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.dentist.util.SessionUtil;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class UserInterceptor implements HandlerInterceptor {
 
 	@Override

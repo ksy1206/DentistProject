@@ -2,21 +2,16 @@ package com.belle.teeth.api.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.belle.teeth.api.common.dto.Dentist;
-import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
-import com.belle.teeth.api.common.dto.PagingDto;
 import com.belle.teeth.api.common.dto.QRCodeDto;
 import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.service.CommonService;
@@ -24,11 +19,7 @@ import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.dentist.service.NoticeService;
 import com.belle.teeth.api.dentist.util.SessionUtil;
-import com.belle.teeth.api.factory.zxing.MakeQrCode;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {

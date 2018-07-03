@@ -6,9 +6,6 @@ import org.springframework.stereotype.Service;
 import com.belle.teeth.api.dentist.dto.NoticeDto;
 import com.belle.teeth.api.dentist.mapper.NoticeMapper;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service
 public class NoticeService {
 	

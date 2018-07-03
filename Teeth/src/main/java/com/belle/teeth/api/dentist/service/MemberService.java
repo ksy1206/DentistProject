@@ -12,9 +12,6 @@ import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.dto.SchedualDto;
 import com.belle.teeth.api.dentist.mapper.MemberMapper;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service
 public class MemberService {
 

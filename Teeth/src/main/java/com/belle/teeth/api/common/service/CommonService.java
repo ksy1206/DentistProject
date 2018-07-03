@@ -16,9 +16,6 @@ import com.belle.teeth.api.common.dto.SessionDto;
 import com.belle.teeth.api.common.mapper.CommonMapper;
 import com.belle.teeth.api.dentist.mapper.MemberMapper;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service
 public class CommonService {
 	

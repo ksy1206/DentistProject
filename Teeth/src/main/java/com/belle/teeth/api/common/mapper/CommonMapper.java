@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.belle.teeth.api.common.dto.Dentist;
 import com.belle.teeth.api.common.dto.FileDto;
-import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.QRCodeDto;
 
 @Mapper

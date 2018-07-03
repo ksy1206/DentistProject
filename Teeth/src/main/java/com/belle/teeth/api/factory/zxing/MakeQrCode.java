@@ -14,9 +14,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Component
 public class MakeQrCode {
 
