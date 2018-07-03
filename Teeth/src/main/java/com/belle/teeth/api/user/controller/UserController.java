@@ -49,6 +49,12 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String Main(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		// 여기서 일단 체크
+		
+		
+		
+		
 		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 		// 환자 이미지 정보
 		model.addAttribute("imgList", memberService.getMemberInfo(sessionInfo.getMemberNo(), "F02"));
