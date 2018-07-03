@@ -165,7 +165,6 @@ public class FactoryMainController {
 			fileInfo = cService.addFileInfo(fileInfo);
 			cService.saveQrInfo(fileInfo.getFileSn(), memberNo, i);
 		}
-		memberService.updateMemberLevel(step, memberNo);
 		return "true";
 	}
 	

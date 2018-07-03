@@ -71,6 +71,24 @@ public interface MemberMapper {
 	@Select("SELECT * FROM member WHERE member_no = #{memberNo}")
 	public MemberDto memberInfo2(@Param("memberNo") Integer memberNo);
 	
+	// 회원정보 회원 아이디로
+	@Results({
+		@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "memberType", column = "member_type")
+		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "memberGender", column = "member_gender")
+		,@Result(property = "memberAge", column = "member_age")
+		,@Result(property = "memberEmail", column = "member_email")
+		,@Result(property = "memberId", column = "member_id")
+		,@Result(property = "memberPwd", column = "member_pwd")
+		,@Result(property = "memberLevel", column = "member_level")
+		,@Result(property = "assignNo", column = "assign_no")
+		,@Result(property = "doctorMemberNo", column = "doctor_member_no")
+		,@Result(property = "joinDateTime", column = "join_date_time")
+	})
+	@Select("SELECT * FROM member WHERE member_id = #{memberId}")
+	public MemberDto memberInfo3(@Param("memberId") String memberId);
+	
 	// 환자회원 이름만으로 검색해서 가져오기
 	@Results({
 		@Result(property = "memberNo", column = "member_no")

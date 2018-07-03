@@ -29,6 +29,7 @@ public class InterceptorConfiguration {
 				registry.addInterceptor(new UserInterceptor())
 				.addPathPatterns("/user/**")
 				.excludePathPatterns("/user/login")
+				.excludePathPatterns("/user/check")
 				.excludePathPatterns("/user/ajax/**");
 			}
 		};

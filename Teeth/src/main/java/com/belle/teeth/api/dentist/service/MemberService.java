@@ -195,6 +195,15 @@ public class MemberService {
 	}
 	
 	/**
+	 * 아이디로 환자 상세정보 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	public MemberDto getMemberInfo3(String memberId) {
+		return memberMapper.memberInfo3(memberId);
+	}
+	
+	/**
 	 * 환자 의사 질문 답변 리스트 가져오기
 	 * @param doctorNo
 	 * @param memberNo

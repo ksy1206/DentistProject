@@ -40,6 +40,39 @@ public class UserController {
 	@Autowired
 	private CommonService commonService;
 	
+	@RequestMapping(value = "/check", method = RequestMethod.GET)
+	public String check(HttpServletRequest request, HttpServletResponse response
+			,@RequestParam(value = "memberId") String memberId
+			,@RequestParam(value = "step") Integer step, Model model) {
+		
+		String result = "no"; // 정상적으로 QR코드 인식된경우 : yes
+		String alertMessage = "교정장치 단계를 확인해 주세요.";
+		
+		// 회원 아이디로 회원 정보 가져오기.
+		MemberDto memberInfo = memberService.getMemberInfo3(memberId);
+		
+		Integer memberStep = memberInfo.getMemberLevel();
+
+		if(memberStep > step) {// 입력받은 단계가 회원 테이블에 있는 단계보다 작은경우 false
+			
+		} else if (memberStep == step) { // 입력받은 단계가 회원테이블의 단계와 같은경우, 업데이트는 하지 않고 로그인만 가능
+			result = "yes";
+			alertMessage = "비밀번호 입력후, 로그인 하세요.";
+		} else if (memberStep+1 == step) { // 입력받은 단계가 회원테이블의 다음 단계일 경우 : true 업데이트 해야함
+			result = "yes";
+			memberService.updateMemberLevel(step, memberInfo.getMemberNo());
+			alertMessage = "비밀번호 입력후, 로그인 하세요.";
+		} else if (memberStep+1 < step) { // 입력받은 단계가 회원테이블의 다음단계보다 큰 경우 : false
+			
+		}
+		
+		model.addAttribute("userId", memberId);
+		model.addAttribute("autoLogin", result);
+		model.addAttribute("alertMessage", alertMessage);
+		
+		return "user/login";
+	}
+	
 	/**
 	 * 메인 페이지
 	 * @param request
@@ -49,12 +82,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String Main(HttpServletRequest request, HttpServletResponse response, Model model) {
-		
-		// 여기서 일단 체크
-		
-		
-		
-		
+
 		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
 		// 환자 이미지 정보
 		model.addAttribute("imgList", memberService.getMemberInfo(sessionInfo.getMemberNo(), "F02"));
