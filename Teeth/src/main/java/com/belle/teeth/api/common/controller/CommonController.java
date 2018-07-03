@@ -38,6 +38,12 @@ public class CommonController {
 	public String test(HttpServletRequest request, HttpServletResponse response) {
 		return "imgUpload";
 	}
+	
+	// reDirect
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String reDirect(HttpServletRequest request, HttpServletResponse response) {
+		return "common/login";
+	}
 
 	/**
 	 * 기공소 | 의사 로그인 페이지
