@@ -24,7 +24,7 @@ function FileUpload() {
 		var url = '/ajax/common/fileUpload?fileType='+type;
 
 		// 타입별 추가 파라미터
-		if(type == 'F02' || type == 'F03' || type == 'Video') {
+		if(type == 'F02' || type == 'F03' || type == 'Video' || type == 'Stl') {
 			url += "&patientNo="+app.env.memberNo;
 		}
 		
@@ -44,6 +44,8 @@ function FileUpload() {
 				var acceptFileTypes = 'JPG,JPEG,PNG';
 					if(type == 'Video') {
 						acceptFileTypes = 'MP4';
+					} else if(type == 'Stl') {
+						acceptFileTypes = 'STL';
 					}
 					acceptFileTypes = acceptFileTypes.split(',');
 				var ext = data.originalFiles[0].name.replace( /%/,"%25").substr(data.originalFiles[0].name.replace( /%/,"%25").lastIndexOf(".")+1).toUpperCase();
@@ -106,11 +108,13 @@ function FileUpload() {
 				// 업로드 완료 후
 				if(type == 'Video') {
 					alert("영상 업로드 완료");
+				} else if(type == 'Stl') {
+					alert("STL 파일 업로드 완료");
 				} else {
 					alert("이미지 업로드 완료");
 				}
 
-				if(type == 'F02' || type == 'F03' || type == 'Video') {
+				if(type == 'F02' || type == 'F03' || type == 'Video' || type == 'Stl') {
 					location.reload();
 				}
 			}

@@ -158,6 +158,15 @@ public class CommonService {
 	}
 	
 	/**
+	 * 파일 번호로 이미지 정보 가져오기
+	 * @param fileSn
+	 * @return
+	 */
+	public FileDto getImgInfoByFileSn(Long fileSn) {
+		return memberMapper.getImgInfoByFileSn(fileSn);
+	}
+	
+	/**
 	 * QR코드 정보 등록
 	 * @param fileSn
 	 * @param memberNo

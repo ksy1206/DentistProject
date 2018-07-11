@@ -39,7 +39,17 @@ public class CommonController {
 		return "imgUpload";
 	}
 	
-	// reDirect
+	@RequestMapping(value = "/common/stlTest", method = RequestMethod.GET)
+	public String stltest(HttpServletRequest request, HttpServletResponse response) {
+		return "stlTest";
+	}
+	
+	/** reDirect
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String reDirect(HttpServletRequest request, HttpServletResponse response) {
 		return "common/login";
@@ -269,8 +279,14 @@ public class CommonController {
 				imgInfo.setMemberNo(patientNo);
 				imgInfo.setFileSn(fileInfo.getFileSn());
 				mService.updateMemberImgInfo(imgInfo);
+			} else if("Stl".equals(fileType)) {
+				Integer memberNo = patientNo != null ? patientNo.intValue() : null;
+				MemberDto memberInfo = mService.getMemberInfo(memberNo);
+				Long fileSn = memberInfo.getStlFileSn().longValue();
+				cService.deleteFile(fileSn);
+				mService.updateMemberStlInfo(fileInfo.getFileSn(), memberNo);
 			}
-			
+
 			// 파일 업로드 후, DB 저장
 			JSONObject result = new JSONObject(fileInfo);
 			return result.toString();

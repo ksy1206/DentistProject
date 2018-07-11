@@ -125,7 +125,8 @@ public class FactoryMainController {
 		} else if("setUpImg".equals(type)) {
 			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F03"));
 		} else if("3Dvideo".equals(type)) {
-			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "Video"));
+			Long fileSn = memberService.getMemberInfo(memberNo).getStlFileSn().longValue();
+			model.addAttribute("StlInfo", cService.getImgInfoByFileSn(fileSn));
 		}
 		model.addAttribute("memberNo", memberNo);
 		return "factory/member/sub/"+type;

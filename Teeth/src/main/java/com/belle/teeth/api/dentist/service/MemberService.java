@@ -94,6 +94,10 @@ public class MemberService {
 	public void memberModify(MemberDto memberDto) {
 		memberMapper.memberUpdate(memberDto);
 	}
+	
+	public void updateMemberStlInfo(Long fileSn, Integer memberNo) {
+		memberMapper.memberUpdateStlInfo(fileSn, memberNo);
+	}
 
 	/**
 	 * 환자 목록 가져오기
@@ -250,6 +254,15 @@ public class MemberService {
 	 */
 	public FileDto[] getMemberInfo(Integer memberNo, String fileType) {
 		return memberMapper.selectMemberImgInfo(memberNo, fileType);
+	}
+	
+	/**
+	 * 환자 STL이미지 정보 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	public String getMemberStlImgUrl(Integer memberNo) {
+		return "";
 	}
 
 	/**

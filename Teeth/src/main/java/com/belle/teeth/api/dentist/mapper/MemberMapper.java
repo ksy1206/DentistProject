@@ -67,6 +67,7 @@ public interface MemberMapper {
 		,@Result(property = "assignNo", column = "assign_no")
 		,@Result(property = "doctorMemberNo", column = "doctor_member_no")
 		,@Result(property = "joinDateTime", column = "join_date_time")
+		,@Result(property = "stlFileSn", column = "stl_file_sn")
 	})
 	@Select("SELECT * FROM member WHERE member_no = #{memberNo}")
 	public MemberDto memberInfo2(@Param("memberNo") Integer memberNo);
@@ -242,6 +243,12 @@ public interface MemberMapper {
 			+ ", member_pwd = #{memberPwd} "
 			+ "WHERE member_no = #{memberNo}")
 	void memberUpdate(MemberDto data);
+	
+	// 회원 Stl 정보 업데이트
+	@Update("UPDATE member "
+			+ "SET stl_file_sn = #{fileSn} "
+			+ "WHERE member_no = #{memberNo}")
+	void memberUpdateStlInfo(@Param("fileSn") Long fileSn, @Param("memberNo") Integer memberNo);
 
 	// 회원정보 업데이트 : 교정 단계 업데이트
 	@Update("UPDATE member "
@@ -391,6 +398,20 @@ public interface MemberMapper {
 	@Select("SELECT a.file_url, a.file_sn, a.file_name FROM upload_file a, member_img b WHERE a.file_sn = b.file_sn AND b.member_no = #{memberNo} AND a.file_type = #{fileType} AND a.delete_yn = 'N'")
 	FileDto[] selectMemberImgInfo(@Param("memberNo") Integer memberNo, @Param("fileType") String fileType);
 
+	// 환자 사진정보 fileSn으로 가져오기
+	@Results({
+		@Result(property = "fileSn", column = "file_sn")
+		,@Result(property = "fileKey", column = "file_key")
+		,@Result(property = "fileType", column = "file_type")
+		,@Result(property = "filePath", column = "file_path")
+		,@Result(property = "fileUrl", column = "file_url")
+		,@Result(property = "fileExt", column = "file_ext")
+		,@Result(property = "fileName", column = "file_name")
+		,@Result(property = "insertDate", column = "insert_date")
+		,@Result(property = "deleteYn", column = "delete_yn")
+	})
+	@Select("SELECT * FROM upload_file WHERE file_sn=#{fileSn} AND delete_yn = 'N'")
+	FileDto getImgInfoByFileSn(@Param("fileSn") Long fileSn);
 
 	/**
 	 * 회원 스케쥴 정보 가져오기

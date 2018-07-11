@@ -18,13 +18,12 @@
 			<div class="main-page">
 				<h3 style="color:#4f52ba;">
 					<i class="fa fa-plus" aria-hidden="true"></i> 3차원 영상 정보
-					<button  style="background-color:#4f52ba; color: white;float: right;" class="btn" type="button" onclick="fileUpload.fileUploadButton('Video');">영상 업로드 <span class="fa fa-plus"></span></button>
+					<button  style="background-color:#4f52ba; color: white;float: right;" class="btn" type="button" onclick="fileUpload.fileUploadButton('Stl');">영상 업로드 <span class="fa fa-plus"></span></button>
 				</h3>
 				<br>
 				## 미리보기
 				<div id="img_prev_div"></div>
-				
-				<div class="panel-body widget-shadow" style="min-height:300px;">
+				<div class="panel-body widget-shadow" style="min-height:300px;" id="3dDivArea">
 					<table class="table">
 						<thead>
 							<tr>
@@ -32,18 +31,16 @@
 							</tr>
 						</thead>
 					</table>
-					#foreach($row in $imgList)
-					<div class="col-md-6" style="margin-bottom:1em; text-align:center;">
-					<video width="400" controls>
-						<source src="$!row.fileUrl/$!row.fileName" type="video/mp4">
-						Your browser does not support HTML5 video.
-					</video>
-					</div>
-					#end
-					
-					## 사진이 없을경우
-					#if($imgList.size() == 0)
-						<p style="margin-top: 3em; margin-bottm: 3em; text-align:center;">등록된 영상이 없습니다.</p>
+
+					<div id="react-app"></div>
+					#if("$!StlInfo.fileUrl" != "")
+					<script>
+						var USER_STL_FILE_URL = "$!StlInfo.fileUrl/$!StlInfo.fileName";
+						var DIV_WIDTH = document.getElementById("3dDivArea").offsetWidth - 30;
+					</script>
+					<script src="/js/stl/react-bundle.js"></script>
+					#else
+					<p style="margin-top: 3em; margin-bottm: 3em; text-align:center;">등록된 영상이 없습니다.</p>
 					#end
 				</div>
 				<div class="clearfix"> </div>

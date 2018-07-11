@@ -75,9 +75,10 @@ public class UserController {
 	public String Main(HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		SessionDto sessionInfo = SessionUtil.getSessionCheck(request);
-		// 환자 이미지 정보
-		model.addAttribute("imgList", memberService.getMemberInfo(sessionInfo.getMemberNo(), "F02"));
-		
+		// 환자 3D 영상정보
+		Long fileSn = memberService.getMemberInfo(sessionInfo.getMemberNo()).getStlFileSn().longValue();
+		model.addAttribute("StlInfo", commonService.getImgInfoByFileSn(fileSn));
+
 		// 환자 교정 정보
 		MemberDto memberInfo = memberService.getMemberInfo(sessionInfo.getMemberNo());
 		QRCodeDto[] qrInfo = commonService.getQrImgList(sessionInfo.getMemberNo());
