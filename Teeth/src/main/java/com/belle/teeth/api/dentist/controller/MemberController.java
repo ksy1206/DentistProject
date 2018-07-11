@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
+import com.belle.teeth.api.common.dto.QRCodeDto;
 import com.belle.teeth.api.common.dto.SessionDto;
+import com.belle.teeth.api.common.service.CommonService;
 import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.dto.SchedualDto;
 import com.belle.teeth.api.dentist.service.MemberService;
@@ -28,6 +30,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private CommonService cService;
 	
 	@RequestMapping(value = "/member/list", method = RequestMethod.GET)
 	public String MemberList(HttpServletRequest request, HttpServletResponse response, Model model
@@ -107,6 +111,21 @@ public class MemberController {
 			model.addAttribute("imgList", memberService.getMemberInfo(memberNo, "F03"));
 		} else if("schedual".equals(type)) {
 			model.addAttribute("schedualList", memberService.getSchedual(memberNo));
+		} else if("period".equals(type)) {
+			// 환자 교정 정보
+			QRCodeDto[] qrInfo = cService.getQrImgList(memberNo);
+			
+			int memberStep = memberInfo.getMemberLevel();
+			int stepSize = qrInfo.length;
+			double process = 0.0 ;
+			double nonProcess = 100 - process;
+			if(stepSize > 0) {
+				process = (memberStep* 100) / stepSize ;
+				nonProcess = 100 - process;
+			}
+
+			model.addAttribute("process", process);
+			model.addAttribute("nonProcess", nonProcess);
 		}
 
 		model.addAttribute("type", type);

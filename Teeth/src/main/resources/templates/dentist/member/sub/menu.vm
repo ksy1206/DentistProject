@@ -30,7 +30,7 @@
 							</div>
 							<div class="col-md-6" style="text-align: center;">
 								<img src="/img/teath.png"><br><br>
-								<a class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 교정장치 착용 기간</a>
+								<a href="/dentist/member/sub/info?type=period&memberNo=$!memberNo" class="btn" style="background-color: #4f52ba; color:white;width: 60%;">환자 교정장치 착용 기간</a>
 							</div>
 							<div class="clearfix"></div>
 						</div>

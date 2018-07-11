@@ -17,7 +17,7 @@
 	<p style="margin-top: 3em; margin-bottm: 3em; text-align:center;">등록된 영상이 없습니다.</p>
 	#end
 	<hr>
-	<div id="container" style=""></div>
+	<div id="container"></div>
 	#parse("user/setting/footer.vm")
 
 ## 반원 차트
