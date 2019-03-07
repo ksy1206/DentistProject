@@ -16,6 +16,7 @@ import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
 import com.belle.teeth.api.common.service.CommonService;
+import com.belle.teeth.api.dentist.dto.QaListDto;
 import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.factory.zxing.MakeQrCode;
 
@@ -204,5 +205,14 @@ public class FactoryMainController {
 			, @RequestParam(value="dentistName") String dentistName, Model model) throws Exception {
 		cService.saveDentistName(dentistName);
 		return "true";
+	}
+	
+	//환자  QA 목록
+	@RequestMapping(value = "/qalist", method = RequestMethod.GET)
+	public String qalist(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		 QaListDto[] list = memberService.getQaAllList();
+		model.addAttribute("list", list);
+		return "factory/qaList";
 	}
 }

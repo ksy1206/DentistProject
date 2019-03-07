@@ -52,6 +52,28 @@
 					</div>
 
 					<hr>
+					<h6>로그인 정보</h6>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>아이디 * :</h4>
+						</div>
+						<div class="sign-up2">
+							<input type="text" id="memberId" value="$!memberInfo.memberId" style="width:70%;">
+							<button type="button" id="memberIdCheckButton" class="btn btn-warning" style="width:24%;" onclick="app.checkMemberId();">중복확인</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>비밀번호 * :</h4>
+						</div>
+						<div class="sign-up2">
+							<input type="password" id="memberPwd" value="$!memberInfo.memberPwd">
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<hr>
+
 					<h5>개인 정보</h5>
 					<div class="sign-u">
 						<div class="sign-up1">
@@ -64,10 +86,10 @@
 					</div>
 					<div class="sign-u">
 						<div class="sign-up1">
-							<h4>나이 :</h4>
+							<h4>전화번호 :</h4>
 						</div>
 						<div class="sign-up2">
-							<input type="text" id="memberAge" value="$!memberInfo.memberAge">
+							<input type="text" id="memberAge" value="$!memberInfo.memberAge" placeholder="숫자만 입력하세요.">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -92,28 +114,6 @@
 							<label>
 								<input type="radio" name="gender" value="F" #if($!type=="modify" && $!memberInfo.memberGender == "F") checked="checked" #end> Female
 							</label>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<hr>
-
-					<h6>로그인 정보</h6>
-					<div class="sign-u">
-						<div class="sign-up1">
-							<h4>아이디 * :</h4>
-						</div>
-						<div class="sign-up2">
-							<input type="text" id="memberId" value="$!memberInfo.memberId" style="width:70%;">
-							<button type="button" id="memberIdCheckButton" class="btn btn-warning" style="width:24%;" onclick="app.checkMemberId();">중복확인</button>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="sign-u">
-						<div class="sign-up1">
-							<h4>비밀번호 * :</h4>
-						</div>
-						<div class="sign-up2">
-							<input type="password" id="memberPwd" value="$!memberInfo.memberPwd">
 						</div>
 						<div class="clearfix"></div>
 					</div>

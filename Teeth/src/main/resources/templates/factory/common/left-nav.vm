@@ -12,6 +12,9 @@
 						<li>
 							<a href="/factory/dentist/list">· 의사 목록</a>
 						</li>
+						<li>
+							<a href="/factory/dentist/add">· 치과 등록</a>
+						</li>
 					</ul>
 					## nav-second-level
 				</li>
@@ -34,7 +37,7 @@
 							<a href="/factory/careful/attention/add">· 주의 사항 등록</a>
 						</li>
 						<li>
-							<a href="/factory/dentist/add">· 치과 등록</a>
+							<a href="/factory/qalist">· 환자 Q&A</a>
 						</li>
 					</ul>
 					## nav-second-level

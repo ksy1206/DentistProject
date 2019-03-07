@@ -22,7 +22,11 @@
 						<div class="profile_img">
 							<div class="user-name">
 								<p>$!SessionData.memberName</p>
-								<span>Dentist</span>
+								#if($SessionData.memberType == 'B')
+									<span>Dentist</span>
+								#elseif($SessionData.memberType == 'C')
+									<span>Dental Technician</span>
+								#end
 							</div>
 							<i class="fa fa-angle-down lnr"></i>
 							<i class="fa fa-angle-up lnr"></i>
@@ -30,8 +34,6 @@
 						</div>
 					</a>
 					<ul class="dropdown-menu drp-mnu">
-						##<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
-						##<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
 						<li> <a href="/common/logout"><i class="fa fa-sign-out"></i> Logout</a> </li>
 					</ul>
 				</li>

@@ -14,6 +14,7 @@ import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
+import com.belle.teeth.api.dentist.dto.QaListDto;
 import com.belle.teeth.api.dentist.dto.SchedualDto;
 
 @Mapper
@@ -457,4 +458,13 @@ public interface MemberMapper {
 	// 스케쥴 삭제
 	@Delete("DELETE FROM member_schedual WHERE sc_no = #{scNo}")
 	void deleteSchedual(SchedualDto data);
+
+	@Results({
+		@Result(property = "memberNo", column = "member_no")
+		,@Result(property = "memberName", column = "member_name")
+		,@Result(property = "doctorMemberNo", column = "doctor_member_no")
+		,@Result(property = "doctorName", column = "doctor_member_name")
+	})
+	@Select("select a.member_no, a.member_name, a.doctor_member_no, b.member_name as doctor_member_name from member a left join member b on a.doctor_member_no = b.member_no where a.member_no in (select distinct(qa_member_no) from qa) and a.member_type = 'A'")
+	QaListDto[] getQaAllList();
 }

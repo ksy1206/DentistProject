@@ -45,7 +45,7 @@ public interface CommonMapper {
 	public Dentist dentistInfo(@Param("assignNo") Integer assignNo);
 	
 	// 치과 등록
-	@Insert("INSERT INTO dentist (dentist_name, dentist_file_key) VALUES (#{name}, '0')")
+	@Insert("INSERT INTO dentist (dentist_name) VALUES (#{name})")
 	public void addDentist(@Param("name") String name);
 	
 	// 파일 정보 등록하기

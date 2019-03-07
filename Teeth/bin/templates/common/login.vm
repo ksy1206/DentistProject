@@ -114,7 +114,7 @@
 							var saveUserID = _this.env.saveId.is(':checked');
 
 							if(r.type == 'A') {## 회원
-								
+								alert("일반 회원은 관리자 페이지에 접속할 수 없습니다.");
 							} else if(r.type == 'B') { ## 의사
 								location.href= '/dentist/main';
 								if(saveUserID) {

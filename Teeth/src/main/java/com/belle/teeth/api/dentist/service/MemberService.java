@@ -9,6 +9,7 @@ import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.MemberImgDto;
 import com.belle.teeth.api.dentist.dto.QaDto;
+import com.belle.teeth.api.dentist.dto.QaListDto;
 import com.belle.teeth.api.dentist.dto.SchedualDto;
 import com.belle.teeth.api.dentist.mapper.MemberMapper;
 
@@ -203,6 +204,11 @@ public class MemberService {
 	public MemberDto getMemberInfo3(String memberId) {
 		return memberMapper.memberInfo3(memberId);
 	}
+	
+	public QaListDto[] getQaAllList( ) {
+		return memberMapper.getQaAllList();
+	}
+	
 	
 	/**
 	 * 환자 의사 질문 답변 리스트 가져오기

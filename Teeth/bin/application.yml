@@ -26,9 +26,9 @@ spring:
   datasource:
     type: org.apache.tomcat.jdbc.pool.DataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://agathanis.cnmkspdlmfr9.ap-northeast-2.rds.amazonaws.com:3306/teeth?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: agathanis
-    password: master1234
+    url: jdbc:mysql://seyun.synology.me:3106/teeth?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: wndcjs126KSY
 
 logging:
   config: classpath:logback-spring.xml
