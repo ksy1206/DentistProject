@@ -16,6 +16,7 @@ import com.belle.teeth.api.common.dto.FileDto;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.PagingDto;
 import com.belle.teeth.api.common.service.CommonService;
+import com.belle.teeth.api.dentist.dto.QaDto;
 import com.belle.teeth.api.dentist.dto.QaListDto;
 import com.belle.teeth.api.dentist.service.MemberService;
 import com.belle.teeth.api.factory.zxing.MakeQrCode;
@@ -214,5 +215,35 @@ public class FactoryMainController {
 		 QaListDto[] list = memberService.getQaAllList();
 		model.addAttribute("list", list);
 		return "factory/qaList";
+	}
+	
+	// 환자 qa 1:1 대화
+	@RequestMapping(value = "/qalist/details", method = RequestMethod.GET)
+	public String getDetailsQaList(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="doctorNo") Integer doctorNo
+			, @RequestParam(value="memberNo") Integer memberNo,  Model model) {
+		
+		model.addAttribute("qaList", memberService.getQaList(doctorNo, memberNo));
+		
+		model.addAttribute("memberNo", memberNo);
+		model.addAttribute("doctorNo", doctorNo);
+		return "factory/qaDetails";
+	}
+	
+	@RequestMapping(value = "/ajax/qa/add", method = RequestMethod.POST)
+	@ResponseBody
+	public String QaAdd(HttpServletRequest request, HttpServletResponse response
+			, @RequestParam(value="message", required=true) String message
+			, @RequestParam(value="doctorNo", required=true) Integer doctorNo
+			, @RequestParam(value="memberNo", required=true) Integer memberNo) throws Exception {
+		
+		QaDto qaInfo = new QaDto();
+		qaInfo.setType("SE03");
+		qaInfo.setQaDoctorNo(doctorNo);
+		qaInfo.setQaMemberNo(memberNo);
+		qaInfo.setMessage(message);
+		memberService.addQa(qaInfo);
+
+		return "true";
 	}
 }

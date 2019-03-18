@@ -21,15 +21,14 @@
 					<div class="scrollbar" tabindex="5000" style="overflow: scroll; outline: none; overflow-x: hidden;">
 						#foreach($row in $qaList)
 							#if($row.type == "SE01")
-							<div class="activity-row activity-row1 activity-right">
-								<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
-								<div class="col-xs-9 activity-img1">
-									<div class="activity-desc-sub">
+							<div class="activity-row activity-row1 activity-left">
+								<div class="col-xs-9 activity-img2">
+									<div class="activity-desc-sub1">
 										<p>$!row.message</p>
 										<span>$!row.insertDate</span>
-										<span style="color:red; margin-left:0.5em;" onclick="app.messageDelete('$!row.qaNo')"><i class="fa fa-ban" aria-hidden="true"></i>삭제</span>
 									</div>
 								</div>
+								<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
 								<div class="clearfix"> </div>
 							</div>
 							#elseif($row.type == "SE02")
@@ -44,15 +43,14 @@
 								<div class="clearfix"> </div>
 							</div>
 							#elseif($row.type == "SE03")
-							<div class="activity-row activity-row1 activity-left">
-								<div class="col-xs-9 activity-img2">
-									<div class="activity-desc-sub1">
+							<div class="activity-row activity-row1 activity-right">
+								<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px; color:rebeccapurple;"><i class="fa fa-user-md" aria-hidden="true"></i></div>
+								<div class="col-xs-9 activity-img1">
+									<div class="activity-desc-sub">
 										<p>$!row.message</p>
 										<span>$!row.insertDate</span>
+										<span style="color:red; margin-left:0.5em;" onclick="app.messageDelete('$!row.qaNo')"><i class="fa fa-user" aria-hidden="true"></i>삭제</span>
 									</div>
-								</div>
-								<div class="col-xs-3 activity-img" style="text-align: center;font-size: 40px; color:rebeccapurple;">
-									<i class="fa fa-user-md" aria-hidden="true"></i>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -104,10 +102,11 @@
 			valitdation = _this.qaValidation();
 
 			if(valitdation) {
-				var url = '/dentist/ajax/qa/add';
+				var url = '/factory/ajax/qa/add';
 				var params = {
 					message : _this.env.message.val(),
-					memberNo : $!memberNo
+					memberNo : "$!memberNo",
+					doctorNo : "$!doctorNo",
 				};
 
 				$.ajax({
@@ -131,7 +130,7 @@
 				var url = '/dentist/ajax/qa/delete';
 				var params = {
 					qaNo : qa_no,
-					doctorNo : $!SessionData.memberNo
+					doctorNo : "$!doctorNo"
 				};
 
 				$.ajax({

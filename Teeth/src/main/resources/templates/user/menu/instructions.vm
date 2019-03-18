@@ -9,7 +9,7 @@
 	<div id="page-wrapper">
 		<div class="main-page">
 			<div class="row calender widget-shadow">
-				<h4 class="title">장치사용법</h4>
+				<br>
 				<div> 
 					#if("$!fileInfo.fileUrl" != "")
 						<img class="img-rounded" src="$!fileInfo.fileUrl/$!fileInfo.fileName" width="100%">

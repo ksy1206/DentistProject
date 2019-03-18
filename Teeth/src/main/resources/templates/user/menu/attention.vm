@@ -9,8 +9,7 @@
 	<div id="page-wrapper">
 		<div class="main-page">
 			<div class="row calender widget-shadow">
-				<h4 class="title">주의사항</h4>
-				
+				<br><br>
 				#if($imgList.size() > 0)
 					#foreach($row in $imgList)
 					<div class="col-md-6" style="margin-bottom:1em; text-align:center;">

@@ -11,7 +11,7 @@
 			<div class="msg">
 				## 보낸사람
 				#foreach($row in $qaList)
-				#if($row.type == "SE01")
+				#if($row.type == "SE01"|| $row.type == "SE03")
 				<div class="othertalk" style="margin-bottom:1em;">
 					<div class="profile_image" style="background: url(/img/kakaoUser.png) no-repeat;"></div>
 					<div class="box">
