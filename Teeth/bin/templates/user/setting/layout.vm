@@ -3,20 +3,24 @@
 	<span onclick="closeSidebar()" class="w3-button w3-display-topright w3-large">X</span>
 	<br>
 	<div class="w3-padding w3-center">
-		<p>장진수 회원님</p>
+		<p>$SessionData.memberName 회원님</p>
 	</div>
 </div>
 <br>
 <a class="w3-bar-item w3-button" href="/user/main">· 메인 홈</a>
-<hr>
+<hr style="margin: 15px 0;">
 <a class="w3-bar-item w3-button" href="/user/notice">· 공지 사항</a>
-<hr>
+<hr style="margin: 15px 0;">
 <a class="w3-bar-item w3-button" href="/user/qa">· 교정 상담</a>
-<hr>
+<hr style="margin: 15px 0;">
 <a class="w3-bar-item w3-button" href="/user/schedual">· 치과 방문 일정</a>
-<hr>
+<hr style="margin: 15px 0;">
+<a class="w3-bar-item w3-button" href="/user/device/instructions">· 장치사용법</a>
+<hr style="margin: 15px 0;">
+<a class="w3-bar-item w3-button" href="/user/careful/attention">· 주의사항</a>
+<hr style="margin: 15px 0;">
 <a class="w3-bar-item w3-button" href="/user/logOut">· 로그아웃</a>
-<hr>
+<hr style="margin: 15px 0;">
 </nav>
 
 <header class="w3-bar w3-card w3-theme">

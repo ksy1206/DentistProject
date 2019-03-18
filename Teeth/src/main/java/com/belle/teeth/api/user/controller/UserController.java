@@ -2,6 +2,7 @@ package com.belle.teeth.api.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.belle.teeth.api.common.dto.Dentist;
 import com.belle.teeth.api.common.dto.MemberDto;
 import com.belle.teeth.api.common.dto.QRCodeDto;
 import com.belle.teeth.api.common.dto.SessionDto;
@@ -196,4 +198,22 @@ public class UserController {
 		return "user/menu/schedual";
 	}
 
+	// 장치 사용법
+	@RequestMapping(value = "/careful/attention", method = RequestMethod.GET)
+	public String cafeful(HttpServletRequest request, HttpServletResponse response, Model model) {
+		model.addAttribute("imgList", commonService.getFileFileType("F04"));
+		return "user/menu/attention";
+	}
+	
+	// 장치 사용법
+		@RequestMapping(value = "/device/instructions", method = RequestMethod.GET)
+		public String DeviceInstructions(HttpServletRequest request, HttpServletResponse response, Model model) {
+			HttpSession session = request.getSession(true);
+			SessionDto sessionInfo = (SessionDto) session.getAttribute("sessionData");
+			Integer dentistNo = sessionInfo.getAssignNo();
+			Dentist dentistInfo = commonService.getDentistInfo(dentistNo);
+			model.addAttribute("fileInfo", commonService.getFileFileKey(dentistInfo.getDentistFileKey()));
+			return "user/menu/instructions";
+		}
+	
 }
