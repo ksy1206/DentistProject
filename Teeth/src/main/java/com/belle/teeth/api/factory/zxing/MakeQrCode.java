@@ -19,7 +19,7 @@ public class MakeQrCode {
 
 	public static FileDto MakeQrCodeFunction(HttpServletRequest request, Integer memberNo, String userId, String qrName, Integer step) throws Exception {
 		// 코드인식시 링크걸 URL주소
-		String url = "http://13.124.224.195:8800/user/check?memberId="+userId+"&step="+step;
+		String url = "http://www.xn--hz2b2jw6s46edb378f.com/user/check?memberId="+userId+"&step="+step;
 		String codeurl = new String(url.getBytes("UTF-8"), "ISO-8859-1");
 		// 큐알코드 바코드 생상값
 		int qrcodeColor = 0xFF2e4e96;

@@ -90,7 +90,8 @@
 				alert("검색어를 입력하세요.");
 				return false;
 			}
-			location.href="/factory/dentist/list?sKey="+_this.env.sKey.val() + "&sValue="+_this.env.sValue.val().trim();
+			var sv = encodeURI(_this.env.sValue.val().trim(), "UTF-8")
+			location.href="/factory/dentist/list?sKey="+_this.env.sKey.val() + "&sValue="+sv;
 		};
 
 	}
