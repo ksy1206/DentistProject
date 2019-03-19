@@ -29,8 +29,8 @@ public interface MemberMapper {
 	public Integer checkUserId(@Param("userId") String userId);
 
 	// 회원 비밀번호 찾기 유효성 검사
-	@Select("SELECT COUNT(*) FROM member WHERE member_id = #{userId} AND member_email=#{email} AND member_type = #{type}")
-	public Integer checkFindPwd(@Param("userId") String userId, @Param("email") String email, @Param("type") String type);
+	@Select("SELECT COUNT(*) FROM member WHERE member_id = #{userId} AND member_age=#{phone} AND member_email=#{email} AND member_type = #{type}")
+	public Integer checkFindPwd(@Param("userId") String userId, @Param("phone") String phone, @Param("email") String email, @Param("type") String type);
 
 	// 회원 비밀번호 업데이트
 	@Update("UPDATE member "

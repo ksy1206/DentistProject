@@ -53,8 +53,8 @@ public class MemberService {
 	 * @param email
 	 * @return
 	 */
-	public boolean checkFindPwd(String userId, String email, String type) {
-		Integer count = memberMapper.checkFindPwd(userId, email, type);
+	public boolean checkFindPwd(String userId, String phone, String email, String type) {
+		Integer count = memberMapper.checkFindPwd(userId, phone, email, type);
 		if(count == 0) {
 			return false;
 		} else {
@@ -70,8 +70,8 @@ public class MemberService {
 	 * @return
 	 */
 	@Transactional
-	public boolean modifyPwd(String userId, String email, String pwd, String type) {
-		Integer count = memberMapper.checkFindPwd(userId, email, type);
+	public boolean modifyPwd(String userId, String phone, String email, String pwd, String type) {
+		Integer count = memberMapper.checkFindPwd(userId, phone, email, type);
 		if(count == 0) {
 			return false;
 		} else {

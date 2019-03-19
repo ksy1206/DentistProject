@@ -16,7 +16,7 @@
 		## main content start
 		<div id="page-wrapper">
 			<div class="main-page">
-
+				<img src="/img/mainImg.jpg" width="100%">
 			</div>
 		</div>
 		## Footer 설정 파일

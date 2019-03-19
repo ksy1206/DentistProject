@@ -17,8 +17,8 @@
 		<div id="page-wrapper">
 			<div class="main-page">
 				<h3 style="color:#4f52ba;">
-					<i class="fa fa-plus" aria-hidden="true"></i> 3차원 영상 정보
-					<button  style="background-color:#4f52ba; color: white;float: right;" class="btn" type="button" onclick="fileUpload.fileUploadButton('Stl');">영상 업로드 <span class="fa fa-plus"></span></button>
+					<i class="fa fa-plus" aria-hidden="true"></i> 환자 이미지 정보
+					<button  style="background-color:#4f52ba; color: white;float: right;" class="btn" type="button" onclick="fileUpload.fileUploadButton('Stl');">이미지 업로드 <span class="fa fa-plus"></span></button>
 				</h3>
 				<br>
 				## 미리보기
@@ -27,20 +27,20 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th style="text-align: center;">영상 정보</th>
+								<th style="text-align: center;">이미지 정보</th>
 							</tr>
 						</thead>
 					</table>
-
-					<div id="react-app"></div>
-					#if("$!StlInfo.fileUrl" != "")
-					<script>
-						var USER_STL_FILE_URL = "$!StlInfo.fileUrl/$!StlInfo.fileName";
-						var DIV_WIDTH = document.getElementById("3dDivArea").offsetWidth - 30;
-					</script>
-					<script src="/js/stl/react-bundle.js"></script>
-					#else
-					<p style="margin-top: 3em; margin-bottm: 3em; text-align:center;">등록된 영상이 없습니다.</p>
+					#foreach($row in $imgList)
+					<div class="col-md-4" style="margin-bottom:1em; text-align:center;">
+						<img src="$!row.fileUrl/$!row.fileName" class="img-rounded" width="100%" height="236">
+						<a class="btn btn-info" style="margin-top:0.5em;" href="$!row.fileUrl/$!row.fileName" download>이미지 다운로드</a>
+					</div>
+					#end
+					
+					## 사진이 없을경우
+					#if($imgList.size() == 0)
+						<p style="margin-top: 3em; margin-bottm: 3em; text-align:center;">등록된 이미지가 없습니다.</p>
 					#end
 				</div>
 				<div class="clearfix"> </div>

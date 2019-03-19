@@ -105,9 +105,10 @@ public class CommonController {
 	@ResponseBody
 	public String findPwdCheck(HttpServletRequest request, HttpServletResponse response
 			, @RequestParam(value = "userId") String userId
+			, @RequestParam(value = "phone") String phone
 			, @RequestParam(value = "email") String email, Model model) throws Exception {
 		String result = "false";
-		boolean isvaild = mService.checkFindPwd(userId, email, "B");
+		boolean isvaild = mService.checkFindPwd(userId, phone, email, "B");
 		if(isvaild) {
 			result = "true";
 		}
@@ -129,10 +130,11 @@ public class CommonController {
 	@ResponseBody
 	public String modifyPwdCheck(HttpServletRequest request, HttpServletResponse response
 			, @RequestParam(value = "userId") String userId
+			, @RequestParam(value = "phone") String phone
 			, @RequestParam(value = "email") String email
 			, @RequestParam(value = "password") String password, Model model) throws Exception {
 		String result = "false";
-		boolean isvaild = mService.modifyPwd(userId, email, password, "B");
+		boolean isvaild = mService.modifyPwd(userId, phone, email, password, "B");
 		if(isvaild) {
 			result = "true";
 		}
@@ -280,11 +282,14 @@ public class CommonController {
 				imgInfo.setFileSn(fileInfo.getFileSn());
 				mService.updateMemberImgInfo(imgInfo);
 			} else if("Stl".equals(fileType)) {
-				Integer memberNo = patientNo != null ? patientNo.intValue() : null;
-				MemberDto memberInfo = mService.getMemberInfo(memberNo);
-				Long fileSn = memberInfo.getStlFileSn().longValue();
-				cService.deleteFile(fileSn);
-				mService.updateMemberStlInfo(fileInfo.getFileSn(), memberNo);
+//				Integer memberNo = patientNo != null ? patientNo.intValue() : null;
+//				MemberDto memberInfo = mService.getMemberInfo(memberNo);
+//				Long fileSn = memberInfo.getStlFileSn().longValue();
+//				cService.deleteFile(fileSn);
+//				mService.updateMemberStlInfo(fileInfo.getFileSn(), memberNo);
+				imgInfo.setMemberNo(patientNo);
+				imgInfo.setFileSn(fileInfo.getFileSn());
+				mService.updateMemberImgInfo(imgInfo);
 			}
 
 			// 파일 업로드 후, DB 저장

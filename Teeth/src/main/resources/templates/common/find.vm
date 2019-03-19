@@ -18,12 +18,13 @@
 					<div class="login-body">
 						<form>
 							<input type="text" class="user" id="userId" name="userId" placeholder="아이디를 입력하세요.">
+							<input type="text" id="userPhone" name="userPhone" placeholder="전화번호를 입력하세요." style="background: url(../images/phone.png) no-repeat 4px 5px #fff;">
 							<input type="text" id="email" name="email" placeholder="이메일을 입력하세요." style="background: url(../images/email.png) no-repeat 4px 5px #fff;">
 							<input type="button" id="findButton" onclick="app.find();" value="찾기" style="border: none;outline: none;cursor: pointer;color: #fff;background: #6164C1;width: 100%;padding: .5em 1em;font-size: 1em;margin: 0.5em 0 0;">
 						</form>
 						<div id="findInfoDiv" style="margin-top: 8px;font-size: 12px;color: gray;">
 							<i class="fa fa-bell-o" aria-hidden="true"></i>
-							<span>아이디 및 이메일 정보를 모르는경우, 기공소에 문의해 주세요.</span>
+							<span>아이디, 전화번호 및 이메일 정보를 모르는경우, 기공소에 문의해 주세요.</span>
 						</div>
 						<br>
 						<form id="newPasswordForm" style="display: none;">
@@ -47,6 +48,7 @@
 		_this.env = {};
 		_this.env.userId = $('#userId');
 		_this.env.email = $('#email');
+		_this.env.phone = $('#userPhone');
 		
 		## Button & Form
 		_this.env.findButton = $('#findButton');
@@ -66,6 +68,7 @@
 			var params = {
 				userId : _this.env.userId.val(),
 				email : _this.env.email.val(),
+				phone : _this.env.phone.val(),
 				password : _this.env.password.val().trim()
 			}
 			
@@ -92,11 +95,18 @@
 		## 비밀번호 변경하기 위한 확인
 		_this.find = function() {
 			var userId = _this.env.userId.val();
+			var phone = _this.env.phone.val();
 			var email = _this.env.email.val();
 			
 			## userId Check
 			if(_this.env.userId.val().trim() == '') {
 				alert('회원 아이디를 입력 하세요.');
+				return false;
+			}
+			
+			## email Check
+			if(_this.env.phone.val().trim() == '') {
+				alert("전화번호를 입력 하세요.");
 				return false;
 			}
 			
@@ -109,7 +119,8 @@
 			var url = "/ajax/common/find/check";
 			var params = {
 				userId : userId,
-				email : email
+				email : email,
+				phone : phone
 			}
 
 			$.ajax({
@@ -119,6 +130,7 @@
 				success: function(result) {
 					if(result == 'true') {
 						_this.env.userId.attr("readonly", true);
+						_this.env.phone.attr("readonly", true);
 						_this.env.email.attr("readonly", true);
 						_this.env.findButton.hide();
 						_this.env.findInfoDiv.hide();
